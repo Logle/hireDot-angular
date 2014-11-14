@@ -1,0 +1,46 @@
+<div class="headerbar" ng-controller="HeaderCtrl">
+  <a class="menutoggle" href="javascript:void(0)" ng-click="toggleLeftPanel()"><i class="fa fa-bars"></i></a>
+  <div class="header-right">
+    <ul class="headermenu">
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle tp-icon">
+            <i class="fa fa-users"></i>
+            <span class="badge">2</span>
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle tp-icon">
+            <i class="fa fa-suitcase"></i>
+            <span class="badge">2</span>
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle">
+            <img src="/assets/images/photo.jpg" alt="User">
+            Christian Sakai
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle tp-icon">
+            <i class="fa fa-linkedin-square"></i>
+            <span>Login</span>
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle tp-icon" ng-click="toggleRightPanel()">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

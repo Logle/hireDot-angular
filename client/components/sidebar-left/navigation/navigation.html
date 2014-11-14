@@ -1,0 +1,63 @@
+<div ng-controller="NavigationCtrl" id="navigation">
+  <h5 class="sidebartitle">Navigation</h5>
+  <div ng-switch on="collapseLeftPanel">
+    <div ng-switch-when="false" id="collapse-left-panel-false">
+      <ul class="nav nav-pills nav-stacked nav-bracket">
+        <li ng-repeat="item in menu" class="nav-parent" ng-class="{active: isActive(item.link), 'nav-active': item.showSubMenu, 'nav-hover': item.hover}" ng-mouseenter="item.hover = true" ng-mouseleave="item.hover = false">
+          <a ng-href="{{item.link}}" ng-click="item.showSubMenu = !item.showSubMenu"><i ng-class="item.logo"></i> <span>{{item.title}}</span></a>
+          <ul ng-if="item.showSubMenu" class="children" style="display: block;">
+            <li ng-repeat="subItem in item.subMenu">
+              <a href="{{subItem.link}}"><i class="fa fa-caret-right"></i> {{subItem.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div ng-switch-when="true">
+      <ul class="nav nav-pills nav-stacked nav-bracket">
+        <li ng-repeat="item in menu" class="nav-parent" ng-class="{active: isActive(item.link), 'nav-active': item.showSubMenu, 'nav-hover': item.hover}" ng-mouseenter="item.hover = true" ng-mouseleave="item.hover = false">
+          <a><i ng-class="item.logo"></i> <span>{{item.title}}</span></a>
+          <ul ng-if="item.hover" class="children" style="display: block;">
+            <li ng-repeat="subItem in item.subMenu">
+              <a href="{{subItem.link}}"><i class="fa fa-caret-right"></i> {{subItem.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+      <!-- <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavbarCtrl">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">HireDot</a>
+    </div>
+    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+            <a ng-href="{{item.link}}">{{item.title}}</a>
+        </li>
+        <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="" ng-click="loginOauth('linkedIn')"><span class="fa fa-linkedin-square fa-lg"></span> <span>Login</span></a></li>
+        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+ -->

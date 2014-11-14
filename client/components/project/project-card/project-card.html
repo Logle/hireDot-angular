@@ -1,0 +1,21 @@
+<div class="col-md-4">
+  <div class="panel panel-default widget-photoday project-card">
+    <a class="photoday" href="{{projectData.url}}" title="{{projectData.name}}" ng-show="imageAvailable(projectData)">
+      <img src="{{projectData.images[0].original}}" title="{{projectData.name}}" class="project-image">
+    </a>
+    <a class="photoday" ref="javascript:void(0)" title="Project Page" ng-hide="imageAvailable(projectData)">
+      <img src="assets/images/project.jpg" alt="Project Name" class="project-image">
+    </a>
+    <div class="photo-details">
+      <h4 class="photo-title">
+        {{projectData.name}}
+        <a href="{{projectData.githubUrl}}" title="{{projectData.name}}"><span class="fa fa-github"></span></a>
+      </h4>
+      <small class="text-muted">{{projectData.techTags | limitText : 'projectTechTags'}}</small>
+    </div>
+    <ul class="photo-meta">
+      <li><span><i class="fa fa-eye"></i> {{projectData.views.length}}</span></li>
+      <li><a href="#"><i class="fa fa-heart"></i> Follow</a></li>
+    </ul>
+  </div>
+</div>

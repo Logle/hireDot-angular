@@ -1,0 +1,221 @@
+/*
+ * Bower Components
+ */
+
+ /* Standard from Generator */
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
+
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'font-awesome/scss/font-awesome';
+
+/*
+ * Assets
+ */
+
+@import '../assets/stylesheets/bootstrap-override';
+@import '../bower_components/jquery-ui/themes/base/jquery-ui.css';
+
+/* Animate.css already imported by bower build */
+@import '../assets/stylesheets/animate-delay';
+@import '../assets/stylesheets/toggles';
+@import '../assets/stylesheets/select2';
+@import '../assets/stylesheets/lato';
+@import '../assets/stylesheets/style-default';
+
+/**
+ * App-wide Styles
+ */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+// Needs margin-top because navbar is fixed
+
+a:hover {
+  text-decoration: none;
+}
+
+.ui-view-lvl-1 {
+  margin-top: 50px;
+}
+
+// Hero Unit
+.hero-unit {
+  color: #333;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: $gray-lighter;
+  h3 {
+    margin-top: 5px;
+  }
+  p {
+    display: table;
+    margin: 0 auto 10px;
+    span, button {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    span {
+      padding-left: 5px;
+    }
+  }
+}
+
+.fixed-top {
+  position: fixed !important;
+  z-index: 1 !important;
+  width: 100% !important;
+}
+
+
+
+.voffset  { margin-bottom: 2px !important; }
+.voffset1 { margin-bottom: 5px !important; }
+.voffset2 { margin-bottom: 10px !important; }
+.voffset3 { margin-bottom: 15px !important; }
+.voffset4 { margin-bottom: 30px !important; }
+.voffset5 { margin-bottom: 40px !important; }
+.voffset6 { margin-bottom: 60px !important; }
+.voffset7 { margin-bottom: 80px !important; }
+.voffset8 { margin-bottom: 100px !important; }
+.voffset9 { margin-bottom: 150px !important; }
+
+/* columns of same height styles */
+.container-xs-height {
+    display:table;
+    padding-left:0px;
+    padding-right:0px;
+}
+.row-xs-height {
+    display:table-row;
+}
+.col-xs-height {
+    display:table-cell;
+    float:none !important;
+}
+
+@media (min-width: 768px) {
+    .container-sm-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-sm-height {
+        display:table-row;
+    }
+    .col-sm-height {
+        display:table-cell;
+        float:none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-md-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-md-height {
+        display:table-row;
+    }
+    .col-md-height {
+        display:table-cell;
+        float:none !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-lg-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-lg-height {
+        display:table-row;
+    }
+    .col-lg-height {
+        display:table-cell;
+        float:none !important;
+    }
+}
+
+/* firefox fix */
+.img-responsive {
+    width: 100%;
+}
+
+/* vertical alignment styles */
+.col-top {
+    vertical-align:top;
+}
+.col-middle {
+    vertical-align:middle;
+}
+.col-bottom {
+    vertical-align:bottom;
+}
+
+.wrapper {
+  @include make-row();
+}
+.content-main {
+  @include make-lg-column(4);
+}
+.content-secondary {
+  @include make-lg-column(8);
+}
+
+@mixin add-border($side, $size) {
+  @if ($side == "all") {
+    border: $size solid #CCCCCC;
+  } @else {
+    border-#{$side}: $size solid #CCCCCC;
+  }
+}
+
+.add-border {
+  @include add-border("all", 1px);
+}
+
+.add-border-left {
+  @include add-border(left, 1px);
+}
+
+.add-border-right {
+  @include add-border(right, 1px);
+}
+
+.add-border-top {
+  @include add-border(top, 1px);
+}
+
+.add-border-bottom {
+  @include add-border(bottom, 1px);
+}
+
+
+
+
+// Component styles are injected through grunt
+// injector
+@import 'admin/admin.scss';
+@import 'developers/developers.scss';
+@import 'main/main.scss';
+@import 'my-portfolio/analytics/analytics.scss';
+@import 'my-portfolio/my-portfolio.scss';
+@import 'my-portfolio/profile/display-profile/display-profile.scss';
+@import 'my-portfolio/profile/edit-profile/edit-profile.scss';
+@import 'my-portfolio/team/display-team/display-team.scss';
+@import 'my-portfolio/team/edit-team/edit-team.scss';
+@import 'developer/developer-card/developer-card.scss';
+@import 'modal/modal.scss';
+@import 'project/project-card/project-card.scss';
+@import 'sidebar-left/information/information.scss';
+@import 'sidebar-left/navigation/navigation.scss';
+@import 'sidebar-right/sidebar-right.scss';
+// endinjector

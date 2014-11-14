@@ -1,0 +1,21 @@
+<section class="container" ng-if="true">
+  <div class="col-lg-offset-3 col-lg-6 img-rounded bg-default">
+      <h3>Hello!</h3>
+      <p class="lead text-justify">Thank you for registering.  Please wait until we approve you.  You will be notified by email shortly.</p>
+      <p class="text-right"><em>HireFS team</em></p>
+    </div>
+</section>
+
+<section class="container text-center voffset2">
+  <div class="btn-group">
+    <a href="/my-portfolio/display-profile" role="button" class="btn btn-default btn-lg">Profile</a>
+    <a href="/my-portfolio/analytics" role="button" class="btn btn-default btn-lg">Analytics</a>
+    <a href="/my-portfolio/display-team" role="button" class="btn btn-default btn-lg">Team</a>
+  </div>
+</section>
+
+<div ui-view="display-profile"></div>
+<div ui-view="edit-profile"></div>
+<div ui-view="analytics"></div>
+<div ui-view="display-team"></div>
+<div ui-view="edit-team"></div>

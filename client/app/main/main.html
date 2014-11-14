@@ -1,0 +1,11 @@
+<header class="pageheader">
+  <h2><i class="fa fa-suitcase"></i> Projects <span>Please login to meet our developers</span><span>Discover projects made by our developers</span></h2>
+</header>
+
+<div class="contentpanel">
+  <div class="row">
+    <project-card project-data='project' ng-repeat="project in projects | filter:{ name: projectName }"></project-card>
+  </div>
+</div>
+
+

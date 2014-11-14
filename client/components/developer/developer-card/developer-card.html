@@ -1,0 +1,58 @@
+<div>
+  <div class="col-md-6">
+    <div class="people-item">
+      <div class="media">
+         <a class="pull-left">
+          <img ng-src="{{developerData.profilePicture.crops._200x200}}" class="thumbnail media-object"></img>
+        </a>
+        <div class="media-body">
+          <h4 class="person-name">{{developerData.name}}</h4>
+          <div class="text-muted"><i class="fa fa-map-marker"></i> {{developerData.location}}</div>
+          <div class="text-muted">
+            <i class="fa fa-briefcase"></i> {{developerData.title | limitText: 'developerTitle'}}
+          </div>
+          <ul class="social-list">
+            <li ng-if="hasUrl(developerData, 'email')">
+              <a class="tooltips"><i class="fa fa-envelope-o"></i></a>
+            </li>
+            <li ng-if="hasUrl(developerData, 'linkedin')">
+              <a class="tooltips"><i class="fa fa-linkedin"></i></a>
+            </li>
+            <li ng-if="hasUrl(developerData, 'github')">
+              <a class="tooltips"><i class="fa fa-github"></i></a>
+            </li>
+            <li ng-if="hasUrl(developerData, 'facebook')">
+              <a class="tooltips"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li ng-if="hasUrl(developerData, 'twitter')">
+              <a class="tooltips"><i class="fa fa-twitter"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="row filemanager">
+      <div class="col-md-4 document" ng-hide="hasProject(developerData)">
+        <div class="thmb">
+          <div class="thmb-prev">
+            <img src="assets/images/project.jpg"  class="img-responsive" style="height: 103px; max-width: 100%;"alt="">
+          </div>
+          <h5 class="fm-title"><a href="">No Project Available</a></h5>
+          <small class="text-muted">Added: --</small>
+        </div>
+      </div>
+      <div class="col-md-4 document" ng-repeat="project in developerData.projects | limitTo:3" ng-show="hasProject(developerData)">
+        <div class="thmb">
+          <div class="thmb-prev">
+            <img ng-src="{{project.images[0].crops._150x150}}" class="img-responsive" style="height: 103px; max-width: 100%;" alt="{{project.name}}">
+          </div>
+          <h5 class="fm-title"><a href="">{{project.name | limitText: 'projectTitle'}}</a></h5>
+          <small class="text-muted">Added: {{project.lastUpdated | date:'yyyy-MM-dd'}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
