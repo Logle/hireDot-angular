@@ -1,25 +1,47 @@
-#workflow
-1. Master
-2. Git pull
-3. git checkout -b thisFeature
-4. thisFeature
-5. do your changes here
-6. git add git commit your branch
-7. git checkout Master
-8. Master
-9. git pull
-10. git checkout thisFeature
-11. thisFeature
-12. git merge master <<< merge master into thisFeature, not the other way around
-13. git add git commit
-14. git push origin thisFeature
-15. go to github, create a pull request
-16. I approve it, and merge it into master in the remote
-17. git checkout Master
-18. Master
-19. git pull <<< this will pull the latest master + already merged in the cloud with thisFeature
+#HireDot
+This is the Github repository for hire.fullstackacademy.com.
 
-adam's changes
+#Getting Started
+1. Git clone this repo
+2. `npm install` and `bower install`
+3. `cd hireDot`
+4. Get the old database by running `sh dbrestore.sh`
+5. Migrate the database by going to mongo shell, type `mongo`
+6. Run `load("mongo.js")`
+7. Run `grunt serve`
 
-Long : this workflow is great.
+#Team Workflow
+####On `master` branch
+1. `git pull`
+2. Make a new branch and switch to that branch by running `git checkout -b my_feature`
+
+####On `my_feature` branch
+3. Do your changes here
+4. `git add -A` and `git commit -m "my changes"`
+5. `git checkout master`
+
+####On `master` branch
+6. `git pull`
+7. `git checkout my_feature`
+
+####On `my_feature` branch
+8. `git merge master`
+9. RESOLVE ALL CONFLICS <<< IMPORTANT!
+10. `git add -A` and `git commit -m "merged master into my_feature"
+11. `git push origin my_feature`
+
+####On Github
+12. Create a pull request
+13. Notify me (in case I forgot) that you have created a pull request
+14. Wait until I approve the pull request and merge it into master
+
+####On your local computer
+15. `git checkout master`
+
+####On `master`
+16. `git pull`
+17. Repeat the steps
+
+####Please keep this workflow here for references.
+
 
