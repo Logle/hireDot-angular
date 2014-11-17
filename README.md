@@ -18,3 +18,5 @@
 17. git checkout Master
 18. Master
 19. git pull <<< this will pull the latest master + already merged in the cloud with thisFeature
+
+Long : this workflow is great.
