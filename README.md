@@ -20,3 +20,6 @@
 19. git pull <<< this will pull the latest master + already merged in the cloud with thisFeature
 
 adam's changes
+
+Long : this workflow is great.
+
