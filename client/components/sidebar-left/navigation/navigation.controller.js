@@ -3,28 +3,28 @@
 angular.module('hireDotApp')
   .controller('NavigationCtrl', function ($scope, $location, $window, Auth) {
     $scope.menu = [{
-      title: 'Projects',
+      title: 'Browse',
       link: '/',
       logo: 'fa fa-suitcase',
       showSubMenu: false,
       subMenu: [{
-        title: 'Link 1',
+        title: 'Projects',
         link: '/'
       }, {
-        title: 'Link 2',
-        link: '/'
+        title: 'Developers',
+        link: '/developers'
       }]
-    },{
-      title: 'Developers',
-      link: '/developers',
-      logo: 'fa fa-users',
+    }, {
+      title: 'My Portfolio',
+      link: '/my_portfolio',
+      logo: 'fa fa-user',
       showSubMenu: false,
       subMenu: [{
-        title: 'Link 1',
-        link: '/'
+        title: 'Display Profile',
+        link: '/my_portfolio/display_profile'
       }, {
-        title: 'Link 2',
-        link: '/'
+        title: 'Edit Profile',
+        link: '/my_portfolio/edit_profile'
       }]
     }];
 

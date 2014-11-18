@@ -3,9 +3,9 @@
 angular.module('hireDotApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('my-portfolio', {
-        url: '/my-portfolio',
-        templateUrl: 'app/my-portfolio/my-portfolio.html',
-        controller: 'MyPortfolioCtrl'
+      .state('my_portfolio', {
+        url: '/my_portfolio',
+        abstract: true,
+        template: '<div ui-view=""></div>'
       });
   });
