@@ -7,7 +7,7 @@ angular.module('hireDotApp')
         url: '/edit-profile',
         views: {
           "edit-profile": {
-            templateUrl: 'app/my-portfolio/profile/edit-profile/edit-profile.html',
+            templateUrl: 'app/my-portfolio/my-profile/edit-profile/edit-profile.html',
             controller: 'EditProfileCtrl'
           }
         }
