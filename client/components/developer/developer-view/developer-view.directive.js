@@ -9,6 +9,20 @@ angular.module('hireDotApp')
         developerData: '=developerData'
       },
       link: function (scope) {
+        scope.showFunny = false;
+
+        scope.showTab = {
+          projects: true,
+          workExperiences: false,
+          educations: false
+        };
+
+        scope.show = function(tabName) {
+          for (var key in scope.showTab) {
+            scope.showTab[key] = false;
+          }
+          scope.showTab[tabName] = true;
+        };
       }
     };
   });

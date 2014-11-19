@@ -4,7 +4,7 @@ angular.module('hireDotApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main', {
-        url: '/',
+        url: '/projects',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });

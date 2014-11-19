@@ -1,15 +1,16 @@
-<div>
+<div class="developer-card">
   <div class="col-md-6">
     <div class="people-item">
       <div class="media">
          <a class="pull-left">
-          <img ng-src="{{developerData.profilePicture.crops._200x200}}" class="thumbnail media-object"></img>
+          <img ng-src="{{developerData.profilePicture.crops._200x200}}" class="thumbnail media-object" ng-show="profilePictureAvailable(developerData)"></img>
+          <img ng-src="assets/images/user.jpg" class="thumbnail media-object" ng-hide="profilePictureAvailable(developerData)"></img>
         </a>
         <div class="media-body">
           <h4 class="person-name">{{developerData.name}}</h4>
           <div class="text-muted"><i class="fa fa-map-marker"></i> {{developerData.location}}</div>
-          <div class="text-muted">
-            <i class="fa fa-briefcase"></i> {{developerData.title | limitText: 'developerTitle'}}
+          <div class="text-muted developer-title">
+            <i class="fa fa-briefcase"></i> {{developerData.title}}
           </div>
           <ul class="social-list">
             <li ng-if="hasUrl(developerData, 'email')">
@@ -35,21 +36,22 @@
 
   <div class="col-md-6">
     <div class="row filemanager">
-      <div class="col-md-4 document" ng-hide="hasProject(developerData)">
+      <div class="col-md-3 document" ng-hide="hasProject(developerData)">
         <div class="thmb">
           <div class="thmb-prev">
-            <img src="assets/images/project.jpg"  class="img-responsive" style="height: 103px; max-width: 100%;"alt="">
+            <img src="assets/images/project.jpg"  class="img-responsive" alt="">
           </div>
-          <h5 class="fm-title"><a href="">No Project Available</a></h5>
+          <h5 class="fm-title project-title"><a href="">Unavailable</a></h5>
           <small class="text-muted">Added: --</small>
         </div>
       </div>
-      <div class="col-md-4 document" ng-repeat="project in developerData.projects | limitTo:3" ng-show="hasProject(developerData)">
+      <div class="col-md-3 document" ng-repeat="project in developerData.projects | limitTo:3" ng-show="hasProject(developerData)">
         <div class="thmb">
           <div class="thmb-prev">
-            <img ng-src="{{project.images[0].crops._150x150}}" class="img-responsive" style="height: 103px; max-width: 100%;" alt="{{project.name}}">
+            <img ng-src="{{project.images[0].crops._150x150}}" class="img-responsive" alt="{{project.name}}" ng-show="projectPictureAvailable(project)">
+            <img src="assets/images/project.jpg" alt="{{project.name}}" class="img-responsive" ng-hide="projectPictureAvailable(project)">
           </div>
-          <h5 class="fm-title"><a href="">{{project.name | limitText: 'projectTitle'}}</a></h5>
+          <h5 class="fm-title project-title"><a href="">{{project.name | filterText}}</a></h5>
           <small class="text-muted">Added: {{project.lastUpdated | date:'yyyy-MM-dd'}}</small>
         </div>
       </div>

@@ -1,34 +1,29 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .filter('limitText', function () {
+  .filter('filterText', function () {
     return function(string, usage) {
-      switch (usage) {
-        case 'projectTechTags':
-          if ((!string) || (string === "")) {
-            return "No tech tags available";
-          } else if (string.length > 60) {
-            return string.substr(0, 60) + "...";
-          } else {
-            return string;
-          }
-          break;
+      if ((!string) || (string === "")) return "--";
+      return string;
+    };
+  })
+  .filter('filterTimePeriod', function() {
+    return function(workExperience) {
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-        case 'projectTitle':
-          if (string.length > 20) {
-            return string.substr(0, 20) + "...";
-          } else {
-            return string;
-          }
-          break;
+      var startDate = workExperience.startDate.month ?
+                      months[workExperience.startDate.month - 1] + " " + workExperience.startDate.year :
+                      workExperience.startDate.year;
+      var endDate;
 
-        case 'developerTitle':
-          if (string.length > 50) {
-            return string.substr(0, 50) + "...";
-          } else {
-            return string;
-          }
-          break;
+      if (workExperience.isCurrent) {
+        endDate = "Current";
+      } else {
+        endDate = workExperience.endDate.month ?
+                  months[workExperience.endDate.month - 1] + " " + workExperience.endDate.year :
+                  workExperience.endDate.year;
       }
+
+      return startDate + " - " + endDate;
     };
   });

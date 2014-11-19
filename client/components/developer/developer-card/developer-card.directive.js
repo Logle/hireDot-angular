@@ -35,6 +35,25 @@ angular.module('hireDotApp')
           if (developerData.projects !== null && developerData.projects.length !== 0) return true;
           return false;
         };
+
+        scope.profilePictureAvailable = function(developerData, criteria) {
+          if (developerData.profilePicture &&
+              developerData.profilePicture.crops) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        scope.projectPictureAvailable = function(project) {
+          if (project.images.length > 0 &&
+              project.images[0] &&
+              project.images[0].crops) {
+            return true;
+          } else {
+            return false;
+          }
+        };
       }
     };
   });

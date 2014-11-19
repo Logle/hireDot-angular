@@ -12,7 +12,7 @@ angular.module('hireDotApp')
         scope.imageAvailable = function(projectData) {
           if (projectData.images.length > 0 &&
               projectData.images[0] &&
-              projectData.images[0].original) {
+              projectData.images[0].crops) {
             return true;
           } else {
             return false;

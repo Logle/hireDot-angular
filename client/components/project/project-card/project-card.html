@@ -1,20 +1,20 @@
-<div class="col-md-4">
+<div>
   <div class="panel panel-default widget-photoday project-card">
     <a class="photoday" href="{{projectData.url}}" title="{{projectData.name}}" ng-show="imageAvailable(projectData)">
-      <img src="{{projectData.images[0].original}}" title="{{projectData.name}}" class="project-image">
+      <img src="{{projectData.images[0].crops._150x150}}" title="{{projectData.name}}" class="img-responsive">
     </a>
-    <a class="photoday" ref="javascript:void(0)" title="Project Page" ng-hide="imageAvailable(projectData)">
-      <img src="assets/images/project.jpg" alt="Project Name" class="project-image">
+    <a class="photoday" href="javascript:void(0)" title="Project Page" ng-hide="imageAvailable(projectData)">
+      <img src="assets/images/project.jpg" alt="Project Name" class="img-responsive">
     </a>
     <div class="photo-details">
-      <h4 class="photo-title">
-        {{projectData.name}}
-        <a href="{{projectData.githubUrl}}" title="{{projectData.name}}"><span class="fa fa-github"></span></a>
+      <h4 class="photo-title overflow-text-ellipsis">
+        {{projectData.name | filterText}}
       </h4>
-      <small class="text-muted">{{projectData.techTags | limitText : 'projectTechTags'}}</small>
+      <small class="text-muted overflow-text-ellipsis">{{projectData.techTags | filterText}}</small>
     </div>
     <ul class="photo-meta">
       <li><span><i class="fa fa-eye"></i> {{projectData.views.length}}</span></li>
+      <li><a href=""{{projectData.githubUrl}}""><i class="fa fa-github"></i> Repo</a></li>
       <li><a href="#"><i class="fa fa-heart"></i> Follow</a></li>
     </ul>
   </div>

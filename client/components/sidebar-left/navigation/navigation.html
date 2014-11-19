@@ -4,7 +4,7 @@
     <div ng-switch-when="false" id="collapse-left-panel-false">
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li ng-repeat="item in menu" class="nav-parent" ng-class="{active: isActive(item.link), 'nav-active': item.showSubMenu, 'nav-hover': item.hover}" ng-mouseenter="item.hover = true" ng-mouseleave="item.hover = false">
-          <a ng-href="{{item.link}}" ng-click="item.showSubMenu = !item.showSubMenu"><i ng-class="item.logo"></i> <span>{{item.title}}</span></a>
+          <a href="javascript:void(0)" ng-click="item.showSubMenu = !item.showSubMenu"><i ng-class="item.logo"></i> <span>{{item.title}}</span></a>
           <ul ng-if="item.showSubMenu" class="children" style="display: block;">
             <li ng-repeat="subItem in item.subMenu">
               <a href="{{subItem.link}}"><i class="fa fa-caret-right"></i> {{subItem.title}}</a>
@@ -16,7 +16,7 @@
     <div ng-switch-when="true">
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li ng-repeat="item in menu" class="nav-parent" ng-class="{active: isActive(item.link), 'nav-active': item.showSubMenu, 'nav-hover': item.hover}" ng-mouseenter="item.hover = true" ng-mouseleave="item.hover = false">
-          <a><i ng-class="item.logo"></i> <span>{{item.title}}</span></a>
+          <a href="javascript:void(0)"><i ng-class="item.logo"></i> <span>{{item.title}}</span></a>
           <ul ng-if="item.hover" class="children" style="display: block;">
             <li ng-repeat="subItem in item.subMenu">
               <a href="{{subItem.link}}"><i class="fa fa-caret-right"></i> {{subItem.title}}</a>
