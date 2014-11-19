@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('MainCtrl', function ($scope, $http, socket, Project) {
+  .controller('ProjectsCtrl', function ($scope, $http, socket, Project) {
     $scope.projects = Project.allProjects;
   });

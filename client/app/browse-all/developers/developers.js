@@ -5,7 +5,7 @@ angular.module('hireDotApp')
     $stateProvider
       .state('developers', {
         url: '/developers',
-        templateUrl: 'app/developers/developers.html',
+        templateUrl: 'app/browse-all/developers/developers.html',
         controller: 'DevelopersCtrl'
       });
   });

@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('DisplayTeamCtrl', function ($scope) {
+  .controller('VisitorsCtrl', function ($scope) {
     $scope.message = 'Hello';
   });

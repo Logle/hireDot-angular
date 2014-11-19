@@ -1,0 +1,69 @@
+<header class="pageheader">
+  <h2><i class="fa fa-user"></i> {{developerData.name}}<span>View {{developerData.name}} profile here</span></h2>
+</header>
+
+<div class="contentpanel">
+  <div class="row developer-view">
+    <div class="col-sm-3">
+      <img ng-src="{{developerData.profilePicture.crops._200x200}}" ng-mouseover="showFunny = true;" ng-hide="showFunny"class="thumbnail img-responsive" alt="{{developerData.name}}"></img>
+      <img ng-cloak ng-src="{{developerData.funnyProfilePicture.crops._200x200}}" ng-mouseleave="showFunny = false;" ng-show="showFunny" class="thumbnail img-responsive" alt="{{developerData.name}}"></img>
+      <div class="mb30"></div>
+      <h5 class="subtitle">About</h5>
+      <p class="mb30">{{developerData.summary}}</p>
+      <h5 class="subtitle">Connect</h5>
+      <h3 class="social-media">
+        <a href="mailto:{{developerData.email}}" target="_blank" title="{{developerData.name}}'s email"><span class="fa fa-envelope"></span></a>
+        <a href="{{developerData.linkedinUrl}}" target="_blank" title="{{developerData.name}}'s Linkedin"><span class="fa fa-linkedin-square"></span></a>
+        <a href="{{developerData.githubUrl}}" target="_blank" title="{{developerData.name}}'s Github"><span class="fa fa-github-square"></span></a>
+        <a href="{{developerData.facebookUrl}}" target="_blank" title="{{developerData.name}}'s Facebook"><span class="fa fa-facebook-square"></span></a>
+        <a href="{{developerData.twitterUrl}}" target="_blank" title="{{developerData.name}}'s Twitter"><span class="fa fa-twitter-square"></span></a>
+      </h3>
+      <div class="mb30"></div>
+      <h5 class="subtitle">Skills</h5>
+      <p class="mb30">{{developerData.skills}}</p>
+    </div>
+    <div class="col-sm-9">
+      <div class="profile-header">
+        <h2 class="profile-name">{{developerData.name}}</h2>
+        <div class="profile-location"><i class="fa fa-map-marker"></i> {{developerData.location}}</div>
+        <div class="profile-position"><i class="fa fa-briefcase"></i> {{developerData.title}}</a></div>
+        <div class="mb20"></div>
+        <button class="btn btn-success mr5"><i class="fa fa-star"></i> Follow</button>
+        <button class="btn btn-white"><i class="fa fa-envelope-o"></i> Resume</button>
+      </div>
+      <ul class="nav nav-tabs nav-justified nav-profile">
+        <li ng-class="showTab.projects ? 'active' : 'none'" ng-click="show('projects')"><a href="javascript:void(0)"><strong>Projects</strong></a></li>
+        <li ng-class="showTab.workExperiences ? 'active' : 'none'" ng-click="show('workExperiences')"><a href="javascript:void(0)"><strong>Work Experiences</strong></a></li>
+        <li ng-class="showTab.educations ? 'active' : 'none'" ng-click="show('educations')"><a href="javascript:void(0)"><strong>Educations</strong></a></li>
+      </ul>
+      <div class="tab-content">
+        <div ng-show="showTab.educations" class="tab-pane active" id="activities">
+          <div class="activity-list">
+            <div class="media act-media" ng-repeat="education in developerData.educations">
+              <h4><strong>{{education.schoolName}}</strong></h4>
+              <h5><i class="fa fa-graduation-cap"></i> {{education.degree | filterText}}</h5>
+              <h5><i class="fa fa-institution"></i> {{education.fieldOfStudy | filterText}} <span class="pull-right text-muted">{{education | filterTimePeriod}}</span></h5>
+            </div>
+          </div>
+        </div>
+        <div ng-show="showTab.workExperiences" class="tab-pane active" id="activities">
+          <div class="activity-list">
+            <div class="media act-media" ng-repeat="workExperience in developerData.workExperiences">
+              <div class="media-body act-media-body">
+                <div class="media-body act-media-body">
+                  <h4><strong>{{workExperience.title}}</strong></h4>
+                  <h5>{{workExperience.company.name}}<span class="pull-right text-muted">{{workExperience | filterTimePeriod}}</span></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-show="showTab.projects" class="tab-pane active">
+        <div class="row">
+          <project-card class="col-md-4" project-data='project' ng-repeat="project in developerData.projects"></project-card>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

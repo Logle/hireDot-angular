@@ -5,7 +5,7 @@ angular.module('hireDotApp')
     $stateProvider
       .state('main', {
         url: '/projects',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/browse-all/projects/projects.html',
+        controller: 'ProjectsCtrl'
       });
   });

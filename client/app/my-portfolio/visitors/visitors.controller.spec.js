@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: AnalyticsCtrl', function () {
+describe('Controller: VisitorsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('hireDotApp'));
 
-  var AnalyticsCtrl, scope;
+  var VisitorsCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AnalyticsCtrl = $controller('AnalyticsCtrl', {
+    VisitorsCtrl = $controller('VisitorssCtrl', {
       $scope: scope
     });
   }));

@@ -8,9 +8,11 @@
         </a>
         <div class="media-body">
           <h4 class="person-name">{{developerData.name}}</h4>
-          <div class="text-muted"><i class="fa fa-map-marker"></i> {{developerData.location}}</div>
           <div class="text-muted developer-title">
             <i class="fa fa-briefcase"></i> {{developerData.title}}
+          </div>
+          <div class="text-muted">
+            <i class="fa fa-eye"></i> {{developerData.visitors.length}}
           </div>
           <ul class="social-list">
             <li ng-if="hasUrl(developerData, 'email')">
@@ -33,7 +35,6 @@
       </div>
     </div>
   </div>
-
   <div class="col-md-6">
     <div class="row filemanager">
       <div class="col-md-3 document" ng-hide="hasProject(developerData)">

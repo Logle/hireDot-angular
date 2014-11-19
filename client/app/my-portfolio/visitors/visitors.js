@@ -3,12 +3,12 @@
 angular.module('hireDotApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('my-portfolio.analytics', {
+      .state('my-portfolio.visitors', {
         url: '/analytics',
         views: {
-          "analytics": {
-            templateUrl: 'app/my-portfolio/analytics/analytics.html',
-            controller: 'AnalyticsCtrl'
+          "visitors": {
+            templateUrl: 'app/my-portfolio/visitors/visitors.html',
+            controller: 'VisitorsCtrl'
           }
         }
       });
