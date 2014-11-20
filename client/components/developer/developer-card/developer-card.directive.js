@@ -8,32 +8,27 @@ angular.module('hireDotApp')
       scope: {
         developerData: '=developerData'
       },
-      link: function(scope, developerData) {
+      link: function(scope) {
         scope.hasUrl = function(developerData, urlType) {
-          switch(urlType) {
-            case 'email':
-              if (developerData.email && developerData.email !== "") { return true; }
-              break;
-            case 'linkedin':
-              if (developerData.linkedinUrl && developerData.linkedinUrl !== "") { return true; }
-              break;
-            case 'github':
-              if (developerData.githubUrl && developerData.githubUrl !== "") { return true; }
-              break;
-            case 'facebook':
-              if (developerData.facebookUrl && developerData.facebookUrl !== "") { return true; }
-              break;
-            case 'twitter':
-              if (developerData.twitterUrl && developerData.twitterUrl !== "") { return true; }
-              break;
-          }
-
-          return false;
+          return developerData.hasUrl(urlType);
         };
 
         scope.hasProject = function(developerData) {
-          if (developerData.projects !== null && developerData.projects.length !== 0) return true;
-          return false;
+          return developerData.hasProject();
+        };
+
+        scope.profilePictureAvailable = function(developerData) {
+          return developerData.profilePictureAvailable();
+        };
+
+        scope.projectPictureAvailable = function(project) {
+          if (project.images.length > 0 &&
+              project.images[0] &&
+              project.images[0].crops) {
+            return true;
+          } else {
+            return false;
+          }
         };
       }
     };

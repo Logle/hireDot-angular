@@ -26,4 +26,5 @@ var ProjectSchema = new Schema({
   team: [MemberSchema],
   lastUpdated: { type: Date, default: Date.now }
 });
+
 module.exports = mongoose.model('Project', ProjectSchema);

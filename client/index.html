@@ -22,7 +22,7 @@
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
-  <body ng-app="hireDotApp" ng-class="{'leftpanel-collapsed': collapseLeftPanel, 'chat-view': collapseRightPanel}">
+  <body ng-app="hireDotApp" ng-class="{'leftpanel-collapsed': collapseLeftPanel, 'leftpanel-show': !collapseLeftPanel, 'chat-view': collapseRightPanel}">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -77,32 +77,27 @@
           <script src="app/account/settings/settings.controller.js"></script>
           <script src="app/admin/admin.controller.js"></script>
           <script src="app/admin/admin.js"></script>
-          <script src="app/developers/developers.controller.js"></script>
-          <script src="app/developers/developers.js"></script>
-          <script src="app/main/main.controller.js"></script>
-          <script src="app/main/main.js"></script>
-          <script src="app/my-portfolio/analytics/analytics.controller.js"></script>
-          <script src="app/my-portfolio/analytics/analytics.js"></script>
-          <script src="app/my-portfolio/create-edit-projects/projects.controller.js"></script>
-          <script src="app/my-portfolio/create-edit-projects/projects.js"></script>
+          <script src="app/browse-all/developers/developers.controller.js"></script>
+          <script src="app/browse-all/developers/developers.js"></script>
+          <script src="app/browse-all/projects/projects.controller.js"></script>
+          <script src="app/browse-all/projects/projects.js"></script>
+          <script src="app/my-portfolio/create-edit-projects/create-edit-projects.controller.js"></script>
+          <script src="app/my-portfolio/create-edit-projects/create-edit-projects.js"></script>
           <script src="app/my-portfolio/edit-profile/edit-profile.controller.js"></script>
           <script src="app/my-portfolio/edit-profile/edit-profile.js"></script>
           <script src="app/my-portfolio/my-portfolio.controller.js"></script>
           <script src="app/my-portfolio/my-portfolio.js"></script>
-          <script src="app/my-portfolio/my-profile/display-profile/display-profile.controller.js"></script>
-          <script src="app/my-portfolio/my-profile/display-profile/display-profile.js"></script>
-          <script src="app/my-portfolio/my-profile/edit-profile/edit-profile.controller.js"></script>
-          <script src="app/my-portfolio/my-profile/edit-profile/edit-profile.js"></script>
-          <script src="app/my-portfolio/team/display-team/display-team.controller.js"></script>
-          <script src="app/my-portfolio/team/display-team/display-team.js"></script>
-          <script src="app/my-portfolio/team/edit-team/edit-team.controller.js"></script>
-          <script src="app/my-portfolio/team/edit-team/edit-team.js"></script>
+          <script src="app/my-portfolio/visitors/visitors.controller.js"></script>
+          <script src="app/my-portfolio/visitors/visitors.js"></script>
+          <script src="app/view/developer-page/developer-page.controller.js"></script>
+          <script src="app/view/developer-page/developer-page.js"></script>
           <script src="app/view/project-page/project-page.controller.js"></script>
           <script src="app/view/project-page/project-page.js"></script>
+          <script src="app/view/view.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/developer/developer-card/developer-card.directive.js"></script>
-          <script src="components/developer/developer-view/developer-view.directive.js"></script>
+          <script src="components/developer/developer.service.js"></script>
           <script src="components/filter/filter.js"></script>
           <script src="components/header/header.controller.js"></script>
           <script src="components/hover-class/hover-class.directive.js"></script>

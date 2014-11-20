@@ -10,7 +10,7 @@ exports.index = function(req, res) {
         name: new RegExp('.*' + req.query.name + '.*', 'ig')
       } : {};
 
-  Project.find(findCriteria).select("").
+  Project.find(findCriteria).select("-team").
           sort(sortCriteria).exec(function (err, projects) {
             if(err) { return handleError(res, err); }
             return res.json(200, projects);
@@ -19,7 +19,9 @@ exports.index = function(req, res) {
 
 // Get a single project
 exports.show = function(req, res) {
-  Project.findById(req.params.id, function (err, project) {
+  Project.findById(req.params.id)
+         .populate('team.userId')
+         .exec(function (err, project) {
     if(err) { return handleError(res, err); }
     if(!project) { return res.send(404); }
     return res.json(project);

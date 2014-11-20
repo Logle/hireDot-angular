@@ -3,8 +3,8 @@
 angular.module('hireDotApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('project-page', {
-        url: '/project-page',
+      .state('view.project_page', {
+        url: '/:project_id/project_page',
         templateUrl: 'app/view/project-page/project-page.html',
         controller: 'ProjectPageCtrl'
       });

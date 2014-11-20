@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('ProjectPageCtrl', function ($scope, Project) {
-  	// Project.search();
-  	$scope.projects = Project.query();
-  	console.log($scope.projects);
-  	// $scope.oneExample = Project.query()[0];
-    // $scope.message = 'Hello';
+  .controller('ProjectPageCtrl', function ($scope, $stateParams, Project) {
+    $scope.projectData = Project.get({ id: $stateParams.project_id});
+    console.log($scope.projectData);
   });

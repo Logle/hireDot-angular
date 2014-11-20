@@ -3,8 +3,8 @@
 angular.module('hireDotApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('edit-profile', {
-        url: '/edit-profile',
+      .state('my_portfolio.edit_profile', {
+        url: '/edit_profile',
         templateUrl: 'app/my-portfolio/edit-profile/edit-profile.html',
         controller: 'EditProfileCtrl'
       });
