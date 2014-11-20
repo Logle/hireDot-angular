@@ -2,7 +2,11 @@
   <div class="col-md-6">
     <div class="people-item">
       <div class="media">
-         <a class="pull-left">
+      <!--   <div class="col-md-3">
+          <img ng-src="{{developerData.profilePicture.crops._200x200}}" class="thumbnail img-responsive" ng-show="profilePictureAvailable(developerData)"></img>
+          <img ng-src="assets/images/user.jpg" class="img-responsive" ng-hide="profilePictureAvailable(developerData)"></img>
+        </div> -->
+         <a href="/view/{{developerData._id}}/developer_page" class="pull-left">
           <img ng-src="{{developerData.profilePicture.crops._200x200}}" class="thumbnail media-object" ng-show="profilePictureAvailable(developerData)"></img>
           <img ng-src="assets/images/user.jpg" class="thumbnail media-object" ng-hide="profilePictureAvailable(developerData)"></img>
         </a>

@@ -9,6 +9,8 @@ angular.module('hireDotApp')
   })
   .filter('filterTimePeriod', function() {
     return function(workExperience) {
+      if (!workExperience.startDate) return "--";
+
       var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
       var startDate = workExperience.startDate.month ?

@@ -27,9 +27,6 @@ angular.module('hireDotApp')
       logo: 'fa fa-user',
       showSubMenu: false,
       subMenu: [{
-        title: 'Display Profile',
-        link: '/my_portfolio/display_profile'
-      }, {
         title: 'Edit Profile',
         link: '/my_portfolio/edit_profile'
       }, {
