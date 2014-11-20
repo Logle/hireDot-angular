@@ -1,6 +1,6 @@
 <div>
   <div class="panel panel-default widget-photoday project-card">
-    <a class="photoday" href="{{projectData.url}}" title="{{projectData.name}}" ng-show="imageAvailable(projectData)">
+    <a class="photoday" href="/view/{{projectData._id}}/project_page" title="{{projectData.name}}" ng-show="imageAvailable(projectData)">
       <img src="{{projectData.images[0].crops._150x150}}" title="{{projectData.name}}" class="img-responsive">
     </a>
     <a class="photoday" href="javascript:void(0)" title="Project Page" ng-hide="imageAvailable(projectData)">

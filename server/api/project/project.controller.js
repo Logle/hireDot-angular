@@ -10,7 +10,7 @@ exports.index = function(req, res) {
         name: new RegExp('.*' + req.query.name + '.*', 'ig')
       } : {};
 
-  Project.find(findCriteria).select("-pitch -videoUrl -team").
+  Project.find(findCriteria).select("-team").
           sort(sortCriteria).exec(function (err, projects) {
             if(err) { return handleError(res, err); }
             return res.json(200, projects);
