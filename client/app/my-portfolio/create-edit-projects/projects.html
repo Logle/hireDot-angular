@@ -1,0 +1,158 @@
+<!-- placeholder text: 
+	- Should be concrete examples instead of abstract?
+	- I used facepair initially but the examples need refinement -->
+
+<div class="contentpanel">
+	<div class="panel panel-default">
+		<form class="form-bordered form-horizontal"
+					novalidate
+					name="projectForm"
+					ng-submit="projectForm.$valid && projectsCtrl.submit()">
+			<div class="panel-heading"><h2>Create a Project</h2></div>
+			<div class="panel-body panel-body-nopadding">
+				
+				<!-- PROJECT NAME -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Project Name <span class="asterisk">*</span></label>
+					<div class="col-sm-6">
+						<input 	type="text"
+										name="projectName"
+										class="form-control" 
+										ng-model="project.name"
+										placeholder="Face Pair"
+										required
+										blur-validate>
+						<label class="error ng-hide">
+							Required.
+						</label>
+					</div>
+				</div>
+
+				<!-- LIVE URL -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Live URL</label>
+					<div class="col-sm-6">
+						<input 	type="url" 
+										name="liveURL"
+										class="form-control"
+										ng-model="project.liveURL"
+										placeholder="http://www.facepair.com"
+										blur-validate>
+						<label class="error ng-hide">
+							Must be a valid URL.
+						</label>
+					</div>
+				</div>
+
+				<!-- GITHUB URL -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">GitHub URL <span class="asterisk">*</span></label>
+					<div class="col-sm-6">
+						<input 	type="url"
+										name="githubURL"
+										class="form-control" 
+										ng-model="project.githubURL"
+										placeholder="https://github.com/facepair"
+										blur-validate>
+						<label class="error ng-hide">
+							Must be a valid URL to a github.com domain.
+						</label>
+					</div>
+				</div>
+
+				<!-- SHORT PITCH -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Short Pitch <span class="asterisk">*</span></label>
+					<div class="col-sm-6">
+						<input 	type="text"
+										name="shortPitch"
+										class="form-control" 
+										ng-model="project.shortPitch"
+										placeholder="Snapchat for Documents"
+										required
+										blur-validate>
+						<label class="error ng-hide">
+							Required.
+						</label>
+					</div>
+				</div>
+
+				<!-- TECH STACK TAGS -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Tech Stack Tags <span class="asterisk">*</span></label>
+					<div class="col-sm-6">
+						<textarea 	class="form-control"
+												name="techStackTags"
+												ng-model="project.techStackTags"
+												required
+												blur-validate
+												placeholder="What libraries, stacks and framewords did you use to build this project? Comma separated values, e.g. 'Angular, Node, Express'"></textarea>
+						<label class="error ng-hide">
+							Required; Must be comma separated values.
+						</label>
+					</div>
+				</div>
+
+				<!-- DESCRIPTION -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Description</label>
+					<div class="col-sm-6">
+						<textarea 	class="form-control" 
+												name="description"
+												ng-model="project.description"
+												placeholder="More detailed description"
+												ng-minlength="25"
+												blur-validate></textarea>
+						<label class="error ng-hide">
+							Must be at least 25 characters long.
+						</label>
+					</div>
+				</div>
+
+				<!-- VIDEO URL -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Video URL</label>
+					<div class="col-sm-6">
+						<input 	type="url"
+										name="videoURL"
+										class="form-control"
+										ng-model="project.videoURL"
+										placeholder="https://www.youtube.com/embed/ab3NscEJ80s"
+										blur-validate>
+						<label class="error ng-hide">
+							Must be a valid URL.
+						</label>
+					</div>
+				</div>
+
+				<!-- PROJECT PICTURE -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Project Picture <span class="asterisk">*</span></label>
+					<div class="col-sm-6">
+						<input 	type="text"
+										name="picture"
+										class="form-control"
+										ng-model="project.picture"
+										required
+										blur-validate> <!-- file upload -->
+						<label class="error ng-hide">
+							Required.
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- SUBMIT BUTTON -->
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<button class="btn btn-primary"
+										type="submit"
+										ng-disabled="projectForm.$invalid">Submit</button>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
