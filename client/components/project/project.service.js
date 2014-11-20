@@ -2,7 +2,7 @@
 
 angular.module('hireDotApp')
   .factory('Project', function ($resource) {
-    var Project = $resource('/api/projects');
+    var Project = $resource('/api/projects/:id');
 
     Project.allProjects = [];
 

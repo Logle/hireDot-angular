@@ -12,11 +12,11 @@
       <p class="mb30">{{developerData.summary}}</p>
       <h5 class="subtitle">Connect</h5>
       <h3 class="social-media">
-        <a href="mailto:{{developerData.email}}" target="_blank" title="{{developerData.name}}'s email"><span class="fa fa-envelope"></span></a>
-        <a href="{{developerData.linkedinUrl}}" target="_blank" title="{{developerData.name}}'s Linkedin"><span class="fa fa-linkedin-square"></span></a>
-        <a href="{{developerData.githubUrl}}" target="_blank" title="{{developerData.name}}'s Github"><span class="fa fa-github-square"></span></a>
-        <a href="{{developerData.facebookUrl}}" target="_blank" title="{{developerData.name}}'s Facebook"><span class="fa fa-facebook-square"></span></a>
-        <a href="{{developerData.twitterUrl}}" target="_blank" title="{{developerData.name}}'s Twitter"><span class="fa fa-twitter-square"></span></a>
+        <a href="mailto:{{developerData.email}}" target="_blank" title="{{developerData.name}}'s email" ng-if="hasUrl('email')"><span class="fa fa-envelope"></span></a>
+        <a href="{{developerData.linkedinUrl}}" target="_blank" title="{{developerData.name}}'s Linkedin" ng-if="hasUrl('linkedin')"><span class="fa fa-linkedin-square"></span></a>
+        <a href="{{developerData.githubUrl}}" target="_blank" title="{{developerData.name}}'s Github" ng-if="hasUrl('github')"><span class="fa fa-github-square"></span></a>
+        <a href="{{developerData.facebookUrl}}" target="_blank" title="{{developerData.name}}'s Facebook" ng-if="hasUrl('facebook')"><span class="fa fa-facebook-square"></span></a>
+        <a href="{{developerData.twitterUrl}}" target="_blank" title="{{developerData.name}}'s Twitter" ng-if="hasUrl('twitter')"><span class="fa fa-twitter-square"></span></a>
       </h3>
       <div class="mb30"></div>
       <h5 class="subtitle">Skills</h5>
