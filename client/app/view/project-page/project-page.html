@@ -1,16 +1,75 @@
 <div class="pageheader">
-      <h2><i class="fa fa-home"></i> Dashboard <span>Subtitle goes here...</span></h2>
-      <div class="breadcrumb-wrapper">
-        <span class="label">You are here:</span>
-        <ol class="breadcrumb">
-          <li><a href="index.html">Bracket</a></li>
-          <li class="active">Dashboard</li>
-        </ol>
-      </div>
+    <h2><i class="fa fa-home"></i> Dashboard <span>Subtitle goes here...</span></h2>
+      
+    <div class="breadcrumb-wrapper">
+      <span class="label">You are here:</span>
+      <ol class="breadcrumb">
+        <li><a href="index.html">Bracket</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
     </div>
-
-
-<div class="col-md-12">
-This is the project-page view.
-{{projectData}}
 </div>
+<!-- the view of a project page. Consists of two colunms: left container is about the project 
+and right container about the project team -->
+
+<div id='project_container' class='col-md-12'>
+		<div id='left_container' class='col-md-8'>
+			<div id='project_title'>
+					<h3>{{projectData.name}}</h3>
+			</div>	
+
+			<!-- project media block include: the project video and project images -->
+			
+			<div id='project_media'>
+					<!-- currently only have a place holder video. will refactor to show either video or images -->
+					<div class ='video_aspect_ratio'>
+							<object class = 'project_video' data = "http://www.youtube.com/embed/FKQS7oswN5I" frameborder="0">  </object>
+					</div>	
+			</div>
+
+			<!-- project pitch and description block-->
+
+			<div id='project_pitch'>
+					<div>
+						 {{projectData.pitch}}
+					</div>
+					<div>
+						 {{projectData.description}}
+					</div>
+			</div>
+
+			<!-- technical information block-->
+
+			<div id='project_information'>
+					<div><a href={{projectData.githubUrl}}> GitHub: {{projectData.githubUrl}} </a></div>
+					<div><a href={{projectData.url}}> Link: {{projectData.url}}</a></div>
+					<div>Tech Stack: {{projectData.techTags}}</div>
+			</div>
+		</div>	
+
+		<!--  project team column  -->
+
+		<div id='right_container' class='col-md-4'>
+			
+			<div id='team_title'>
+					<h3>The Team</h3>
+			</div>	
+			
+			<!-- team information block -->
+
+			<div id='team_information'>
+					<div ng-repeat ='member in projectData.team' class='col-md-12 individual_profile'>
+							<div class='col-md-9'>
+								<h5 class='individual_name'>{{member.userId.name}}</h5>
+								<h6>{{member.userId.role}}</h6>
+								<a href={{member.userId.githubUrl}}> {{member.userId.githubUrl}} </a>
+							</div>
+							<div class='col-md-3'>
+								<img class ='img-thumbnail' src={{member.userId.profilePicture.original}}>
+							</div>
+					</div>
+			</div>
+		
+		</div>
+</div>
+
