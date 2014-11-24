@@ -3,6 +3,21 @@
 angular.module('hireDotApp')
   .factory('Developer', function (User) {
     var Developer = User;
+
+    Developer.allProjects = [];
+
+    Developer.search = function(projectName) {
+      this.query({ name: projectName }, function(projects) {
+        angular.copy(projects, Project.allProjects);
+      });
+    };
+
+    // Project.sortBy = function(sortCriteria) {
+    //   this.query(sortCriteria, function(projects) {
+    //     angular.copy(projects, Project.allProjects);
+    //   });
+    // };
+
     Developer.prototype.hasUrl = function(urlType) {
       switch(urlType) {
             case 'email':

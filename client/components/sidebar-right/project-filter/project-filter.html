@@ -1,7 +1,7 @@
 <div>
   <h5 class="sidebartitle">Filter Projects</h5>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search project by name" ng-model="projectName" typeahead="project.name for project in projects | filter:$viewValue | limitTo: 5" ng-change="searchProjects(projectName)">
+    <input type="text" class="form-control" placeholder="Search project name" ng-model="projectName" typeahead="project.name for project in projects | filter:$viewValue | limitTo: 5" ng-change="searchProjects(projectName)">
   </div>
    <div class="form-group">
     <select class="form-control input-sm" ng-model="selectedOrderBy" ng-options="orderByOption.orderBy for orderByOption in orderByOptions" ng-change="sortProjects(selectedOrderBy)"

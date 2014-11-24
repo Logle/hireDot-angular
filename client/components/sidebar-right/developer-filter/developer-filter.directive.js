@@ -6,6 +6,9 @@ angular.module('hireDotApp')
       templateUrl: 'components/sidebar-right/developer-filter/developer-filter.html',
       restrict: 'E',
       controller: function ($scope) {
+        $scope.searchDevelopers = function(developerName) {
+
+        };
       }
     };
   });
