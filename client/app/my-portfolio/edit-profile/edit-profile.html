@@ -139,16 +139,29 @@
             <table class="table mb30">
               <tbody>
                 <tr>
-                  <td><input type="text" class="form-control" placeholder="Company Name"></td>
-                  <td><input type="text" class="form-control" placeholder="Title"></td>
-                  <td><input type="text" class="form-control" placeholder="Start Date"></td>
-                  <td><input type="text" class="form-control"  placeholder="End Date"></td>
+                  <td><input type="text" class="form-control" placeholder="Company Name" ng-model="CN"></td>
+                  <td><input type="text" class="form-control" placeholder="Title" ng-model="title"></td>
+                  <td><input type="text" class="form-control hasDatepicker" datepicker-popup placeholder="Start Date" id="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></td>
+                  <td><input type="date" class="form-control"  placeholder="End Date"ng-model="ed"></td>
 
-                  <td><a href="" ng-click="addWork()" class=""><i class="fa fa-plus" style="margin-top: 12px"></i></a></td>
+                  <td><a ng-click="addWork()" class=""><i class="fa fa-plus" style="margin-top: 12px"></i></a></td>
+
                 </tr>
                 
               </tbody>
+
             </table>
+         <table class="table mb30">
+         <tbody>
+                    <tr ng-repeat="work in jobs">
+                   <td> {{ work.CN }} </td>
+                   <td> {{work.title}}</td>
+                   <td> {{work.sd}}</td>
+                   <td> {{work.ed}}</td>
+
+                    </tr>
+                    </tbody>
+          </table>
           </div>
           </div>
           <div class="panel-footer">
