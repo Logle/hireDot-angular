@@ -14,4 +14,17 @@ angular.module('hireDotApp')
       $rootScope.collapseRightPanel = !$rootScope.collapseRightPanel;
       $rootScope.collapseLeftPanel = true;
     };
+
+    $scope.loginOauth = function(provider) {
+      $window.location.href = '/auth/' + provider;
+    };
+
+    $scope.logout = function() {
+      Auth.logout();
+      $location.path('/');
+    };
+
+    $scope.isLoggedIn = Auth.isLoggedIn;
+
+    $scope.getCurrentUser = Auth.getCurrentUser;
   });

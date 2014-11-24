@@ -39,8 +39,42 @@ angular.module('hireDotApp')
       }
     };
   })
+  .directive('showVideo', function() {
+    return {
+      restrict: 'A',
+      link: function(scope, iEl, attrs) {
+        iEl.bind('keyup', function() {
+          scope.$apply(function() {
+            // check validitity of projectForm.videoURL
+            // if valid, call setEmbedURL()
+            if (scope.projectForm.videoURL.$dirty && scope.projectForm.videoURL.$valid) {
+              scope.setEmbed();
+            }
+          });
+        });
+      }
+    }
+  })
   .controller('CreateEditProjectsCtrl', function ($scope, Project) {
   	$scope.project = {};
+    $scope.setEmbed = function() {
+      var id = getId($scope.project.videoURL);
+      console.log(id);
+      var embed = '<iframe class="col-sm-offset-3" width="311" height="175" src="//www.youtube.com/embed/' 
+              + id + '" frameborder="0" allowfullscreen></iframe>';
+      $('#embed').append(embed);
+    };
+    function getId(url) {
+      var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      var match = url.match(regExp);
+
+      if (match && match[2].length == 11) {
+          return match[2];
+      } else {
+          return 'error';
+      }
+    };
+
     this.submit = function() {
       Project.save($scope.project,
         function() { console.log('project saved'); },
