@@ -4,11 +4,11 @@ var LinkedInStrategy = require('passport-linkedin').Strategy;
 var ifExist = function(value) {
   if (value !== undefined) {
     return value.values.map(function(skill) {
-            return skill.skill.name;
-    }).join(", ")
+      return skill.skill.name;
+    }).join(", ");
   }
   else {
-    console.log('user has no skills listed to be mapped. Skills set to empty string  ')
+    console.log('User has no skills listed to be mapped. Skills set to empty string');
     return ''
   }
 };
@@ -16,15 +16,14 @@ var ifExist = function(value) {
 var parseLinkedIn = function(profile) {
   return {
     name: profile.displayName,
-    headline: profile._json.headline,
     email: profile._json.emailAddress,
-    work_experiences: profile._json.positions.values,
+    workExperiences: profile._json.positions.values,
     educations: profile._json.educations.values,
-    provider: 'linkedin',
     skills: ifExist(profile._json.skills),
     summary: profile._json.summary,
-    linkedIn: profile._json,
-    linkedin_url: profile._json.siteStandardProfileRequest.url,
+    linkedin: profile._json,
+    linkedinUrl: profile._json.siteStandardProfileRequest.url,
+    provider: 'linkedin',
     relocate: true
   };
 };
@@ -38,7 +37,7 @@ exports.setup = function (User, config) {
     },
     function(token, tokenSecret, profile, done) {
       User.findOne({
-        'linkedIn.id': profile.id
+        'linkedin.id': profile.id
       }, function(err, user) {
         if (!user) {
           var linkedInFields = parseLinkedIn(profile);
