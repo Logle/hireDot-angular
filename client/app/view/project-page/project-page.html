@@ -1,11 +1,11 @@
 <div class="pageheader">
-    <h2><i class="fa fa-home"></i> Dashboard <span>Subtitle goes here...</span></h2>
+    <h2><i class="fa fa-home"></i> {{projectData.name}} <span>last updated: &nbsp{{projectData.lastUpdated.substring(0,10)}}</span></h2>
       
     <div class="breadcrumb-wrapper">
       <span class="label">You are here:</span>
       <ol class="breadcrumb">
-        <li><a href="index.html">Bracket</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">This project</li>
+        <li><a href="index.html">All projects</a></li>
       </ol>
     </div>
 </div>
@@ -14,25 +14,37 @@ and right container about the project team -->
 
 <div id='project_container' class='col-md-12'>
 		<div id='left_container' class='col-md-8'>
-			<div id='project_title'>
-					<h3>{{projectData.name}}</h3>
-			</div>	
-
+	
 			<!-- project media block include: the project video and project images -->
 			
-			<div id='project_media'>
+			<div autofocus id='project_media'>
+					<tabset justified='true'>
 					<!-- currently only have a place holder video. will refactor to show either video or images -->
-					<div class ='video_aspect_ratio'>
-							<object class = 'project_video' data = "http://www.youtube.com/embed/FKQS7oswN5I" frameborder="0">  </object>
-					</div>	
+						<tab heading ='Video'>
+							<div class ='video_aspect_ratio'>
+									<object class = 'project_video' data = "http://www.youtube.com/embed/FKQS7oswN5I" frameborder="0">  </object>
+							</div>	
+						</tab>
+						<!-- set up slide show for multiple images -->
+						<tab heading = 'Images'>
+							<carousel interval="5000">
+					      <slide ng-repeat="image in projectData.images" active="slide.active">
+					        <img ng-src="{{image.original}}" style="margin:auto;">
+					        <div class="carousel-caption">
+					        </div>
+					      </slide>
+					    </carousel>
+
+					</tabset>
 			</div>
 
 			<!-- project pitch and description block-->
 
 			<div id='project_pitch'>
 					<div>
-						 {{projectData.pitch}}
+						 In one sentence: &nbsp{{projectData.pitch}}
 					</div>
+					</br>
 					<div>
 						 {{projectData.description}}
 					</div>
@@ -65,7 +77,7 @@ and right container about the project team -->
 								<a href={{member.userId.githubUrl}}> {{member.userId.githubUrl}} </a>
 							</div>
 							<div class='col-md-3'>
-								<img class ='img-thumbnail' src={{member.userId.profilePicture.original}}>
+								<img class ='thumbnail media-object' ng-src={{member.userId.profilePicture.original}}>
 							</div>
 					</div>
 			</div>

@@ -5,3 +5,4 @@ angular.module('hireDotApp')
     $scope.projectData = Project.get({ id: $stateParams.project_id});
     console.log($scope.projectData);
   });
+  
