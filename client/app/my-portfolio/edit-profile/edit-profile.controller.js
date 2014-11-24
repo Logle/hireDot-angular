@@ -5,13 +5,15 @@ angular.module('hireDotApp')
     $scope.message = 'Hello';
 	$scope.jobs = [];
   	$scope.addWork = function () {
-  		var newJob = {
-  			CN: $scope.CN,
-  			title: $scope.title,
-  			sd: $scope.sd,
-  			ed: $scope.ed
-  		}
-  		console.log('adding: ', newJob)
-  		$scope.jobs.push(newJob);
+  		$scope.jobs.push($scope.currentWork);
+      $scope.currentWork = {};
+  };
+  $scope.colleges = [];
+    $scope.addSchool = function () {
+      $scope.colleges.push($scope.currentc);
+      $scope.currentc = {};
+  };
+  $scope.remove = function(arrayToRemoveFrom, row) {
+    arrayToRemoveFrom.splice(row,1);
   };
 });
