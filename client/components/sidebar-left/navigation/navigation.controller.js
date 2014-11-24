@@ -5,52 +5,69 @@ angular.module('hireDotApp')
     $scope.menu = [{
       title: 'Browse',
       logo: 'fa fa-suitcase',
-      showSubMenu: false,
+      show: function() { return true; },
       subMenu: [{
         title: 'Projects',
-        link: '/projects'
+        link: '/projects',
+        show: function() { return true; }
       }, {
         title: 'Developers',
-        link: '/developers'
-      }]
+        link: '/developers',
+        show: function() {
+          return Auth.isLoggedIn();
+        }
+      }],
+      showSubMenu: false
     }, {
       title: 'Favorites',
       logo: 'fa fa-star',
-      showSubMenu: false,
+      show: function() {
+        return Auth.isLoggedIn();
+      },
       subMenu: [{
-        title: 'Projects'
+        title: 'Projects',
+        show: function() {
+          return Auth.isLoggedIn();
+        }
       }, {
-        title: 'Developers'
-      }]
+        title: 'Developers',
+        show: function() {
+          return Auth.isLoggedIn();
+        }
+      }],
+      showSubMenu: false
     },{
       title: 'My Portfolio',
       logo: 'fa fa-user',
-      showSubMenu: false,
+      show: function() {
+        return Auth.isLoggedIn();
+      },
       subMenu: [{
         title: 'Edit Profile',
-        link: '/my_portfolio/edit_profile'
+        link: '/my_portfolio/edit_profile',
+        show: function() {
+          return Auth.isLoggedIn();
+        }
       }, {
         title: 'Create and Edit Projects',
-        link: '/my_portfolio/create_edit_projects'
+        link: '/my_portfolio/create_edit_projects',
+        show: function() {
+          return Auth.isLoggedIn();
+        }
       }, {
         title: 'Visitors',
-        link: '/my_portfolio/visitors'
-      }]
+        link: '/my_portfolio/visitors',
+        show: function() {
+          return Auth.isLoggedIn();
+        }
+      }],
+      showSubMenu: false
     }];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
-
-    $scope.logout = function() {
-      Auth.logout();
-      $location.path('/login');
-    };
-
-    $scope.loginOauth = function(provider) {
-      $window.location.href = '/auth/' + provider;
-    };
 
     $scope.isActive = function(route) {
       return route === $location.path();
