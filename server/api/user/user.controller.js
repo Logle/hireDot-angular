@@ -37,8 +37,6 @@ exports.index = function(req, res) {
     return findCriteria;
   }();
 
-  console.log(findCriteria);
-
   User.find(findCriteria)
       .sort(sortCriteria)
       .limit(10)
