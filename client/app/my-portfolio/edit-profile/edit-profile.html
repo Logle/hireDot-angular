@@ -139,26 +139,24 @@
             <table class="table mb30">
               <tbody>
                 <tr>
-                  <td><input type="text" class="form-control" placeholder="Company Name" ng-model="CN"></td>
-                  <td><input type="text" class="form-control" placeholder="Title" ng-model="title"></td>
-                  <td><input type="text" class="form-control hasDatepicker" datepicker-popup placeholder="Start Date" id="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></td>
-                  <td><input type="date" class="form-control"  placeholder="End Date"ng-model="ed"></td>
+                  <td><input type="text" class="form-control" placeholder="Company Name" ng-model="currentWork.CN"></td>
+                  <td><input type="text" class="form-control" placeholder="Title" ng-model="currentWork.title"></td>
+                <td>  
+                <input type="text" class="form-control" placeholder="Start Date" ng-model="currentWork.sd">
+              </td>
+                  <td><input type="text" class="form-control"  placeholder="End Date"ng-model="currentWork.ed"></td>
 
                   <td><a ng-click="addWork()" class=""><i class="fa fa-plus" style="margin-top: 12px"></i></a></td>
 
                 </tr>
                 
-              </tbody>
-
-            </table>
-         <table class="table mb30">
-         <tbody>
+            
                     <tr ng-repeat="work in jobs">
                    <td> {{ work.CN }} </td>
                    <td> {{work.title}}</td>
                    <td> {{work.sd}}</td>
                    <td> {{work.ed}}</td>
-
+                   <td><a ng-click="remove(jobs, $index)" class=​"delete-row">​DELETE</a>​</td>
                     </tr>
                     </tbody>
           </table>
@@ -182,12 +180,19 @@
             <table class="table mb30">
               <tbody>
                 <tr>
-                  <td><input type="text" class="form-control" placeholder="College Name"></td>
-                  <td><input type="text" class="form-control" placeholder="Degree"></td>
-                  <td><input type="text" class="form-control" placeholder="Major"></td>
-                  <td><input type="text" class="form-control"  placeholder="Graduation Date"></td>
+                  <td><input type="text" class="form-control" placeholder="College Name" ng-model="currentc.College"></td>
+                  <td><input type="text" class="form-control" placeholder="Degree" ng-model="currentc.Degree"></td>
+                  <td><input type="text" class="form-control" placeholder="Major" ng-model="currentc.Major"></td>
+                  <td><input type="text" class="form-control"  placeholder="Graduation Date" ng-model="currentc.GD"></td>
 
                   <td><a href="" ng-click="addSchool()" class=""><i class="fa fa-plus" style="margin-top: 12px"></i></a></td>
+                </tr>
+                <tr ng-repeat="college in colleges">
+                <td>{{college.College}}</td>
+                <td>{{college.Degree}}</td>
+                <td>{{college.Major}}</td>
+                <td>{{college.GD}}</td>
+                <td><a ng-click="remove(colleges, $index)" class="delete-row">DELETE</a></td>
                 </tr>
                 
               </tbody>
