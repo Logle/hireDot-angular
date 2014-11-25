@@ -8,10 +8,13 @@ exports.index = function(req, res) {
   var sortCriteria = req.query.value || 'name',
       findCriteria = req.query.name ? {
         name: new RegExp('.*' + req.query.name + '.*', 'ig')
-      } : {};
+      } : {},
+      skip = req.query.skip;
 
-  Project.find(findCriteria).select("-team").
-          sort(sortCriteria).exec(function (err, projects) {
+  Project.find(findCriteria).select("-team")
+         .limit(30)
+         .skip(skip)
+         .sort(sortCriteria).exec(function (err, projects) {
             if(err) { return handleError(res, err); }
             return res.json(200, projects);
           });

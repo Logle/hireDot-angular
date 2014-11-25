@@ -11,12 +11,18 @@ var projectsHireDot = dbHireDot.projects;
 var cohortsHireDot = dbHireDot.cohorts;
 
 // Creating Cohort Data to hiredot-dev
-cohortsHireDot.insert([{ name: "January 2014" },
-                       { name: "April 2014" },
-                       { name: "June 2014 "},
-                       { name: "July 2014" },
-                       { name: "September 2014" },
-                       { name: "November 2014" }])
+cohortsHireDot.insert([{ name: "January 2014",
+                         date: new Date("January 2014") },
+                       { name: "April 2014",
+                         date: new Date("April 2014") },
+                       { name: "June 2014",
+                         date: new Date("June 2014") },
+                       { name: "July 2014",
+                         date: new Date("July 2014") },
+                       { name: "September 2014",
+                         date: new Date("September 2014") },
+                       { name: "November 2014",
+                         date: new Date("November 2014") }]);
 
 // A helper function to map the role
 function roleChecker(rolesArray) {

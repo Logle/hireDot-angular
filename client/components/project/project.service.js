@@ -12,10 +12,42 @@ angular.module('hireDotApp')
       });
     };
 
+    Project.queryStatus = {
+      skip: 0,
+      isBusy: false,
+      isFinished: false
+    };
+
     Project.sortBy = function(sortCriteria) {
-      this.query(sortCriteria, function(projects) {
-        angular.copy(projects, Project.allProjects);
-      });
+      var self = this;
+
+      this.queryStatus.isBusy = true;
+
+      if (this.queryStatus.skip === 0) {
+        this.sortCriteria = sortCriteria;
+
+        this.query(sortCriteria, function(projects) {
+          angular.copy(projects, self.allProjects);
+
+          self.queryStatus.skip += 30;
+          self.queryStatus.isBusy = false;
+        });
+      } else {
+        this.sortCriteria.skip = this.queryStatus.skip;
+
+        this.query(this.sortCriteria, function(projects) {
+          if (projects.length === 0 ) {
+            self.queryStatus.isFinished = true;
+          }
+
+          projects.forEach(function(project) {
+            self.allProjects.push(project)
+          });
+
+          self.queryStatus.skip += 30;
+          self.queryStatus.isBusy = false;
+        });
+      }
     };
 
     return Project;

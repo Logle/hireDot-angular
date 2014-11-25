@@ -2,6 +2,12 @@
 
 angular.module('hireDotApp')
   .controller('ProjectsCtrl', function ($scope, $http, socket, Project, Auth) {
-    $scope.projects = Project.allProjects;
     $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.projects = Project.allProjects;
+
+    $scope.nextProjects = function() {
+      Project.sortBy();
+    };
+
+    $scope.isBusyOrFinished = Project.isBusyOrFinished;
   });

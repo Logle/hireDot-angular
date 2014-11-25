@@ -14,11 +14,15 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  // User.find({}, '-salt -hashedPassword', function (err, users) {
-  //   if(err) return res.send(500, err);
-  //   res.json(200, users);
-  // });
-  User.find({}, '-salt -hashedPassword').populate('projects').exec(function(err, users) {
+  var sortCriteria = req.query.value || 'name',
+      findCriteria = req.query.name ? {
+        name: new RegExp('.*' + req.query.name + '.*', 'ig')
+      } : {};
+
+  User.find(findCriteria)
+      .sort(sortCriteria)
+      .limit(20)
+      .populate('projects').exec(function(err, users) {
     if(err) return res.send(500, err);
     res.json(200, users);
   });

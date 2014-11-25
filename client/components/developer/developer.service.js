@@ -2,21 +2,28 @@
 
 angular.module('hireDotApp')
   .factory('Developer', function (User) {
-    var Developer = User;
+    var Developer = User,
+        isSearching = false;
 
-    Developer.allProjects = [];
+    Developer.allDevelopers = [];
 
-    Developer.search = function(projectName) {
-      this.query({ name: projectName }, function(projects) {
-        angular.copy(projects, Project.allProjects);
-      });
+    Developer.search = function(developerName) {
+      if (isSearching === false) {
+        if (developerName.length > 2 || developerName.length === 0) {
+          isSearching = true;
+          this.query({ name: developerName }, function(developers) {
+            isSearching = false;
+            angular.copy(developers, Developer.allDevelopers);
+          });
+        }
+      }
     };
 
-    // Project.sortBy = function(sortCriteria) {
-    //   this.query(sortCriteria, function(projects) {
-    //     angular.copy(projects, Project.allProjects);
-    //   });
-    // };
+    Developer.sortBy = function(sortCriteria) {
+      this.query(sortCriteria, function(developers) {
+        angular.copy(developers, Developer.allDevelopers);
+      });
+    };
 
     Developer.prototype.hasUrl = function(urlType) {
       switch(urlType) {

@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 var CohortSchema = new Schema({
   name: String,
+  date: { type: Date },
   students: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
