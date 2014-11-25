@@ -3,8 +3,8 @@
 </header>
 
 <div class="contentpanel">
-  <div class="row">
-    <project-card class="col-md-3" project-data='project' ng-repeat="project in projects | filter:{ name: projectName }"></project-card>
+  <div class="row" infinite-scroll='nextProjects()' infinite-scroll-disabled='isBusyOrFinished.isBusy || isBusyOrFinished.isFinished' infinite-scroll-distance='0'>
+    <project-card class="col-md-3" project-data='project' ng-repeat="project in projects"></project-card>
   </div>
 </div>
 

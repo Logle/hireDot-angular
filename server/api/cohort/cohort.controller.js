@@ -5,7 +5,9 @@ var Cohort = require('./cohort.model');
 
 // Get list of cohorts
 exports.index = function(req, res) {
-  Cohort.find(function (err, cohorts) {
+  Cohort.find()
+        .sort("-date")
+        .exec(function (err, cohorts) {
     if(err) { return handleError(res, err); }
     return res.json(200, cohorts);
   });

@@ -1,5 +1,18 @@
 <div>
+  <h5 class="sidebartitle">Search Developers</h5>
+  <div class="form-group">
+    <input type="text" placeholder="Search developer name" class="form-control" ng-model="developerName" typeahead="developer.name for developer in developers | filter:$viewValue | limitTo: 5" ng-change="searchDevelopers(developerName)"></input>
+  </div>
+  <h5 class="sidebartitle">Sort Developers</h5>
+  <div class="form-group">
+    <select class="form-control input-sm" ng-model="selectedOrderBy" ng-options="orderByOption.orderBy for orderByOption in orderByOptions" ng-change="sortDevelopers(selectedOrderBy)" ng-init="selectedOrderBy = orderByOptions[0]; sortDevelopers(selectedOrderBy)">
+    </select>
+  </div>
   <h5 class="sidebartitle">Filter Developers</h5>
-  <div class="form-group"></div>
-  <div class="form-group"></div>
+  <div class="form-group">
+    <select class="form-control input-sm" ng-model="hiredOrLooking" ng-options="hiredOrLooking.status for hiredOrLooking in hiredOrLookingFilter" ng-init="hiredOrLooking = hiredOrLookingFilter[0];"></select>
+  </div>
+  <div class="form-group">
+    <select class="form-control input-sm" ng-model="selectedCohort" ng-options="cohort.name for cohort in cohortsFilter"></select>
+  </div>
 </div>

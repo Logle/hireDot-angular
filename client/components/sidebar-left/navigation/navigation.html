@@ -18,7 +18,7 @@
         <li ng-repeat="item in menu" ng-if="item.show()" class="nav-parent" ng-class="{active: isActive(item.link), 'nav-active': item.showSubMenu, 'nav-hover': item.hover}" ng-mouseenter="item.hover = true" ng-mouseleave="item.hover = false">
           <a href="javascript:void(0)"><i ng-class="item.logo"></i> <span>{{item.title}}</span></a>
           <ul ng-if="item.hover" class="children" style="display: block;">
-            <li ng-repeat="subItem in item.subMenu" ng-if="subItem.show()>
+            <li ng-repeat="subItem in item.subMenu" ng-if="subItem.show()">
               <a href="{{subItem.link}}"><i class="fa fa-caret-right"></i> {{subItem.title}}</a>
             </li>
           </ul>
