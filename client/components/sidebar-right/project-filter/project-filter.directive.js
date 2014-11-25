@@ -30,8 +30,9 @@ angular.module('hireDotApp')
           Project.search(projectName);
         };
 
-        $scope.resetProjectQueryStatus= function() {
+        $scope.onSortByChange = function(sortCriteria) {
           Project.resetQueryStatus();
+          $scope.sortProjects(sortCriteria);
         };
       }
     };

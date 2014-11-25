@@ -15,16 +15,44 @@ var validationError = function(res, err) {
  */
 exports.index = function(req, res) {
   var sortCriteria = req.query.value || 'name',
-      findCriteria = req.query.name ? {
-        name: new RegExp('.*' + req.query.name + '.*', 'ig')
-      } : {},
       skip = req.query.skip;
+
+  var findCriteria = function() {
+    if (req.query.name) {
+      return {
+        name: new RegExp('.*' + req.query.name + '.*', 'ig')
+      }
+    }
+
+    var findCriteria = {};
+
+    if (req.query.hired && req.query.hired !== "all") {
+      findCriteria.hired = JSON.parse(req.query.hired);
+    }
+
+    if (req.query.cohort && req.query.cohort !== "all") {
+      findCriteria.cohort = req.query.cohort;
+    }
+
+    return findCriteria;
+  }();
+
+  console.log(findCriteria);
 
   User.find(findCriteria)
       .sort(sortCriteria)
       .limit(10)
       .skip(skip)
       .populate('projects')
+      .exec(function(err, users) {
+    if(err) return res.send(500, err);
+    res.json(200, users);
+  });
+};
+
+exports.typeahead = function(req, res) {
+  User.find()
+      .select("name _id")
       .exec(function(err, users) {
     if(err) return res.send(500, err);
     res.json(200, users);

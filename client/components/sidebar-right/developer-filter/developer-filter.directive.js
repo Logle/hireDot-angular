@@ -5,7 +5,7 @@ angular.module('hireDotApp')
     return {
       templateUrl: 'components/sidebar-right/developer-filter/developer-filter.html',
       restrict: 'E',
-      controller: function ($scope, Developer, Cohort) {
+      controller: function ($scope, $timeout, Developer, Cohort) {
         $scope.orderByOptions = [{
           orderBy: 'Most Views',
           value: '-visitors'
@@ -14,17 +14,28 @@ angular.module('hireDotApp')
           value: 'visitors'
         }];
 
-        $scope.developers = Developer.query();
+        $scope.developersTypeahead = Developer.developersTypeahead;
 
-        $scope.cohortsFilter = Cohort.query();
+        $scope.cohortsTypeahead = Cohort.cohortsTypeahead;
 
         $scope.hiredOrLookingFilter = [{
-          status: "Looking"
+          status: "All",
+          hired: "all"
+        },{
+          status: "Looking",
+          hired: false,
         }, {
-          status: "Hired"
+          status: "Hired",
+          hired: true
         }];
 
-        $scope.sortDevelopers = function(sortCriteria) {
+        $scope.sortDevelopers = function(sortCriteria, hiredOrLooking, selectedCohort) {
+          var sortCriteria = {
+            value: sortCriteria.value,
+            hired: hiredOrLooking.hired,
+            cohort: selectedCohort._id
+          };
+
           Developer.sortBy(sortCriteria);
         };
 
@@ -32,8 +43,9 @@ angular.module('hireDotApp')
           Developer.search(developerName);
         };
 
-        $scope.resetDeveloperQueryStatus= function() {
+        $scope.onSortByChange = function(sortCriteria, hiredOrLooking, selectedCohort) {
           Developer.resetQueryStatus();
+          $scope.sortDevelopers(sortCriteria, hiredOrLooking, selectedCohort);
         };
       }
     };

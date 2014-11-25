@@ -2,15 +2,16 @@
 
 angular.module('hireDotApp')
   .factory('Developer', function (User) {
-    var Developer = User,
-        isSearching = false;
+    var Developer = User;
 
-    var allDevelopers = Developer.query();
+    // ===== For Typeaheads =====
+    Developer.developersTypeahead = [];
 
-    Developer.getAllDevelopers = function() {
-      return allDevelopers;
-    };
+    Developer.typeahead({}, function(developers) {
+      angular.copy(developers, Developer.developersTypeahead);
+    });
 
+    // ===== For Ng-repeats =====
     Developer.allDevelopersForNgRepeat = [];
 
     Developer.search = function(developerName) {
@@ -19,8 +20,9 @@ angular.module('hireDotApp')
       });
     };
 
+    // Lazy-loading
     Developer.queryStatus = {
-      skip: 10,
+      skip: 0,
       isBusy: false,
       isFinished: false
     };

@@ -17,6 +17,13 @@ angular.module('hireDotApp')
         params: {
           id:'me'
         }
+      },
+      typeahead: {
+        method: 'get',
+        isArray: true,
+        params: {
+          controller:'typeahead'
+        }
       }
 	  });
   });

@@ -23,7 +23,7 @@ exports.index = function(req, res) {
 
 exports.typeahead = function(req, res) {
   Project.find()
-         .select("name")
+         .select("name _id")
          .exec(function (err, projects) {
             if(err) { return handleError(res, err); }
             return res.json(200, projects);
