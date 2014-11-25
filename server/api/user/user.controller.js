@@ -17,12 +17,15 @@ exports.index = function(req, res) {
   var sortCriteria = req.query.value || 'name',
       findCriteria = req.query.name ? {
         name: new RegExp('.*' + req.query.name + '.*', 'ig')
-      } : {};
+      } : {},
+      skip = req.query.skip;
 
   User.find(findCriteria)
       .sort(sortCriteria)
-      // .limit(20)
-      .populate('projects').exec(function(err, users) {
+      .limit(10)
+      .skip(skip)
+      .populate('projects')
+      .exec(function(err, users) {
     if(err) return res.send(500, err);
     res.json(200, users);
   });

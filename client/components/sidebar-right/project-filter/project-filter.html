@@ -1,11 +1,11 @@
 <div>
   <h5 class="sidebartitle">Search Projects</h5>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search project name" ng-model="projectName" typeahead="project.name for project in projects | filter:$viewValue | limitTo: 5" ng-change="searchProjects(projectName)">
+    <input type="text" class="form-control" placeholder="Search project name" ng-model="projectName" typeahead="project.name for project in projectsTypeahead | filter:$viewValue | limitTo: 5" ng-change="searchProjects(projectName)">
   </div>
   <h5 class="sidebartitle">Sort Projects</h5>
   <div class="form-group">
-    <select class="form-control input-sm" ng-model="selectedOrderBy" ng-options="orderByOption.orderBy for orderByOption in orderByOptions" ng-change="resetProjectStatus(); sortProjects(selectedOrderBy)"
+    <select class="form-control input-sm" ng-model="selectedOrderBy" ng-options="orderByOption.orderBy for orderByOption in orderByOptions" ng-change="resetProjectQueryStatus(); sortProjects(selectedOrderBy)"
     ng-init="selectedOrderBy = orderByOptions[0]; sortProjects(selectedOrderBy)">
     </select>
   </div>

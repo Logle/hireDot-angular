@@ -14,6 +14,8 @@ angular.module('hireDotApp')
           value: 'visitors'
         }];
 
+        $scope.developers = Developer.query();
+
         $scope.cohortsFilter = Cohort.query();
 
         $scope.hiredOrLookingFilter = [{
@@ -28,6 +30,10 @@ angular.module('hireDotApp')
 
         $scope.searchDevelopers = function(developerName) {
           Developer.search(developerName);
+        };
+
+        $scope.resetDeveloperQueryStatus= function() {
+          Developer.resetQueryStatus();
         };
       }
     };
