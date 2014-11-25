@@ -21,7 +21,7 @@ exports.index = function(req, res) {
 
   User.find(findCriteria)
       .sort(sortCriteria)
-      .limit(20)
+      // .limit(20)
       .populate('projects').exec(function(err, users) {
     if(err) return res.send(500, err);
     res.json(200, users);
