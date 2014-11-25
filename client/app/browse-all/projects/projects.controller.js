@@ -9,5 +9,5 @@ angular.module('hireDotApp')
       Project.sortBy();
     };
 
-    $scope.isBusyOrFinished = Project.isBusyOrFinished;
+    $scope.queryStatus = Project.queryStatus;
   });
