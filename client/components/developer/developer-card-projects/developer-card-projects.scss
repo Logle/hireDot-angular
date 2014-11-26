@@ -1,0 +1,17 @@
+.developer-card-projects {
+  .project-title {
+    text-overflow: ellipsis;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .thmb {
+    min-height: 185px;
+    max-height: 185px;
+
+    .thmb-prev .img-responsive {
+      max-height: 124px;
+    }
+  }
+}

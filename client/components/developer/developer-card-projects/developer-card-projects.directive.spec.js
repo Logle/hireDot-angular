@@ -1,10 +1,10 @@
 'use strict';
 
-describe('Directive: developerCard', function () {
+describe('Directive: developerCardProjects', function () {
 
   // load the directive's module and view
   beforeEach(module('hireDotApp'));
-  beforeEach(module('components/developer/developer-card/developer-card.html'));
+  beforeEach(module('components/developer/developer-card-projects/developer-card-projects.html'));
 
   var element, scope;
 
@@ -13,9 +13,9 @@ describe('Directive: developerCard', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<developer-card></developer-card>');
+    element = angular.element('<developer-card-projects></developer-card-projects>');
     element = $compile(element)(scope);
     scope.$apply();
-    expect(element.text()).toBe('this is the developerCard directive');
+    expect(element.text()).toBe('this is the developerCardProjects directive');
   }));
 });

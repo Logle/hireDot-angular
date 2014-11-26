@@ -1,6 +1,6 @@
 <div class="pageheader">
     <h2><i class="fa fa-home"></i> {{projectData.name}} <span>last updated: &nbsp{{projectData.lastUpdated.substring(0,10)}}</span></h2>
-      
+
     <div class="breadcrumb-wrapper">
       <span class="label">You are here:</span>
       <ol class="breadcrumb">
@@ -9,79 +9,59 @@
       </ol>
     </div>
 </div>
-<!-- the view of a project page. Consists of two colunms: left container is about the project 
+
+<!-- the view of a project page. Consists of two colunms: left container is about the project
 and right container about the project team -->
 
 <div id='project_container' class='col-md-12'>
 		<div id='left_container' class='col-md-8'>
-	
-			<!-- project media block include: the project video and project images -->
-			
-			<div autofocus id='project_media'>
+			<!-- project media block include: the project video, project images and project information in three tabs -->
+			<div id='project_media'>
 					<tabset justified='true'>
 					<!-- currently only have a place holder video. will refactor to show either video or images -->
 						<tab heading ='Video'>
 							<div class ='video_aspect_ratio'>
 									<object class = 'project_video' data = "http://www.youtube.com/embed/FKQS7oswN5I" frameborder="0">  </object>
-							</div>	
+							</div>
 						</tab>
 						<!-- set up slide show for multiple images -->
 						<tab heading = 'Images'>
 							<carousel interval="5000">
 					      <slide ng-repeat="image in projectData.images" active="slide.active">
-					        <img ng-src="{{image.original}}" style="margin:auto;">
+					        <img ng-src="{{image.original}}" style="margin:auto; max-height: 750px";>
 					        <div class="carousel-caption">
 					        </div>
 					      </slide>
 					    </carousel>
-
+					  </tab>
+					  <tab heading = 'Information'>
+						  <div>
+									<h3>Description</h3>
+									<p> In one sentence: &nbsp{{projectData.pitch}} </p>
+									<p>	 {{projectData.description}} </p>
+							</div>
+					  	<div>
+									<h3>Technology</h3>
+									<p><a href={{projectData.githubUrl}}> GitHub: {{projectData.githubUrl}} </a></p>
+									<p><a href={{projectData.url}}> Link: {{projectData.url}}</a></p>
+									<p>Stack: {{projectData.techTags}}</p>
+							</div>
+					  </tab>
 					</tabset>
 			</div>
-
-			<!-- project pitch and description block-->
-
-			<div id='project_pitch'>
-					<div>
-						 In one sentence: &nbsp{{projectData.pitch}}
-					</div>
-					</br>
-					<div>
-						 {{projectData.description}}
-					</div>
-			</div>
-
-			<!-- technical information block-->
-
-			<div id='project_information'>
-					<div><a href={{projectData.githubUrl}}> GitHub: {{projectData.githubUrl}} </a></div>
-					<div><a href={{projectData.url}}> Link: {{projectData.url}}</a></div>
-					<div>Tech Stack: {{projectData.techTags}}</div>
-			</div>
-		</div>	
+		</div>
 
 		<!--  project team column  -->
-
 		<div id='right_container' class='col-md-4'>
-			
 			<div id='team_title'>
 					<h3>The Team</h3>
-			</div>	
-			
+			</div>
 			<!-- team information block -->
-
 			<div id='team_information'>
 					<div ng-repeat ='member in projectData.team' class='col-md-12 individual_profile'>
-							<div class='col-md-9'>
-								<h5 class='individual_name'>{{member.userId.name}}</h5>
-								<h6>{{member.userId.role}}</h6>
-								<a href={{member.userId.githubUrl}}> {{member.userId.githubUrl}} </a>
-							</div>
-							<div class='col-md-3'>
-								<img class ='thumbnail media-object' ng-src={{member.userId.profilePicture.original}}>
-							</div>
+							<developer-profile-card info='member.userId'> </developer-profile-card>  <!-- custom directive -->
 					</div>
 			</div>
-		
 		</div>
 </div>
 
