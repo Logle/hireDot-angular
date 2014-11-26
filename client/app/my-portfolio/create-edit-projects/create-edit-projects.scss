@@ -2,7 +2,23 @@
 	border-color: red;
 }
 
-iframe {
+#embed {
+	box-sizing: border-box;
+	padding: 0 10px;
 	position: relative;
-	left: 15px;
+	left: 5px;
+}
+
+iframe {
+	width: 98%;
+}
+
+@media (max-width: 768px) {
+	#embed {
+		position: relative;
+		left: 10px;
+	}
+	iframe {
+		width: 97%;
+	}
 }
