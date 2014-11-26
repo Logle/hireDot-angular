@@ -33,7 +33,7 @@ exports.typeahead = function(req, res) {
 // Get a single project
 exports.show = function(req, res) {
   Project.findById(req.params.id)
-         .populate('team.userId')
+         .populate('team.developer')
          .exec(function (err, project) {
     if(err) { return handleError(res, err); }
     if(!project) { return res.send(404); }

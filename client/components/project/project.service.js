@@ -73,6 +73,19 @@ angular.module('hireDotApp')
       this.queryStatus.isFinished = false;
     };
 
+    // For object instances
+    Project.prototype.hasUrl = function(urlType) {
+      switch(urlType) {
+            case 'github':
+              if (this.githubUrl && this.githubUrl !== "") { return true; }
+              break;
+            case 'url':
+              if (this.url && this.url !== "") { return true; }
+              break;
+          }
+
+      return false;
+    };
     return Project;
   });
 

@@ -65,6 +65,7 @@ angular.module('hireDotApp')
       this.queryStatus.isFinished = false;
     };
 
+    // For object instances
     Developer.prototype.hasUrl = function(urlType) {
       switch(urlType) {
             case 'email':

@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 var MemberSchema = new Schema({
   role: String,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' }
+  developer: { type: Schema.Types.ObjectId, ref: 'User' }
 }, { _id: false });
 
 var ImageSchema = new Schema({
