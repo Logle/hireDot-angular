@@ -2,27 +2,67 @@
 
 angular.module('hireDotApp')
   .factory('Developer', function (User) {
-    var Developer = User,
-        isSearching = false;
+    var Developer = User;
 
-    Developer.allDevelopers = [];
+    // ===== For Typeaheads =====
+    Developer.developersTypeahead = [];
+
+    Developer.typeahead({}, function(developers) {
+      angular.copy(developers, Developer.developersTypeahead);
+    });
+
+    // ===== For Ng-repeats =====
+    Developer.allDevelopersForNgRepeat = [];
 
     Developer.search = function(developerName) {
-      if (isSearching === false) {
-        if (developerName.length > 2 || developerName.length === 0) {
-          isSearching = true;
-          this.query({ name: developerName }, function(developers) {
-            isSearching = false;
-            angular.copy(developers, Developer.allDevelopers);
-          });
-        }
-      }
+      this.query({ name: developerName }, function(developers) {
+        angular.copy(developers, Developer.allDevelopersForNgRepeat);
+      });
+    };
+
+    // Lazy-loading
+    Developer.queryStatus = {
+      skip: 0,
+      isBusy: false,
+      isFinished: false
     };
 
     Developer.sortBy = function(sortCriteria) {
-      this.query(sortCriteria, function(developers) {
-        angular.copy(developers, Developer.allDevelopers);
-      });
+      var self = this;
+
+      this.queryStatus.isBusy = true;
+
+      if (this.queryStatus.skip === 0) {
+        this.sortCriteria = sortCriteria;
+
+        this.query(sortCriteria, function(developers) {
+          angular.copy(developers, self.allDevelopersForNgRepeat);
+
+          self.queryStatus.skip += 10;
+          self.queryStatus.isBusy = false;
+        });
+      } else {
+        this.sortCriteria.skip = this.queryStatus.skip;
+
+        this.query(this.sortCriteria, function(developers) {
+          if (developers.length === 0) {
+            self.queryStatus.isFinished = true;
+          }
+
+          developers.forEach(function(developer) {
+            self.allDevelopersForNgRepeat.push(developer);
+          });
+
+          self.queryStatus.skip += 10;
+          self.queryStatus.isBusy = false;
+        });
+      }
+    };
+
+   Developer.resetQueryStatus = function() {
+      this.queryStatus.skip = 0;
+      this.queryStatus.isBusy = false;
+      this.queryStatus.isFinished = false;
     };
 
     Developer.prototype.hasUrl = function(urlType) {
