@@ -93,8 +93,8 @@ angular.module('hireDotApp')
     };
 
     Developer.prototype.profilePictureAvailable = function() {
-      if (this.profilePicture &&
-          this.profilePicture.crops) {
+      if (this.linkedin.pictureUrl || (this.profilePicture &&
+          this.profilePicture.crops)) {
         return true;
       } else {
         return false;
