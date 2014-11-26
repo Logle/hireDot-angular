@@ -214,6 +214,7 @@ a:hover {
 
 // Component styles are injected through grunt
 // injector
+@import 'admin-page/admin-page.scss';
 @import 'admin/admin.scss';
 @import 'browse-all/developers/developers.scss';
 @import 'browse-all/projects/projects.scss';

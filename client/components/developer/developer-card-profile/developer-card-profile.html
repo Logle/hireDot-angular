@@ -9,7 +9,7 @@
         <img ng-src="assets/images/user.jpg" class="thumbnail media-object" ng-hide="profilePictureAvailable(developerData)" alt="{{developerData.name}}"></img>
       </a>
       <div class="media-body">
-        <h4 class="person-name">{{developerData.name}}</h4>
+        <h4 class="person-name"><a href="/view/{{developerData._id}}/developer_page" title="Link to {{developerData.name}} profile">{{developerData.name}}</a></h4>
         <div class="text-muted developer-title">
           <i class="fa fa-briefcase"></i> {{developerData.title}}
         </div>
@@ -18,19 +18,19 @@
         </div>
         <ul class="social-list">
           <li ng-if="hasUrl(developerData, 'email')">
-            <a class="tooltips"><i class="fa fa-envelope-o"></i></a>
+            <a href="mailto:{{developerData.email}}" target="_blank" title="{{developerData.name}}'s email" class="tooltips"><i class="fa fa-envelope-o"></i></a>
           </li>
           <li ng-if="hasUrl(developerData, 'linkedin')">
-            <a class="tooltips"><i class="fa fa-linkedin"></i></a>
+            <a href="{{developerData.linkedinUrl}}" target="_blank" title="{{developerData.name}}'s Linkedin" class="tooltips"><i class="fa fa-linkedin"></i></a>
           </li>
           <li ng-if="hasUrl(developerData, 'github')">
-            <a class="tooltips"><i class="fa fa-github"></i></a>
+            <a href="{{developerData.githubUrl}}" target="_blank" title="{{developerData.name}}'s Github" class="tooltips"><i class="fa fa-github"></i></a>
           </li>
           <li ng-if="hasUrl(developerData, 'facebook')">
-            <a class="tooltips"><i class="fa fa-facebook"></i></a>
+            <a href="{{developerData.facebookUrl}}" target="_blank" title="{{developerData.name}}'s Facebook" class="tooltips"><i class="fa fa-facebook"></i></a>
           </li>
           <li ng-if="hasUrl(developerData, 'twitter')">
-            <a class="tooltips"><i class="fa fa-twitter"></i></a>
+            <a href="{{developerData.twitterUrl}}" target="_blank" title="{{developerData.name}}'s Twitter" class="tooltips"><i class="fa fa-twitter"></i></a>
           </li>
         </ul>
       </div>
