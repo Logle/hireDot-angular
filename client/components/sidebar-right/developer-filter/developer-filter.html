@@ -8,7 +8,7 @@
     <select class="form-control input-sm" ng-model="hiredOrLooking" ng-options="hiredOrLooking.status for hiredOrLooking in hiredOrLookingFilter" ng-change="onSortByChange(selectedOrderBy, hiredOrLooking, selectedCohort)" ng-init="hiredOrLooking = hiredOrLookingFilter[0];"></select>
   </div>
   <div class="form-group">
-    <select class="form-control input-sm" ng-model="selectedCohort" ng-options="cohort.name for cohort in cohortsTypeahead" ng-init="selectedCohort = cohortsTypeahead[0];"></select>
+    <select class="form-control input-sm" ng-model="selectedCohort" ng-options="cohort.name for cohort in cohortsTypeahead" ng-change="onSortByChange(selectedOrderBy, hiredOrLooking, selectedCohort)" ng-init="selectedCohort = cohortsTypeahead[0];"></select>
   </div>
   <h5 class="sidebartitle">Sort Developers</h5>
   <div class="form-group">
