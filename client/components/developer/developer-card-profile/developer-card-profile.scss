@@ -6,6 +6,10 @@
     overflow: hidden;
   }
 
+  .media {
+    margin-top: 0;
+  }
+
   .ribbon-wrapper-hired {
     width: 88px;
     height: 88px;
@@ -13,7 +17,6 @@
     position: absolute;
     top: -3px;
     left: 7px;
-    // border: 1px solid black;
 
     .ribbon-hired {
       font: 15px bold 'LatoRegular', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif;
