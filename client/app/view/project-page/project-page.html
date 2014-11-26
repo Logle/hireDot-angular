@@ -15,16 +15,8 @@ and right container about the project team -->
 
 <div id='project_container' class='col-md-12'>
 		<div id='left_container' class='col-md-8'>
-			<!-- project media block include: the project video, project images and project information in three tabs -->
-			<div id='project_media'>
+			<!-- project media block include: the project video, project images and project information in three tabs. example video url "http://www.youtube.com/embed/FKQS7oswN5I"  -->
 					<tabset justified='true'>
-					<!-- currently only have a place holder video. will refactor to show either video or images -->
-						<tab heading ='Video'>
-							<div class ='video_aspect_ratio'>
-									<object class = 'project_video' data = "http://www.youtube.com/embed/FKQS7oswN5I" frameborder="0">  </object>
-							</div>
-						</tab>
-						<!-- set up slide show for multiple images -->
 						<tab heading = 'Images'>
 							<carousel interval="5000">
 					      <slide ng-repeat="image in projectData.images" active="slide.active">
@@ -34,33 +26,39 @@ and right container about the project team -->
 					      </slide>
 					    </carousel>
 					  </tab>
-					  <tab heading = 'Information'>
+					<!-- currently only have a place holder video. will refactor to show either video or images -->
+						<tab heading ='Video'>
+							<div class ='video_aspect_ratio'>
+									<object class = 'project_video' data={{projectData.videoUrl}} frameborder="0">  </object>
+							</div>
+						</tab>
+						<!-- set up slide show for multiple images -->
+						<tab heading = 'Information'>
 						  <div>
 									<h3>Description</h3>
-									<p> In one sentence: &nbsp{{projectData.pitch}} </p>
+									<p ng-hide=hasPitch()> In one sentence: &nbsp{{projectData.pitch}} </p>
 									<p>	 {{projectData.description}} </p>
 							</div>
 					  	<div>
 									<h3>Technology</h3>
-									<p><a href={{projectData.githubUrl}}> GitHub: {{projectData.githubUrl}} </a></p>
-									<p><a href={{projectData.url}}> Link: {{projectData.url}}</a></p>
-									<p>Stack: {{projectData.techTags}}</p>
+									<p ng-hide=hasGitHub()>
+										<a href={{projectData.githubUrl}}> GitHub: {{projectData.githubUrl}} </a>
+									</p>
+									<p ng-hide=hasUrl()>
+										<a href={{projectData.url}}> Link: {{projectData.url}}</a>
+									</p>
+									<p ng-hide=hasStack()>
+										Stack: {{projectData.techTags}}
+									</p>
 							</div>
 					  </tab>
 					</tabset>
-			</div>
 		</div>
 
 		<!--  project team column  -->
 		<div id='right_container' class='col-md-4'>
-			<div id='team_title'>
-					<h3>The Team</h3>
-			</div>
-			<!-- team information block -->
-			<div id='team_information'>
-					<div ng-repeat ='member in projectData.team' class='col-md-12 individual_profile'>
-							<developer-profile-card info='member.userId'> </developer-profile-card>  <!-- custom directive -->
-					</div>
+			<div ng-repeat ='member in projectData.team'>
+					  <developer-card-profile developer-data='member.userId'> </developer-card-profile>
 			</div>
 		</div>
 </div>

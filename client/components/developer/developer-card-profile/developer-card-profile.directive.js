@@ -12,9 +12,17 @@ angular.module('hireDotApp')
         scope.hasUrl = function(developerData, urlType) {
           return developerData.hasUrl(urlType);
         };
-
         scope.profilePictureAvailable = function(developerData) {
-          return developerData.profilePictureAvailable();
+          if (developerData.hasOwnProperty('profilePictureAvailable')) {
+            return developerData.profilePictureAvailable();
+          } else {
+            if (developerData.linkedin.pictureUrl || (developerData.profilePicture &&
+                developerData.profilePicture.crops)) {
+              return true;
+            } else {
+              return false;
+            }
+          }
         };
       }
     };
