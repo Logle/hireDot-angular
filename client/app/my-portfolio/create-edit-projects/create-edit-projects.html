@@ -1,6 +1,6 @@
-<!-- placeholder text:
-	- Should be concrete examples instead of abstract?
-	- I used facepair initially but the examples need refinement -->
+<div class="pageheader">
+	<h2>Create a Project</h2>
+</div>
 
 <div class="contentpanel">
 	<div class="panel panel-default">
@@ -8,7 +8,6 @@
 					novalidate
 					name="projectForm"
 					ng-submit="projectForm.$valid && submit()">
-			<div class="panel-heading"><h2>Create a Project</h2></div>
 			<div class="panel-body panel-body-nopadding">
 
 				<!-- PROJECT NAME -->
@@ -113,21 +112,21 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Video URL</label>
 					<div class="col-sm-6">
+						<video-thingy></video-thingy>
 						<input 	type="url"
 										name="videoURL"
 										class="form-control"
+										ng-change="getEmbedURL()"
 										ng-model="project.videoURL"
 										placeholder="https://www.youtube.com/embed/ab3NscEJ80s"
-										blur-validate
-										show-video>
+										blur-validate>
 						<label class="error ng-hide">
 							Must be a valid URL.
 						</label>
 					</div>
 				</div>
 
-				<div class="row" id="embed">
-				</div>
+				<video-embed ng-show="projectForm.videoURL.$dirty && projectForm.videoURL.$valid"></video-embed>
 
 
 				<!-- PROJECT PICTURE -->
