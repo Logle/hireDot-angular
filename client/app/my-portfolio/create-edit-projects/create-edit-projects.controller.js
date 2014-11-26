@@ -39,41 +39,43 @@ angular.module('hireDotApp')
       }
     };
   })
-  .directive('showVideo', function() {
+  .directive('videoEmbed', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'app/my-portfolio/create-edit-projects/videoEmbed.html'
+    };
+  })
+  .directive('onIframeLoad', function() {
     return {
       restrict: 'A',
       link: function(scope, iEl, attrs) {
-        iEl.bind('keyup', function() {
+        iEl.on('load', function() {
+          var width = iEl.width();
+          iEl.height(width/1.777);
+        })
+      }
+    };
+  })
+  .directive('responsiveHeight', function($window) {
+    return {
+      restrict: 'A',
+      link: function(scope, iEl, attrs) {
+        var w = angular.element($window);
+        w.bind('resize', function() {
           scope.$apply(function() {
-            // check validitity of projectForm.videoURL
-            // if valid, call setEmbedURL()
-            if (scope.projectForm.videoURL.$dirty && scope.projectForm.videoURL.$valid) {
-              scope.setEmbed();
-            }
+            var width = iEl.width();
+            $('iframe').height(width/1.77);
           });
         });
       }
-    }
+    };
   })
-  .controller('CreateEditProjectsCtrl', function ($scope, Project) {
+  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce) {
   	$scope.project = {};
-    $scope.setEmbed = function() {
+    $scope.getEmbedURL = function() {
       var id = getId($scope.project.videoURL);
-      console.log(id);
-      var embed = '<iframe class="col-sm-offset-3" width="311" height="175" src="//www.youtube.com/embed/' 
-              + id + '" frameborder="0" allowfullscreen></iframe>';
-      $('#embed').append(embed);
-    };
-    function getId(url) {
-      var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-      var match = url.match(regExp);
-
-      if (match && match[2].length == 11) {
-          return match[2];
-      } else {
-          return 'error';
-      }
-    };
+      $scope.project.videoEmbedUrl = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + id);
+    }
 
     this.submit = function() {
       Project.save($scope.project,
@@ -86,8 +88,29 @@ angular.module('hireDotApp')
     $scope.$watch("project.githubURL", function(newURL, oldURL) {
       $scope.projectForm.githubURL.$setValidity("githubURL needs to be from github.com", isValidGithubUrl(newURL));
     });
+    // $scope.$watch('project.videoURL', function(newURL, oldURL) {
+    //   // ping YouTube API
+    //   // $setValidity accordingly
+
+    //   // set height when valid
+    //   if ($scope.projectForm.videoURL.$valid) {
+    //     var width = $("#embed").width();
+    //     console.log('width: ', width);
+    //     $("iframe").height(width/1.777);
+    //   }
+    // });
   });
 
+  function getId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+  };
   function isValidGithubUrl(url) {
     if (!url) return false; // because $digest's happen before people type in the github.url and it's saying url is undefined
 
@@ -105,3 +128,4 @@ angular.module('hireDotApp')
     if (domain === 'github.com' || domain === 'www.github.com') return true;
     else { return false; }
   }
+

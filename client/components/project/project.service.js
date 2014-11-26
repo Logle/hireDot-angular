@@ -2,16 +2,33 @@
 
 angular.module('hireDotApp')
   .factory('Project', function ($resource) {
-    var Project = $resource('/api/projects/:id');
+    var Project = $resource('/api/projects/:id/:controller', {}, {
+      typeahead: {
+        method: 'get',
+        isArray: true,
+        params: {
+          controller:'typeahead'
+        }
+      }
+    });
 
-    Project.allProjects = [];
+    // ===== For Typeaheads ======
+    Project.projectsTypeahead = [];
+
+    Project.typeahead({}, function(projects) {
+      angular.copy(projects, Project.projectsTypeahead);
+    });
+
+    // ====== For Ng-repeats =====
+    Project.allProjectsForNgRepeat = [];
 
     Project.search = function(projectName) {
       this.query({ name: projectName }, function(projects) {
-        angular.copy(projects, Project.allProjects);
+        angular.copy(projects, Project.allProjectsForNgRepeat);
       });
     };
 
+    // Lazy-loading
     Project.queryStatus = {
       skip: 0,
       isBusy: false,
@@ -27,9 +44,9 @@ angular.module('hireDotApp')
         this.sortCriteria = sortCriteria;
 
         this.query(sortCriteria, function(projects) {
-          angular.copy(projects, self.allProjects);
+          angular.copy(projects, self.allProjectsForNgRepeat);
 
-          self.queryStatus.skip += 30;
+          self.queryStatus.skip += 10;
           self.queryStatus.isBusy = false;
         });
       } else {
@@ -41,13 +58,19 @@ angular.module('hireDotApp')
           }
 
           projects.forEach(function(project) {
-            self.allProjects.push(project)
+            self.allProjectsForNgRepeat.push(project);
           });
 
-          self.queryStatus.skip += 30;
+          self.queryStatus.skip += 10;
           self.queryStatus.isBusy = false;
         });
       }
+    };
+
+    Project.resetQueryStatus = function() {
+      this.queryStatus.skip = 0;
+      this.queryStatus.isBusy = false;
+      this.queryStatus.isFinished = false;
     };
 
     return Project;

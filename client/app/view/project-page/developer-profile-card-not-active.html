@@ -1,0 +1,36 @@
+<!--  directive for displaying on single developer card
+      this is non active, using the shared directive in the component folder
+-->
+
+<div class='row media'>
+     <!-- information block -->
+		<div class='col-md-8 media-left media-body'>
+				<div class="developer-title">
+            <i class="fa fa-briefcase"></i>&nbsp {{developer.title}}
+         </div>
+         <div>
+            <i class="fa fa-eye"></i>&nbsp {{developer.visitors.length}}
+         </div>
+         <ul class='media-list project-page-social-list'>
+            <li>
+              <a class="tooltips"><i class="fa fa-envelope-o"></i></a>
+            </li>
+            <li>
+              <a class="tooltips"><i class="fa fa-linkedin"></i></a>
+            </li>
+            <li>
+              <a href={{developer.githubUrl}} class="tooltips"><i class="fa fa-github"></i></a>
+            </li>
+            <li>
+              <a class="tooltips"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+              <a class="tooltips"><i class="fa fa-twitter"></i></a>
+            </li>
+          </ul>
+		</div>
+    <!-- image block -->
+		<div class='col-md-4 media-right'>
+				<img class ='thumbnail media-object pull-right' ng-src={{developer.profilePicture.crops._200x200}}>
+		</div>
+</div>

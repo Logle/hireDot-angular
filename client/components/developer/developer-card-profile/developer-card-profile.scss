@@ -1,0 +1,50 @@
+.developer-card-profile {
+  .developer-title {
+    text-overflow: ellipsis;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .media {
+    margin-top: 0;
+  }
+
+  .ribbon-wrapper-hired {
+    width: 88px;
+    height: 88px;
+    overflow: hidden;
+    position: absolute;
+    top: -3px;
+    left: 7px;
+
+    .ribbon-hired {
+      font: 15px bold 'LatoRegular', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif;
+      color: #FFF;
+      text-align: center;
+      transform: rotate(-45deg);
+      position: absolute;
+      left: -28px;
+      top: 19px;
+      padding: 7px 45px;
+      background-color: #D9534F;
+
+      &:before, &:after {
+        content: "";
+        border-top:   3px solid #D9534F;
+        border-left:  3px solid transparent;
+        border-right: 3px solid transparent;
+        position:absolute;
+        bottom: -3px;
+      }
+
+      &:before {
+        left: -4px;
+      }
+
+      &:after {
+        right: 0;
+      }
+    }
+  }
+}

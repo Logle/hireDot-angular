@@ -12,9 +12,19 @@ exports.index = function(req, res) {
       skip = req.query.skip;
 
   Project.find(findCriteria).select("-team")
-         .limit(30)
+         .sort(sortCriteria)
+         .limit(10)
          .skip(skip)
-         .sort(sortCriteria).exec(function (err, projects) {
+         .exec(function (err, projects) {
+            if(err) { return handleError(res, err); }
+            return res.json(200, projects);
+          });
+};
+
+exports.typeahead = function(req, res) {
+  Project.find()
+         .select("name _id")
+         .exec(function (err, projects) {
             if(err) { return handleError(res, err); }
             return res.json(200, projects);
           });

@@ -62,6 +62,32 @@ angular.module('hireDotApp')
         }
       }],
       showSubMenu: false
+    }, {
+      title: 'Admin Page',
+      logo: 'fa fa-gears',
+      show: function() {
+        return Auth.isAdmin();
+      },
+      subMenu: [{
+        title: 'Assign Users',
+        link: '/admin_page',
+        show: function() {
+          return Auth.isAdmin();
+        }
+      }, {
+        title: 'Invite Users',
+        link: '/admin_page',
+        show: function() {
+          return Auth.isAdmin();
+        }
+      }, {
+        title: 'Something Else',
+        link: '/admin_page',
+        show: function() {
+          return Auth.isAdmin();
+        }
+      }],
+      showSubMenu: false
     }];
 
     $scope.isCollapsed = true;

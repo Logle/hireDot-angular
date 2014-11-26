@@ -20,7 +20,7 @@ angular.module('hireDotApp')
           value: 'views'
         }];
 
-        $scope.projects = Project.query();
+        $scope.projectsTypeahead = Project.projectsTypeahead;
 
         $scope.sortProjects = function(sortCriteria) {
           Project.sortBy(sortCriteria);
@@ -30,10 +30,9 @@ angular.module('hireDotApp')
           Project.search(projectName);
         };
 
-        $scope.resetProjectStatus= function() {
-          Project.queryStatus.skip = 0;
-          Project.queryStatus.isBusy = false;
-          Project.queryStatus.isFinished = false;
+        $scope.onSortByChange = function(sortCriteria) {
+          Project.resetQueryStatus();
+          $scope.sortProjects(sortCriteria);
         };
       }
     };

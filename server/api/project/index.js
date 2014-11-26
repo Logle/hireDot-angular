@@ -6,6 +6,7 @@ var controller = require('./project.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/typeahead', controller.typeahead);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
