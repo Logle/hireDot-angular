@@ -16,10 +16,6 @@
       
       <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="panel-btns">
-            <a href="" class="panel-close">&times;</a>
-            <a href="" class="minimize">&minus;</a>
-          </div>
           <h4 class="panel-title">My Profile</h4>
           <p>Fill out the following forms to display your information to prospective employers and other developers at Fullstack </p>
         </div>
@@ -27,6 +23,30 @@
           
           <form class="form-horizontal form-bordered">
             
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Profile Picture:</label>
+              <div class="col-sm-6">
+              <button     ng-click='initializeFilePicker()'
+                                name="images"
+                                id='filePicker'
+                                class="btn btn-default">
+                                Upload Images
+            </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Funny Profile Picture:</label>
+              <div class="col-sm-6">
+              <button     ng-click='initializeFilePicker()'
+                                name="images"
+                                id='filePicker'
+                                class="btn btn-default">
+                                Upload Images
+            </button>
+              </div>
+            </div>
+
             <div class="form-group">
               <label class="col-sm-3 control-label">Name:</label>
               <div class="col-sm-6">
