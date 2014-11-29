@@ -24,7 +24,6 @@ angular.module('hireDotApp')
 
     // Public API here
     return {
-
       /* Confirmation modals */
       confirm: {
 
@@ -35,7 +34,6 @@ angular.module('hireDotApp')
          */
         delete: function(del) {
           del = del || angular.noop;
-
           /**
            * Open a delete confirmation modal
            * @param  {String} name   - name or info to show on modal

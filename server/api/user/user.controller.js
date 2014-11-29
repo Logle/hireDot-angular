@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -137,4 +138,19 @@ exports.me = function(req, res, next) {
  */
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
+};
+
+// for current user to follow a developer
+
+exports.followDeveloper = function(req, res, next) {
+  // console.log(req.body);
+  User.findOne({_id: new ObjectId(req.body.user)}, function(err, user){
+    if (err) return next(err);
+    if (!user) return res.json(401);
+    if (user.followDevelopers.indexOf(new ObjectId(req.body.dev)) === -1) {
+      user.followDevelopers.push(new ObjectId(req.body.dev));
+      user.save();
+      res.send(200);
+    } else res.send(200);
+  });
 };
