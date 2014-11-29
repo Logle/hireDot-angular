@@ -44,4 +44,21 @@ This is the Github repository for hire.fullstackacademy.com.
 
 ####Please keep this workflow here for references.
 
+##### Linkedin #####
+* LINKEDIN_ID: '77e15qox5quwp4',
+* LINKEDIN_SECRET: 'IxG3S59KHdTecdLc'
+
+### Database Backup ###
+##### Dump Database #####
+* `cd hiredot`
+* `mongodump -db hiredot-dev`
+
+##### Migrate to Heroku #####
+Username: heroku_app32056012
+Password: jkilh7dod707jv57ulhekupm45
+`mongorestore -h ds053300.mongolab.com:53300 -d heroku_app32056012 -u heroku_app32056012 -p jkilh7dod707jv57ulhekupm45 ./dump/hiredot-dev
+`
+s
+
+
 
