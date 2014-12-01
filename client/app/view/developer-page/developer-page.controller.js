@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('DeveloperPageCtrl', function ($scope, Developer, $stateParams, $http, Auth, $modal) {
+  .controller('DeveloperPageCtrl', function ($scope, Developer, $stateParams, User, Auth, $modal) {
     $scope.developerData = Developer.get({ id: $stateParams.developer_id });
-    console.log($scope.developerData);
+    // console.log($scope.developerData);
     $scope.showFunny = false;
     $scope.showTab = {
       projects: true,
@@ -26,9 +26,18 @@ angular.module('hireDotApp')
     $scope.profilePictureAvailable = function() {
       return $scope.developerData.profilePictureAvailable();
     };
+
+    $scope.developerData.$promise.then(function(result) {
+      if ( Auth.getCurrentUser().followDevelopers.indexOf(result._id) === -1 ){
+        $scope.isFollowed = 0;
+      } else {  $scope.isFollowed = 1;  }
+    });
+    $scope.isFollowedString = ['Follow', 'UnFollow'];
+
     $scope.followDeveloper = function() {
-      $http.post('api/users/newFollowDeveloper', {'dev' : $scope.developerData._id, 'user': Auth.getCurrentUser()._id });
+      User.followDeveloper({'user' : Auth.getCurrentUser()._id ,'dev' : $scope.developerData._id});
     };
+
     $scope.openResume = function(){
       var modalService = $modal.open({
         templateUrl: 'resumeModal.html',

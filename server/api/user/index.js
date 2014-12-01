@@ -16,6 +16,6 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 // router.get('/:id', auth.isAuthenticated(), controller.show);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
-router.post('/newFollowDeveloper', controller.followDeveloper);
+router.post('/followDeveloper', controller.followDeveloper);
 
 module.exports = router;

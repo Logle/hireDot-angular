@@ -143,14 +143,19 @@ exports.authCallback = function(req, res, next) {
 // for current user to follow a developer
 
 exports.followDeveloper = function(req, res, next) {
-  // console.log(req.body);
+  var devPosition;
   User.findOne({_id: new ObjectId(req.body.user)}, function(err, user){
     if (err) return next(err);
     if (!user) return res.json(401);
-    if (user.followDevelopers.indexOf(new ObjectId(req.body.dev)) === -1) {
+    devPosition = user.followDevelopers.indexOf(new ObjectId(req.body.dev));
+    if (devPosition === -1) {
       user.followDevelopers.push(new ObjectId(req.body.dev));
       user.save();
       res.send(200);
-    } else res.send(200);
+    } else {
+      user.followDevelopers.splice(devPosition,1);
+      user.save();
+      res.send(200);
+    }
   });
 };
