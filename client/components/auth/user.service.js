@@ -24,6 +24,12 @@ angular.module('hireDotApp')
         params: {
           controller:'typeahead'
         }
+      },
+      followDeveloper: {
+        method: 'POST',
+        params: {
+          controller:'followDeveloper'
+        }
       }
 	  });
   });
