@@ -84,6 +84,7 @@ angular.module('hireDotApp')
       );
     };
 
+    // filepicker
     filepicker.setKey("AtkSLyTTvS4uniWtmTRttz");
     $scope.initializeFilePicker = function() {
       filepicker.pickMultiple(
@@ -98,6 +99,37 @@ angular.module('hireDotApp')
         }
       );
     };
+
+    // aviary
+    // email: azerner3@gmail.com
+    // password: hiredotdot
+    var featherEditor = new Aviary.Feather({
+      apiKey: '3fab2428053eb8fa',
+      apiVersion: 3,
+      theme: 'dark',
+      tools: 'all',
+      appendTo: '',
+      onSave: function(imageID, newURL) {
+        var img = document.getElementById(imageID);
+        img.src = newURL;
+
+        var id = +imageID.slice(8);
+        $scope.$apply(function() {
+          $scope.project.pictures[id].url = newURL;
+        });
+      },
+      onError: function(errorObj) {
+        alert(errorObj.message);
+      }
+    });
+    $scope.launchEditor = function(id, src) {
+      featherEditor.launch({
+        image: id,
+        url: src
+      });
+      return false;
+    };
+
 
     // validations
     $scope.$watch("project.githubURL", function(newURL, oldURL) {
