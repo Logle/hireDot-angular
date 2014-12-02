@@ -9,4 +9,14 @@ angular.module('hireDotApp')
   		.error(function() {
   			console.error('unable to get users');
   		});
+
+  	$scope.delete = function(user) {
+  		$http.delete('/api/users/' + user._id)
+  			.success(function() {
+
+  			})
+  			.error(function() {
+  				console.log('unable to delete user');
+  			});
+  	};
   });

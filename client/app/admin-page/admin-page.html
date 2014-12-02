@@ -16,13 +16,19 @@
 			<tbody>
 				<tr ng-repeat="user in users">
 					<td>
-						{{user.name}}
-						<img width="100" src="{{user.profilePicture.original}}" />
-						{{user.email}}
+						<img ng-if="user.profilePicture.original" width="100" src="{{user.profilePicture.original}}" /><br />
+						<p>{{user.name}}</p>
+						<p>{{user.email}}</p>
 					</td>
 					<td>_</td>
 					<td>_</td>
-					<td><button class="btn btn-danger">Delete</button></td>
+					<td>
+						<button 
+							class="btn btn-danger"
+							ng-click="delete(user)">
+							Delete
+						</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
