@@ -13,7 +13,8 @@ angular.module('hireDotApp')
   	$scope.delete = function(user) {
   		$http.delete('/api/users/' + user._id)
   			.success(function() {
-
+  				var index = $scope.users.indexOf(user);
+  				$scope.users.splice(index, 1);
   			})
   			.error(function() {
   				console.log('unable to delete user');
