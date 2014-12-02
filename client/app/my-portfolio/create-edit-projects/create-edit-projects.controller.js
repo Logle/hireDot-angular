@@ -84,6 +84,21 @@ angular.module('hireDotApp')
       );
     };
 
+    filepicker.setKey("AtkSLyTTvS4uniWtmTRttz");
+    $scope.initializeFilePicker = function() {
+      filepicker.pickMultiple(
+        {
+          container: 'modal',
+          maxFiles: 4,
+          mimetype: 'image/*'
+        },
+        function(Blobs) {
+          $scope.project.pictures = Blobs;
+          $scope.$digest();
+        }
+      );
+    };
+
     // validations
     $scope.$watch("project.githubURL", function(newURL, oldURL) {
       $scope.projectForm.githubURL.$setValidity("githubURL needs to be from github.com", isValidGithubUrl(newURL));

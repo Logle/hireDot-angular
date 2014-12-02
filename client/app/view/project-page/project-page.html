@@ -5,17 +5,23 @@
 <div class="contentpanel">
   <div class="row project-view">
     <div class="col-sm-8">
-<!--       <div class="video_aspect_ratio">
-        <iframe ng-src="{{project.videoEmbedUrl}}" on-iframe-load frameborder="0"allowfullscreen></iframe>
-        <object class="project_video"></object>
-      </div> -->
-      <div class="row">
-        <img src="assets/images/project.jpg" class="col-sm-6" alt="">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="//www.youtube.com/embed/bUVOlBc1aus" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+
+        <!-- <img src="assets/images/project.jpg" class="col-sm-6" alt=""> -->
       </div>
     </div>
     <div class="col-sm-4">
       <h2 class="profile-name">{{projectData.name}}</h2>
-      <p class="mb30">{{projectData.pitch}}</p>
+      <p class="mb10">{{projectData.pitch}}</p>
+      <button type="button" class="btn btn-success mb15"><i class="fa fa-star"></i> Follow</button>
       <h3 class="subtitle">Description</h3>
       <p class="mb30">{{projectData.description}}</p>
       <h5 class="subtitle">Technologies</h5>

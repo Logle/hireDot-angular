@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .factory('Project', function ($resource) {
+  .factory('Project', function ($resource, $sce) {
     var Project = $resource('/api/projects/:id/:controller', {}, {
       typeahead: {
         method: 'get',
@@ -86,6 +86,23 @@ angular.module('hireDotApp')
 
       return false;
     };
+
+    Project.prototype.getVideoEmbedUrl = function() {
+      var self = this;
+
+      var youtubeId = function() {
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = self.videoURL.match(regExp);
+        if (match && match[2].length == 11) {
+            return match[2];
+        } else {
+            return 'error';
+        }
+      }();
+
+      return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + youtubeId);
+    };
+
     return Project;
   });
 

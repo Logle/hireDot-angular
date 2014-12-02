@@ -25,4 +25,5 @@ angular.module('hireDotApp')
 
       return false;
     };
+
   });

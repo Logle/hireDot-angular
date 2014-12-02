@@ -133,15 +133,20 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Project Picture <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<input 	type="text"
-										name="picture"
-										class="form-control"
-										ng-model="project.picture"
-										required
-										blur-validate> <!-- file upload -->
-						<label class="error ng-hide">
-							Required.
-						</label>
+						<button
+							ng-click="initializeFilePicker();"
+							class="btn btn-default"
+							name="picture"
+							ng-model="project.pictures"
+							required
+							>
+							Upload Picture
+						</button>
+						<ul id="pictureFiles">
+							<li ng-repeat="picture in project.pictures">
+								{{picture.filename}}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
