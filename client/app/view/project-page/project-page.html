@@ -1,65 +1,59 @@
 <div class="pageheader">
-    <h2><i class="fa fa-home"></i> {{projectData.name}} <span>last updated: &nbsp{{projectData.lastUpdated.substring(0,10)}}</span></h2>
+    <h2><i class="fa fa-picture-o"></i> {{projectData.name}} <span>View {{projectData.name}}'s details here</span></h2>
+</div>
 
-    <div class="breadcrumb-wrapper">
-      <span class="label">You are here:</span>
-      <ol class="breadcrumb">
-        <li class="active">This project</li>
-        <li><a href="index.html">All projects</a></li>
-      </ol>
+<div class="contentpanel">
+  <div class="row project-view">
+    <div class="col-sm-8">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="//www.youtube.com/embed/bUVOlBc1aus" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+
+        <!-- <img src="assets/images/project.jpg" class="col-sm-6" alt=""> -->
+      </div>
     </div>
+    <div class="col-sm-4">
+      <h2 class="profile-name">{{projectData.name}}</h2>
+      <p class="mb10">{{projectData.pitch}}</p>
+      <button type="button" class="btn btn-success mb15"><i class="fa fa-star"></i> Follow</button>
+      <h3 class="subtitle">Description</h3>
+      <p class="mb30">{{projectData.description}}</p>
+      <h5 class="subtitle">Technologies</h5>
+      <p class="mb30">{{projectData.techTags}}</p>
+      <h5 class="subtitle">Links</h5>
+      <h3 class="links mb30" ng-if="projectData.hasUrl('github') || projectData.hasUrl('url')">
+        <a href="{{projectData.githubUrl}}" target="_blank" title="{{projectData.name}}'s Github" ng-if="projectData.hasUrl('github')"><span class="fa fa-github-square"></span></a>
+        <a href="{{projectData.url}}" target="_blank" title="{{projectData.name}'s Live URL" ng-if="projectData.hasUrl('url')"><span class="fa fa-binoculars"></span></a>
+      </h3>
+      <h3 class="subtitle">Developers</h3>
+      <div class="activity-list">
+        <div class="media act-media" ng-repeat="member in projectData.team">
+          <a class="pull-left" href="/view/{{member.developer._id}}/developer_page">
+            <img class="media-object" ng-src="{{member.developer.profilePicture.crops._200x200 || member.developer.linkedin.pictureUrl}}" alt="">
+          </a>
+          <div class="media-body act-media-body">
+            <h4><strong><a href="/view/{{member.developer._id}}/developer_page" title="Go to {{member.developer.name}}'s Profile">{{member.developer.name}}</a></strong></h4>
+            <p><small class="text-muted">Role:</small> {{member.role}}</p>
+            <h4>
+              <a href="mailto:{{member.developer.email}}" target="_blank" title="{{member.developer.name}}'s email" ng-if="developerHasUrl('email', member.developer)"><span class="fa fa-envelope"></span></a>
+              <a href="{{member.developer.linkedinUrl}}" target="_blank" title="{{member.developer.name}}'s Linkedin" ng-if="developerHasUrl('linkedin', member.developer)"><span class="fa fa-linkedin-square"></span></a>
+              <a href="{{member.developer.githubUrl}}" target="_blank" title="{{member.developer.name}}'s Github" ng-if="developerHasUrl('github', member.developer)"><span class="fa fa-github-square"></span></a>
+              <a href="{{member.developer.facebookUrl}}" target="_blank" title="{{member.developer.name}}'s Facebook" ng-if="developerHasUrl('facebook', member.developer)"><span class="fa fa-facebook-square"></span></a>
+              <a href="{{member.developer.twitterUrl}}" target="_blank" title="{{member.developer.name}}'s Twitter" ng-if="developerHasUrl('twitter', member.developer)"><span class="fa fa-twitter-square"></span></a>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<!-- the view of a project page. Consists of two colunms: left container is about the project
-and right container about the project team -->
 
-<div id='project_container' class='col-md-12'>
-		<div id='left_container' class='col-md-8'>
-			<!-- project media block include: the project video, project images and project information in three tabs. example video url "http://www.youtube.com/embed/FKQS7oswN5I"  -->
-					<tabset justified='true'>
-						<tab heading = 'Images'>
-							<carousel interval="5000">
-					      <slide ng-repeat="image in projectData.images" active="slide.active">
-					        <img ng-src="{{image.original}}" style="margin:auto; max-height: 750px";>
-					        <div class="carousel-caption">
-					        </div>
-					      </slide>
-					    </carousel>
-					  </tab>
-					<!-- currently only have a place holder video. will refactor to show either video or images -->
-						<tab heading ='Video'>
-							<div class ='video_aspect_ratio'>
-									<object class = 'project_video' data={{projectData.videoUrl}} frameborder="0">  </object>
-							</div>
-						</tab>
-						<!-- set up slide show for multiple images -->
-						<tab heading = 'Information'>
-						  <div>
-									<h3>Description</h3>
-									<p ng-hide=hasPitch()> In one sentence: &nbsp{{projectData.pitch}} </p>
-									<p>	 {{projectData.description}} </p>
-							</div>
-					  	<div>
-									<h3>Technology</h3>
-									<p ng-hide=hasGitHub()>
-										<a href={{projectData.githubUrl}}> GitHub: {{projectData.githubUrl}} </a>
-									</p>
-									<p ng-hide=hasUrl()>
-										<a href={{projectData.url}}> Link: {{projectData.url}}</a>
-									</p>
-									<p ng-hide=hasStack()>
-										Stack: {{projectData.techTags}}
-									</p>
-							</div>
-					  </tab>
-					</tabset>
-		</div>
-
-		<!--  project team column  -->
-		<div id='right_container' class='col-md-4'>
-			<div ng-repeat ='member in projectData.team'>
-					  <developer-card-profile developer-data='member.userId'> </developer-card-profile>
-			</div>
-		</div>
-</div>
 

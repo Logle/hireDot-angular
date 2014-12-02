@@ -3,17 +3,27 @@
 angular.module('hireDotApp')
   .controller('ProjectPageCtrl', function ($scope, $stateParams, Project) {
     $scope.projectData = Project.get({ id: $stateParams.project_id});
-    // console.log($scope.projectData);
-    $scope.hasUrl = function(){
-    	if (($scope.projectData.hasOwnProperty('url'))&&($scope.projectData.url != null)) return false
-    		else return true;
+
+    $scope.developerHasUrl = function(urlType, developerData) {
+      switch(urlType) {
+            case 'email':
+              if (developerData.email && developerData.email !== "") { return true; }
+              break;
+            case 'linkedin':
+              if (developerData.linkedinUrl && developerData.linkedinUrl !== "") { return true; }
+              break;
+            case 'github':
+              if (developerData.githubUrl && developerData.githubUrl !== "") { return true; }
+              break;
+            case 'facebook':
+              if (developerData.facebookUrl && developerData.facebookUrl !== "") { return true; }
+              break;
+            case 'twitter':
+              if (developerData.twitterUrl && developerData.twitterUrl !== "") { return true; }
+              break;
+          }
+
+      return false;
     };
-    $scope.hasGitHub = function(){
-    	if (($scope.projectData.hasOwnProperty('githubUrl'))&&($scope.projectData.githubUrl != null)) return false
-    		else return true;
-    };
-    $scope.hasStack = function(){
-    	if (($scope.projectData.hasOwnProperty('techTags'))&&($scope.projectData.techTags != null)) return false
-    		else return true;
-    };
+
   });

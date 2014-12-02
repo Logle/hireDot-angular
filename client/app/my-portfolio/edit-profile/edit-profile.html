@@ -1,230 +1,184 @@
 <div class="pageheader">
-      <h2><i class="fa fa-edit"></i> Edit your profile <span>Tell us about yourself...</span></h2>
-      <div class="breadcrumb-wrapper">
-        <span class="label">You are here:</span>
-        <ol class="breadcrumb">
-          <li><a href="index.html">My portfolio</a></li>
-          <li><a href="general-forms.html">My profile</a></li>
-          <li class="active">Edit my profile</li>
-        </ol>
-      </div>
-    </div>
-
-<div class="col-md-12">
+  <h2><i class="fa fa-edit"></i> Edit Profile <span>Edit your profile here</span></h2>
 </div>
-    <div class="contentpanel">
-      
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">My Profile</h4>
-          <p>Fill out the following forms to display your information to prospective employers and other developers at Fullstack </p>
-        </div>
-        <div class="panel-body panel-body-nopadding">
-          
-          <form class="form-horizontal form-bordered">
-            
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Profile Picture:</label>
-              <div class="col-sm-6">
-              <button     ng-click='initializeFilePicker()'
-                                name="images"
-                                id='filePicker'
-                                class="btn btn-default">
-                                Upload Images
-            </button>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Funny Profile Picture:</label>
-              <div class="col-sm-6">
-              <button     ng-click='initializeFilePicker()'
-                                name="images"
-                                id='filePicker'
-                                class="btn btn-default">
-                                Upload Images
-            </button>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Name:</label>
-              <div class="col-sm-6">
-                <input type="text" placeholder="Full Name" class="form-control" />
-              </div>
-            </div>
-            
-           
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Email:</label>
-              <div class="col-sm-6">
-                <input type="text" placeholder="example@gmail.com" class="form-control">
-                <span class="help-block">Enter your email address above. Your email should be formatted as example@fullstackacademy.com</span>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Location:</label>
-              <div class="col-sm-6">
-                <input type="text" placeholder="e.g. New York, NY" class="form-control">
-           <div class="checkbox block"><label><input type="checkbox"> Willing to Relocate</label></div>
-            </div>
-            </div>
-        
-            
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Headline:</label>
-              <div class="col-sm-7">
-                <input name="tags" id="tags" class="form-control" placeholder="e.g. Software Developer, Professional Juggler, etc." />
-              </div>
-            </div>
-            
-              <div class="form-group">
-              <label class="col-sm-3 control-label">Intro Video URL:</label>
-              <div class="col-sm-7">
-                <input name="tags" id="tags" class="form-control" placeholder="Use the embed src: e.g.://www.youtube-nocookie.com/embed/oHg5SJYRHA0?rel=0" />
-              </div>
-            </div>
-
-              <div class="form-group">
-              <label class="col-sm-3 control-label">Project Video URL:</label>
-              <div class="col-sm-7">
-                <input name="tags" id="tags" class="form-control" placeholder="Use the embed src: e.g.://www.youtube-nocookie.com/embed/oHg5SJYRHA0?rel=0" />
-              </div>
-            </div>
-
-              <div class="form-group">
-              <label class="col-sm-3 control-label">Future Video URL:</label>
-              <div class="col-sm-7">
-                <input name="tags" id="tags" class="form-control" placeholder="Use the embed src: e.g.://www.youtube-nocookie.com/embed/oHg5SJYRHA0?rel=0" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Twitter URL:</label>
-              <div class="col-sm-7">
-                <input name="tags" id="tags" class="form-control" placeholder="e.g. http://www.twitter.com/FullstackAcademy" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Github URL:</label>
-              <div class="col-sm-7">
-                <input name="tags" id="tags" class="form-control" placeholder="e.g. http://www.github.com/FullstackAcademy" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Summary:</label>
-              <div class="col-sm-7">
-                <textarea class="form-control" rows="5"></textarea>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Skill tags:</label>
-              <div class="col-sm-7">
-                <textarea id="autoResizeTA" class="form-control" rows="5"></textarea>
-              </div>
-            </div>
-           <div class="form-group">
-              <label class="col-sm-3 control-label">Resume Upload:</label>
-              <div class="col-sm-7">
-            <form action="files" class="dropzone">
-            <div class="fallback">
-              <input name="file" type="file" multiple />
-            </div>
-            </form>
-            </div>
-            </div>
-          </form>
-          
-        </div><!-- panel-body -->
-        
-        <div class="panel-footer">
-          <button class="btn btn-primary">Submit</button>&nbsp;
-          <button class="btn btn-default">Cancel</button>
-      </div><!-- panel-footer -->
-        
-      </div><!-- panel -->
-     <div class="panel panel-default" novalidate="">
-
-        <div class="panel-heading">
-          <h1 class="panel-title" id="work-experience">WORK EXPERIENCE</h1>
-          <p>List work experience that would be applicable to your future development career.</p>
-        </div>
-
-        <div class="panel-heading">
-          <div class="table-responsive">
-            <table class="table mb30">
-              <tbody>
-                <tr>
-                  <td><input type="text" class="form-control" placeholder="Company Name" ng-model="currentWork.CN"></td>
-                  <td><input type="text" class="form-control" placeholder="Title" ng-model="currentWork.title"></td>
-                <td>  
-                <input type="text" class="form-control" placeholder="Start Date" ng-model="currentWork.sd">
-              </td>
-                  <td><input type="text" class="form-control"  placeholder="End Date"ng-model="currentWork.ed"></td>
-
-                  <td><a ng-click="addWork()" class=""><i class="fa fa-plus" style="margin-top: 12px"></i></a></td>
-
-                </tr>
-                
-            
-                    <tr ng-repeat="work in jobs">
-                   <td> {{ work.CN }} </td>
-                   <td> {{work.title}}</td>
-                   <td> {{work.sd}}</td>
-                   <td> {{work.ed}}</td>
-                   <td><a ng-click="remove(jobs, $index)" class=​"delete-row">​DELETE</a>​</td>
-                    </tr>
-                    </tbody>
-          </table>
-          </div>
-          </div>
-          <div class="panel-footer">
-          <button class="btn btn-primary">Submit</button>&nbsp;
-          <button class="btn btn-default">Cancel</button>
+<div class="contentpanel edit-profile">
+  <form class="form-horizontal">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Basic Informations</h4>
+        <p>Provide correct informations to prospective employers</p>
       </div>
-        
-    </div>
-
-    <div class="panel panel-default" novalidate="">
-
-        <div class="panel-heading">
-          <h1 class="panel-title" id="work-experience">EDUCATION</h1>
+      <div class="panel-body">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Full Name</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., Hiredot Fullstackerson" ng-model="currentUser.name">
+          </div>
         </div>
-
-        <div class="panel-heading">
-          <div class="table-responsive">
-            <table class="table mb30">
-              <tbody>
-                <tr>
-                  <td><input type="text" class="form-control" placeholder="College Name" ng-model="currentc.College"></td>
-                  <td><input type="text" class="form-control" placeholder="Degree" ng-model="currentc.Degree"></td>
-                  <td><input type="text" class="form-control" placeholder="Major" ng-model="currentc.Major"></td>
-                  <td><input type="text" class="form-control"  placeholder="Graduation Date" ng-model="currentc.GD"></td>
-
-                  <td><a href="" ng-click="addSchool()" class=""><i class="fa fa-plus" style="margin-top: 12px"></i></a></td>
-                </tr>
-                <tr ng-repeat="college in colleges">
-                <td>{{college.College}}</td>
-                <td>{{college.Degree}}</td>
-                <td>{{college.Major}}</td>
-                <td>{{college.GD}}</td>
-                <td><a ng-click="remove(colleges, $index)" class="delete-row">DELETE</a></td>
-                </tr>
-                
-              </tbody>
-            </table>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Title</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., Fullstack Developer" ng-model="currentUser.title">
           </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., fullstackerson@fullstack.com" ng-model="currentUser.email">
           </div>
-          <div class="panel-footer">
-
-          <button class="btn btn-primary">Submit</button>&nbsp;
-          <button class="btn btn-default">Cancel</button>
-  
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Location:</label>
+          <div class="col-sm-6">
+            <input type="text" placeholder="e.g. New York, NY" class="form-control" ng-model="currentUser.location">
+            <div class="ckbox ckbox-default">
+              <input type="checkbox">
+              <label for="checkboxDefault">Willing to relocate</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Linkedin Url</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., https://www.linkedin.com/in/hiredotfullstackerson" ng-model="currentUser.linkedinUrl">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Github Url</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., https://github.com/hiredotfullstackerson" ng-model="currentUser.githubUrl">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Facebook Url</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Twitter Url</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., https://twitter.com/hiredotfullstackerson" ng-model="currentUser.twitterUrl">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Summary</label>
+          <div class="col-sm-6">
+            <textarea class="form-control" rows="5" placeholder="e.g., I am an awesome fullstack developer graduated from Fullstack Academy" ng-model="currentUser.summary"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Skill tags</label>
+          <div class="col-sm-6">
+            <textarea id="autoResizeTA" class="form-control" rows="5" placeholder="e.g., MongoDB, ExpressJS, AngularJS, NodeJS" ng-model="currentUser.skills"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Work Experience:</label>
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td>
+                      <input type="text" class="form-control" placeholder="Company Name" ng-model="companyName">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" placeholder="Title" ng-model="title">
+                    </td>
+                    <td class="date">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <select class="form-control input-sm" ng-model="selectedStartMonth" ng-options="month.name for month in months">
+                            <option value="">-- start month --</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-6">
+                          <select class="form-control input-sm" ng-options="year for year in years" ng-model="selectedStartYear">
+                            <option value="">-- start year --</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="date">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <select class="form-control input-sm" ng-model="selectedEndMonth" ng-options="month.name for month in months">
+                            <option value="">-- end month --</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-6">
+                          <select class="form-control input-sm" ng-options="year for year in years" ng-model="selectedEndYear">
+                            <option value="">-- end year --</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <a href="javascript:void(0)" ng-click="addWorkExperience(companyName, title, startDate, endDate)"><i class="fa fa-plus"></i></a>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="workExperience in currentUser.workExperiences">
+                    <td>{{workExperience.company.name}}</td>
+                    <td>{{workExperience.title}}</td>
+                    <td>{{workExperience.startDate | filterTime}} </td>
+                    <td>{{workExperience.endDate | filterTime}}</td>
+                    <td><a><i class="fa fa-trash-o"></i></a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Education:</label>
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td>
+                      <input type="text" class="form-control" placeholder="College Name">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" placeholder="Degree">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" placeholder="Field of Study">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" placeholder="Start Date">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" placeholder="End Date">
+                    </td>
+                    <td><a><i class="fa fa-plus"></i></a></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="education in currentUser.educations">
+                    <td>{{education.schoolName}}</td>
+                    <td>{{education.degree}}</td>
+                    <td>{{education.fieldOfStudy}}</td>
+                    <td>{{education.startDate | filterTime}} </td>
+                    <td>{{education.endDate | filterTime}}</td>
+                    <td><a><i class="fa fa-trash-o"></i></a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <button ng-click="updateProfile()" class="btn btn-primary">Update</button>&nbsp;
+          </div>
+        </div>
       </div>
-        
     </div>
-    </div>
+  </form>
+</div>

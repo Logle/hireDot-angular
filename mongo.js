@@ -106,7 +106,7 @@ usersDevstarter.find({}).forEach(function(userDevStarter) {
         $addToSet: {
           team: {
             role: project.role,
-            userId: foundUser._id
+            developer: foundUser._id
           }
         }
       }, { upsert: true });
@@ -117,7 +117,7 @@ usersDevstarter.find({}).forEach(function(userDevStarter) {
   projectsHireDot.find({}).forEach(function(project) {
     project.team.forEach(function(member) {
       usersHireDot.findAndModify({
-        query: { "_id": member.userId },
+        query: { "_id": member.developer },
         update: { $addToSet: { "projects": project._id } }
       });
     });

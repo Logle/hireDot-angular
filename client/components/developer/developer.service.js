@@ -7,9 +7,22 @@ angular.module('hireDotApp')
     // ===== For Typeaheads =====
     Developer.developersTypeahead = [];
 
-    Developer.typeahead({}, function(developers) {
-      angular.copy(developers, Developer.developersTypeahead);
-    });
+    Developer.searchTypeAhead = function(developerName) {
+      var findCriteria;
+
+      if (!developerName) {
+        findCriteria = {}
+      } else {
+        findCriteria = {
+          name: developerName
+        }
+      }
+
+      Developer.typeahead(findCriteria, function(developers) {
+        angular.copy(developers, Developer.developersTypeahead);
+      });
+    };
+
 
     // ===== For Ng-repeats =====
     Developer.allDevelopersForNgRepeat = [];
@@ -65,6 +78,7 @@ angular.module('hireDotApp')
       this.queryStatus.isFinished = false;
     };
 
+    // For object instances
     Developer.prototype.hasUrl = function(urlType) {
       switch(urlType) {
             case 'email':

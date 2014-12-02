@@ -57,7 +57,11 @@ exports.getAll = function(req, res) {
 };
 
 exports.typeahead = function(req, res) {
-  User.find()
+  var findCriteria = req.query.name ? {
+        name: new RegExp('.*' + req.query.name + '.*', 'ig')
+      } : {};
+
+  User.find(findCriteria)
       .select("name _id")
       .exec(function(err, users) {
     if(err) return res.send(500, err);
