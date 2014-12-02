@@ -27,6 +27,7 @@ angular.module('hireDotApp')
         };
 
         $scope.searchProjects = function(projectName) {
+          Project.searchTypeAhead(projectName);
           Project.search(projectName);
         };
 

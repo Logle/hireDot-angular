@@ -22,7 +22,11 @@ exports.index = function(req, res) {
 };
 
 exports.typeahead = function(req, res) {
-  Project.find()
+  var findCriteria = req.query.name ? {
+        name: new RegExp('.*' + req.query.name + '.*', 'ig')
+      } : {};
+
+  Project.find(findCriteria)
          .select("name _id")
          .exec(function (err, projects) {
             if(err) { return handleError(res, err); }

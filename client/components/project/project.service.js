@@ -15,9 +15,21 @@ angular.module('hireDotApp')
     // ===== For Typeaheads ======
     Project.projectsTypeahead = [];
 
-    Project.typeahead({}, function(projects) {
-      angular.copy(projects, Project.projectsTypeahead);
-    });
+    Project.searchTypeAhead = function(projectName) {
+      var findCriteria;
+
+      if (!projectName) {
+        findCriteria = {}
+      } else {
+        findCriteria = {
+          name: projectName
+        };
+      }
+
+      Project.typeahead(findCriteria, function(projects) {
+        angular.copy(projects, Project.projectsTypeahead);
+      });
+    };
 
     // ====== For Ng-repeats =====
     Project.allProjectsForNgRepeat = [];

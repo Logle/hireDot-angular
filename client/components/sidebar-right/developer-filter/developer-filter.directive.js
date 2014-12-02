@@ -40,6 +40,7 @@ angular.module('hireDotApp')
         };
 
         $scope.searchDevelopers = function(developerName) {
+          Developer.searchTypeAhead(developerName);
           Developer.search(developerName);
         };
 
