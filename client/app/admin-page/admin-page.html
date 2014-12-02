@@ -16,7 +16,7 @@
 			<tbody>
 				<tr ng-repeat="user in users">
 					<td>
-						<img ng-if="user.profilePicture.original" width="100" src="{{user.profilePicture.original}}" /><br />
+						<img ng-if="user.profilePicture.crops" width="100" src="{{user.profilePicture.crops._200x200}}" /><br />
 						<p>{{user.name}}</p>
 						<p>{{user.email}}</p>
 					</td>
