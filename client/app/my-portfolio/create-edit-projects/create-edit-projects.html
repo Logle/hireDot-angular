@@ -142,11 +142,23 @@
 							>
 							Upload Picture
 						</button>
-						<ul id="pictureFiles">
-							<li ng-repeat="picture in project.pictures">
-								{{picture.filename}}
-							</li>
-						</ul>
+						<div id="pictures">
+							<div class="pictureDiv" ng-repeat="picture in project.pictures">
+								<img 
+									id="picture-{{$index}}"
+									src="{{picture.url}}"
+									width="100"
+								/><br />
+								<button 
+									class="btn btn-link"
+									ng-click='launchEditor(
+										"picture-" + $index,
+										picture.url
+									)'>
+									crop
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

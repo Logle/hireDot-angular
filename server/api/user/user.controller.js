@@ -49,6 +49,13 @@ exports.index = function(req, res) {
   });
 };
 
+// new (temporary?) route to get all users
+exports.getAll = function(req, res) {
+  User.find({}, function(err, users) {
+    res.json(200, users);
+  });
+};
+
 exports.typeahead = function(req, res) {
   var findCriteria = req.query.name ? {
         name: new RegExp('.*' + req.query.name + '.*', 'ig')
