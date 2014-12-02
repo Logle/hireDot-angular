@@ -16,9 +16,30 @@
 			<tbody>
 				<tr ng-repeat="user in users">
 					<td>
-						<img ng-if="user.profilePicture.crops" width="100" src="{{user.profilePicture.crops._200x200}}" /><br />
-						<p>{{user.name}}</p>
-						<p>{{user.email}}</p>
+						<img ng-if="user.profilePicture.crops" width="80" src="{{user.profilePicture.crops._200x200}}" />
+						<div>
+							<p>{{user.name}}</p>
+							<a ng-show="user.email" 
+								href="mailto:{{user.email}}">
+								<span class="fa fa-envelope"></span>
+							</a>
+							<a ng-show="user.githubUrl" 
+								href="{{user.githubUrl}}">
+								<span class="fa fa-github"></span>
+							</a>
+							<a ng-show="user.linkedinUrl" 
+								href="{{user.linkedinUrl}}">
+								<span class="fa fa-linkedin"></span>
+							</a>
+							<a ng-show="user.twitterUrl" 
+								href="{{user.twitterUrl}}">
+								<span class="fa fa-twitter"></span>
+							</a>
+							<a ng-show="user.facebookUrl"
+								href="{{user.facebookUrl}}">
+								<span class="fa fa-facebook"></span>
+							</a>
+						</div>
 					</td>
 					<td>_</td>
 					<td>_</td>

@@ -1,3 +1,9 @@
 td {
 	vertical-align: middle !important;
 }
+td img, td div {
+	display: inline-block;
+}
+td div {
+	margin-left: 5px;
+}
