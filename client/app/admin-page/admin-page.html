@@ -8,8 +8,9 @@
 			<thead>
 				<tr>
 					<th>User</th><!-- picture and email -->
-					<th>Developer</th>
-					<th>Employer</th>
+					<th>Role</th>
+					<th>Cohort</th>
+					<th>Approve</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
@@ -41,8 +42,35 @@
 							</a>
 						</div>
 					</td>
-					<td>_</td>
-					<td>_</td>
+					<td>
+						<div class="btn-group">
+							<button 
+								class="btn" 
+								ng-class="{
+									'btn-primary': user.role === 'user', 
+									'btn-default': user.role !== 'user'
+								}"
+								ng-click="updateRole($event, user)">User</button>
+							<button 
+								class="btn" 
+								ng-class="{
+									'btn-primary': user.role === 'developer', 
+									'btn-default': user.role !== 'developer'
+								}"
+								ng-click="updateRole($event, user)">Developer</button>
+							<button 
+								class="btn"
+								ng-class="{
+									'btn-primary': user.role === 'employer', 
+									'btn-default': user.role !== 'employer'
+								}"
+								ng-click="updateRole($event, user)">Employer</button>
+						</div>
+					</td>
+					<td>
+						<select ng-options="cohort for cohort in cohorts">
+					</td>
+					<td>...</td>
 					<td>
 						<button 
 							class="btn btn-danger"

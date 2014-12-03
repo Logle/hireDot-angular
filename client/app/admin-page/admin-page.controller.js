@@ -20,4 +20,17 @@ angular.module('hireDotApp')
   				console.log('unable to delete user');
   			});
   	};
+
+    $scope.cohort
+
+    $scope.updateRole = function($event, user) {
+      var oldRole = user.role;
+      var newRole = $($event.target).text().toLowerCase();
+      user.role = newRole;
+      $http.put('/api/users/update', {user: user})
+        .error(function() {
+          console.error("unable to update user's role");
+          user.role = oldRole; // reverts back to the original role if it doesn't update the database
+        })
+    };
   });
