@@ -21,7 +21,13 @@ angular.module('hireDotApp')
   			});
   	};
 
-    $scope.cohort
+    $http.get('/api/cohorts')
+      .success(function(cohorts) {
+        $scope.cohorts = cohorts;
+      })
+      .error(function() {
+        console.error('unable to get cohorts');
+      });
 
     $scope.updateRole = function($event, user) {
       var oldRole = user.role;
@@ -32,5 +38,13 @@ angular.module('hireDotApp')
           console.error("unable to update user's role");
           user.role = oldRole; // reverts back to the original role if it doesn't update the database
         })
+    };
+
+    $scope.updateCohort = function(user) {
+      $http.put('/api/users/update', {user: user})
+        .error(function() {
+          console.error("unable to update user's cohort");
+          // revert back
+        });
     };
   });

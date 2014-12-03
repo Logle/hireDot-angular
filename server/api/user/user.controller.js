@@ -85,14 +85,21 @@ exports.create = function (req, res, next) {
 
 exports.update = function(req, res) {
   var id = req.body.user._id;
+  console.log(req.body.user.cohort);
+
   User.findById(id, function(err, user) {
     if (err) return res.send(500, err);
     else if (!user) return res.send(401);
 
+    console.log('user before set: ', user.cohort);
     user.set(req.body.user);
+    console.log('user after _set: ', user.cohort);
 
     user.save(function(err, user) {
-      if (err) return validationError(res, err);
+      if (err) {
+        return validationError(res, err);
+        console.log('error: ', err);
+      }
       res.json(user);
     });
   });

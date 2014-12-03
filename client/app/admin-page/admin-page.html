@@ -64,13 +64,19 @@
 									'btn-primary': user.role === 'employer', 
 									'btn-default': user.role !== 'employer'
 								}"
-								ng-click="updateRole($event, user)">Employer</button>
+								ng-click="updateRole(user)">Employer</button>
 						</div>
 					</td>
 					<td>
-						<select ng-options="cohort for cohort in cohorts">
+						<select
+							ng-model="user.cohort"
+							ng-options="cohort.name for cohort in cohorts"
+							ng-change="updateCohort(user)">
+						</select>
 					</td>
-					<td>...</td>
+					<td>
+						
+					</td>
 					<td>
 						<button 
 							class="btn btn-danger"
