@@ -77,16 +77,13 @@
 					</td>
 					<td>
 						<button
-							class="btn btn-success"
-							ng-show="!user.approvedAsDeveloper"
+							ng-class="{
+								'btn btn-success': !user.approvedAsDeveloper,
+								'btn btn-danger': user.approvedAsDeveloper
+							}"
 							ng-click="toggleApprove(user)"
-							>Approve</button>
-						<button
-							class="btn btn-danger"
-							ng-show="user.approvedAsDeveloper"
-							ng-click="toggleApprove(user)"
-							>Un-approve</button>
-					</td>
+							>{{user.approvedAsDeveloper ? 'Un-approve' : 'Approve'}}</button>
+ 					</td>
 					<td>
 						<button 
 							class="btn btn-danger"
