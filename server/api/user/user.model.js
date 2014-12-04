@@ -69,6 +69,7 @@ var UserSchema = new Schema({
   workExperiences: [WorkExperienceSchema],
   visited: [VisitedSchema],
   visitors: [VisitorSchema],
+  approvedAsDeveloper: { type: Boolean, default: false },
   hashedPassword: String
 });
 
