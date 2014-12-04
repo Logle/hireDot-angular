@@ -99,6 +99,7 @@ exports.update = function(req, res) {
         if (err) {
           return validationError(res, err);
         }
+        console.log(user.approvedAsDeveloper);
         res.json(user);
       });
     });

@@ -76,10 +76,16 @@
 						</select>
 					</td>
 					<td>
-						<div class="btn-group">
-							<button class="btn-danger"><button>
-							<button class="btn-success"></button>
-						</div>
+						<button
+							class="btn btn-success"
+							ng-show="!user.approvedAsDeveloper"
+							ng-click="toggleApprove(user)"
+							>Approve</button>
+						<button
+							class="btn btn-danger"
+							ng-show="user.approvedAsDeveloper"
+							ng-click="toggleApprove(user)"
+							>Un-approve</button>
 					</td>
 					<td>
 						<button 

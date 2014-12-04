@@ -57,4 +57,13 @@ angular.module('hireDotApp')
           // revert back
         });
     };
+
+    $scope.toggleApprove = function(user) {
+      user.approvedAsDeveloper = !user.approvedAsDeveloper;
+      $http.put('/api/users/update', {user: user})
+        .error(function() {
+          console.error("unable to update user's approval");
+          // revert back
+        });
+    };
   });
