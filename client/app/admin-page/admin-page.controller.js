@@ -2,9 +2,27 @@
 
 angular.module('hireDotApp')
   .controller('AdminPageCtrl', function ($scope, $http) {
-  	$http.get('/api/users/getAll')
+  	// refactor this using q and promises or something
+    $http.get('/api/users/getAll')
   		.success(function(users) {
   			$scope.users = users;
+        $http.get('/api/cohorts')
+          .success(function(cohorts) {
+            $scope.cohorts = cohorts;
+            $scope.users.forEach(function(user) {
+              var index;
+              for (var i = 0, len = $scope.cohorts.length; i < len; i++) {
+                if (user.cohort && user.cohort._id === $scope.cohorts[i]._id) {
+                  index = i;
+                  break;
+                }
+              }
+              user.cohort = $scope.cohorts[index];
+            });
+          })
+          .error(function() {
+            console.error('unable to get cohorts');
+          });
   		})
   		.error(function() {
   			console.error('unable to get users');
@@ -20,14 +38,6 @@ angular.module('hireDotApp')
   				console.log('unable to delete user');
   			});
   	};
-
-    $http.get('/api/cohorts')
-      .success(function(cohorts) {
-        $scope.cohorts = cohorts;
-      })
-      .error(function() {
-        console.error('unable to get cohorts');
-      });
 
     $scope.updateRole = function($event, user) {
       var oldRole = user.role;
