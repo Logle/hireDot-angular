@@ -10,26 +10,22 @@
 
   thead {
     .fa.fa-plus {
-      padding-top: 13px;
+      padding-top: 0px;
     }
   }
 
-  .date {
-    padding-left: 0;
+  select {
+    height: 40px;
+    margin-top: 0;
+  }
 
-    .col-sm-6 {
-      select {
-        height: 40px;
-        margin-top: 0;
-      }
+  .profile-picture {
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+  }
 
-      &:first-child {
-        padding-right: 2px;
-      }
-
-      &:last-child {
-        padding-left: 2px;
-      }
-    }
+  .warning {
+    color: #8a6d3b;
   }
 }
