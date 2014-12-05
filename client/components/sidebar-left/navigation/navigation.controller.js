@@ -98,4 +98,11 @@ angular.module('hireDotApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.showSub = function(item) {
+      $scope.menu.forEach(function(item) {
+        item.showSubMenu = false;
+      });
+      item.showSubMenu = true;
+    };
   });

@@ -49,11 +49,12 @@ exports.index = function(req, res) {
   });
 };
 
-// new (temporary?) route to get all users
 exports.getAll = function(req, res) {
-  User.find({}, function(err, users) {
-    res.json(200, users);
-  });
+  User.find({})
+      .populate('cohort')
+      .exec(function(err, users) {
+        res.json(200, users);
+      });
 };
 
 exports.typeahead = function(req, res) {
@@ -83,6 +84,27 @@ exports.create = function (req, res, next) {
   });
 };
 
+exports.update = function(req, res) {
+  var id = req.body.user._id;
+  User.findById(id)
+    // .populate('cohort')
+    .exec(function(err, user) {
+      if (err) return res.send(500, err);
+      else if (!user) return res.send(401);
+
+      req.body.user.cohort = req.body.user.cohort._id;
+      user.set(req.body.user);
+
+      user.save(function(err, user) {
+        if (err) {
+          return validationError(res, err);
+        }
+        console.log(user.approvedAsDeveloper);
+        res.json(user);
+      });
+    });
+};
+
 /**
  * Get a single user
  */
@@ -90,7 +112,7 @@ exports.show = function (req, res, next) {
   var userId = req.params.id;
 
   User.findById(userId)
-      .populate('cohort projects')
+      .populate('projects')
       .exec(function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);

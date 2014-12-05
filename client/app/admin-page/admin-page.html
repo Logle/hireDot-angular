@@ -8,8 +8,9 @@
 			<thead>
 				<tr>
 					<th>User</th><!-- picture and email -->
-					<th>Developer</th>
-					<th>Employer</th>
+					<th>Role</th>
+					<th>Cohort</th>
+					<th>Approved</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
@@ -41,8 +42,48 @@
 							</a>
 						</div>
 					</td>
-					<td>_</td>
-					<td>_</td>
+					<td>
+						<div class="btn-group">
+							<button 
+								class="btn" 
+								ng-class="{
+									'btn-primary': user.role === 'user', 
+									'btn-default': user.role !== 'user'
+								}"
+								ng-click="updateRole($event, user)">User</button>
+							<button 
+								class="btn" 
+								ng-class="{
+									'btn-primary': user.role === 'developer', 
+									'btn-default': user.role !== 'developer'
+								}"
+								ng-click="updateRole($event, user)">Developer</button>
+							<button 
+								class="btn"
+								ng-class="{
+									'btn-primary': user.role === 'employer', 
+									'btn-default': user.role !== 'employer'
+								}"
+								ng-click="updateRole($event, user)">Employer</button>
+						</div>
+					</td>
+					<td>
+						<select
+							ng-model="user.cohort"
+							ng-options="cohort as cohort.name for cohort in cohorts"
+							ng-change="updateCohort(user)"
+							>
+						</select>
+					</td>
+					<td>
+						<button
+							ng-class="{
+								'btn btn-success': !user.approvedAsDeveloper,
+								'btn btn-danger': user.approvedAsDeveloper
+							}"
+							ng-click="toggleApprove(user)"
+							>{{ user.approvedAsDeveloper ? 'Un-approve' : 'Approve'}}</button>
+					</td>
 					<td>
 						<button 
 							class="btn btn-danger"
