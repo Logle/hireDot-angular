@@ -141,6 +141,59 @@ angular.module('hireDotApp')
        */
       getToken: function() {
         return $cookieStore.get('token');
+      },
+
+      addWorkExperience: function(companyName, title, workStartDate, workEndDate) {
+        workStartDate.month = workStartDate.month || {};
+        workEndDate.month = workEndDate.month || {};
+
+        if (companyName && title) {
+          var workExperienceObj = {
+            company: {
+              name: companyName
+            },
+            title: title,
+            startDate: {
+              month: workStartDate.month.number,
+              year: workStartDate.year
+            },
+            endDate: {
+              month: workEndDate.month.number,
+              year: workEndDate.year
+            }
+          };
+          currentUser.workExperiences.push(workExperienceObj);
+        }
+      },
+
+      removeWorkExperience: function(index) {
+        currentUser.workExperiences.splice(index, 1);
+      },
+
+      addEducation: function(schoolName, degree, fieldOfStudy, educationStartDate, educationEndDate) {
+        educationStartDate.month = educationStartDate.month || {};
+        educationEndDate.month = educationEndDate.month || {};
+
+        if (schoolName) {
+          var educationObj = {
+            schoolName: schoolName,
+            degree: degree || "",
+            fieldOfStudy: fieldOfStudy || "",
+            startDate: {
+              month: educationStartDate.month.number,
+              year: educationStartDate.year
+            },
+            endDate: {
+              month: educationEndDate.month.number,
+              year: educationEndDate.year
+            }
+          };
+          currentUser.educations.push(educationObj);
+        }
+      },
+
+      removeEducation: function(index) {
+        currentUser.educations.splice(index, 1);
       }
     };
   });

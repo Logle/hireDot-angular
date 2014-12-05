@@ -47,10 +47,14 @@
       ga('create', 'UA-XXXXX-X');
       ga('send', 'pageview');
     </script>
-<script type="text/javascript">
-(function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document);
-</script>
-<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+
+    <!-- Filepicker -->
+    <script>
+    (function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document);
+    </script>
+
+    <!-- Aviary -->
+    <script src="//feather.aviary.com/js/feather.js"></script>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -71,6 +75,7 @@
       <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/nginfinitescroll/build/ng-infinite-scroll.js"></script>
+      <script src="bower_components/async/lib/async.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -108,6 +113,7 @@
           <script src="components/developer/developer-card-profile/developer-card-profile.directive.js"></script>
           <script src="components/developer/developer-card-projects/developer-card-projects.directive.js"></script>
           <script src="components/developer/developer.service.js"></script>
+          <script src="components/filepicker-aviary/filepicker-aviary.js"></script>
           <script src="components/filter/filter.js"></script>
           <script src="components/header/header.controller.js"></script>
           <script src="components/modal/modal.service.js"></script>

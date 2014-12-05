@@ -6,63 +6,39 @@ angular.module('hireDotApp')
     $scope.months = MonthsYears.months;
     $scope.years = MonthsYears.years;
 
-    $scope.addWorkExperience = function(companyName, title, startMonth, startYear, endMonth, endYear) {
-      if (companyName && title) {
-        var workExperienceObj = {
-          company: {
-            name: companyName
-          },
-          title: title,
-          startDate: {
-            month: startMonth,
-            year: startYear
-          },
-          endDate: {
-            month: endMonth,
-            year: endYear
-          }
-        };
+    $scope.workStartDate = {};
+    $scope.workEndDate = {};
 
-        console.log(workExperienceObj);
-        // $scope.currentUser.workExperiences.push({})
-      }
+    $scope.addWorkExperience = function(companyName, title, workStartDate, workEndDate) {
+      Auth.addWorkExperience(companyName, title, workStartDate, workEndDate);
+      $scope.workStartDate = {};
+      $scope.workEndDate = {};
+      $scope.companyName = "";
+      $scope.title = "";
+    };
+
+    $scope.removeWorkExperience = function(index) {
+      Auth.removeWorkExperience(index);
+    };
+
+    $scope.educationStartDate = {};
+    $scope.educationEndDate = {};
+
+    $scope.addEducation = function(schoolName, degree, fieldOfStudy, educationStartDate, educationEndDate) {
+      Auth.addEducation(schoolName, degree, fieldOfStudy, educationStartDate, educationEndDate);
+      $scope.educationStartDate = {};
+      $scope.educationEndDate = {};
+      $scope.schoolName = "";
+      $scope.degree = "";
+      $scope.fieldOfStudy = "";
+    };
+
+    $scope.removeEducation = function(index) {
+      Auth.removeEducation(index);
     };
 
     $scope.updateProfile = function() {
       console.log($scope.currentUser);
     };
-
-    $scope.message = 'Hello';
-	  $scope.jobs = [];
-  	$scope.addWork = function () {
-  		$scope.jobs.push($scope.currentWork);
-      $scope.currentWork = {};
-    };
-    $scope.colleges = [];
-    $scope.addSchool = function () {
-      $scope.colleges.push($scope.currentc);
-      $scope.currentc = {};
-    };
-    $scope.remove = function(arrayToRemoveFrom, row) {
-      arrayToRemoveFrom.splice(row,1);
-    };
-
-    filepicker.setKey("AtkSLyTTvS4uniWtmTRttz");
-    $scope.initializeFilePicker = function() {
-      console.log('got this far');
-     filepicker.pick(
-      { mimetype: 'image/*'},
-      function onSuccess(Blob) {
-        // person.images = Blob;
-        console.log('hi');
-      },
-      function onError(FPError){
-        console.log(FPError.toString());
-      }
-    );
-   };
-
-
-
   });
 

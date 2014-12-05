@@ -3,17 +3,18 @@
 </div>
 
 <div class="contentpanel edit-profile">
-  <form class="form-horizontal">
+  <form class="form-horizontal" name="editProfileForm" novalidate>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">Basic Informations</h4>
         <p>Provide correct informations to prospective employers</p>
       </div>
       <div class="panel-body">
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': editProfileForm.name.$error.required, 'has-success': editProfileForm.name.$valid && editProfileForm.name.$dirty}">
           <label class="col-sm-3 control-label">Full Name</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., Hiredot Fullstackerson" ng-model="currentUser.name">
+            <input type="text" class="form-control" placeholder="e.g., Hiredot Fullstackerson" ng-model="currentUser.name" name="name" required>
+            <label class="error" ng-show="editProfileForm.name.$error.required">This field is required.</label>
           </div>
         </div>
         <div class="form-group">
@@ -22,10 +23,12 @@
             <input type="text" class="form-control" placeholder="e.g., Fullstack Developer" ng-model="currentUser.title">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': editProfileForm.email.$error.required, 'has-success': editProfileForm.email.$valid && editProfileForm.email.$dirty}">
           <label class="col-sm-3 control-label">Email</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., fullstackerson@fullstack.com" ng-model="currentUser.email">
+            <input type="text" class="form-control" placeholder="e.g., fullstackerson@fullstack.com" ng-model="currentUser.email" name="email" required>
+            <label class="error" ng-show="editProfileForm.email.$error.required">This field is required.</label>
+            <label class="warning">Doesn't look like the right email.</label>
           </div>
         </div>
         <div class="form-group">
@@ -38,28 +41,32 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.linkedinUrl.$dirty}">
           <label class="col-sm-3 control-label">Linkedin Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://www.linkedin.com/in/hiredotfullstackerson" ng-model="currentUser.linkedinUrl">
+            <input type="text" class="form-control" placeholder="e.g., https://www.linkedin.com/in/hiredotfullstackerson" ng-model="currentUser.linkedinUrl" name="linkedinUrl">
+            <label class="warning" ng-show="editProfileForm.linkedinUrl.$dirty">Doesn't look like the right Linkedin URL.</label>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.githubUrl.$dirty}">
           <label class="col-sm-3 control-label">Github Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://github.com/hiredotfullstackerson" ng-model="currentUser.githubUrl">
+            <input type="text" class="form-control" placeholder="e.g., https://github.com/hiredotfullstackerson" ng-model="currentUser.githubUrl" name="githubUrl">
+            <label class="warning" ng-show="editProfileForm.githubUrl.$dirty">Doesn't look like the right Github URL.</label>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.facebookUrl.$dirty}">
           <label class="col-sm-3 control-label">Facebook Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl">
+            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl" name="facebookUrl">
+            <label class="warning" ng-show="editProfileForm.facebookUrl.$dirty">Doesn't look like the right Facebook URL.</label>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.twitterUrl.$dirty}">
           <label class="col-sm-3 control-label">Twitter Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://twitter.com/hiredotfullstackerson" ng-model="currentUser.twitterUrl">
+            <input type="text" class="form-control" placeholder="e.g., https://twitter.com/hiredotfullstackerson" ng-model="currentUser.twitterUrl" name="twitterUrl">
+            <label class="warning" ng-show="editProfileForm.twitterUrl.$dirty">Doesn't look like the right Twitter URL.</label>
           </div>
         </div>
         <div class="form-group">
@@ -75,6 +82,24 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="col-sm-3 control-label">Profile Picture</label>
+          <div class="col-sm-6">
+            <img src="{{currentUser.profilePicture.crops._200x200 || currentUser.linkedin.pictureUrl}}" alt="Profile Picture" filepicker-aviary current-user="currentUser"picture-type="standard" file-type="image" class="profile-picture">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Funny Profile Picture</label>
+          <div class="col-sm-6">
+            <img src="{{currentUser.funnyProfilePicture.crops._200x200 || 'assets/images/user.jpg'}}" alt="Funny Profile Picture" filepicker-aviary current-user="currentUser" picture-type="funny" file-type="image" class="profile-picture">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Resume</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl">
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-sm-3 control-label">Work Experience:</label>
           <div class="col-md-12">
             <div class="table-responsive">
@@ -87,36 +112,28 @@
                     <td>
                       <input type="text" class="form-control" placeholder="Title" ng-model="title">
                     </td>
-                    <td class="date">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <select class="form-control input-sm" ng-model="selectedStartMonth" ng-options="month.name for month in months">
-                            <option value="">-- start month --</option>
-                          </select>
-                        </div>
-                        <div class="col-sm-6">
-                          <select class="form-control input-sm" ng-options="year for year in years" ng-model="selectedStartYear">
-                            <option value="">-- start year --</option>
-                          </select>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="date">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <select class="form-control input-sm" ng-model="selectedEndMonth" ng-options="month.name for month in months">
-                            <option value="">-- end month --</option>
-                          </select>
-                        </div>
-                        <div class="col-sm-6">
-                          <select class="form-control input-sm" ng-options="year for year in years" ng-model="selectedEndYear">
-                            <option value="">-- end year --</option>
-                          </select>
-                        </div>
-                      </div>
+                    <td>
+                      <select class="form-control input-sm" ng-model="workStartDate.month" ng-options="month.name for month in months">
+                        <option value="">-- start month --</option>
+                      </select>
                     </td>
                     <td>
-                      <a href="javascript:void(0)" ng-click="addWorkExperience(companyName, title, startDate, endDate)"><i class="fa fa-plus"></i></a>
+                      <select class="form-control input-sm" ng-options="year for year in years" ng-model="workStartDate.year">
+                        <option value="">-- start year --</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control input-sm" ng-model="workEndDate.month" ng-options="month.name for month in months">
+                        <option value="">-- end month --</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control input-sm" ng-options="year for year in years" ng-model="workEndDate.year">
+                        <option value="">-- end year --</option>
+                      </select>
+                    </td>
+                    <td>
+                      <a href="javascript:void(0)" ng-click="addWorkExperience(companyName, title, workStartDate, workEndDate)"><i class="fa fa-plus"></i></a>
                     </td>
                   </tr>
                 </thead>
@@ -124,9 +141,9 @@
                   <tr ng-repeat="workExperience in currentUser.workExperiences">
                     <td>{{workExperience.company.name}}</td>
                     <td>{{workExperience.title}}</td>
-                    <td>{{workExperience.startDate | filterTime}} </td>
-                    <td>{{workExperience.endDate | filterTime}}</td>
-                    <td><a><i class="fa fa-trash-o"></i></a></td>
+                    <td colspan="2" class="text-center">{{workExperience.startDate | filterTime}} </td>
+                    <td colspan="2" class="text-center">{{workExperience.endDate | filterTime}}</td>
+                    <td><a href="javascript:void(0)" ng-click="removeWorkExperience($index)"><i class="fa fa-trash-o"></i></a></td>
                   </tr>
                 </tbody>
               </table>
@@ -141,21 +158,35 @@
                 <thead>
                   <tr>
                     <td>
-                      <input type="text" class="form-control" placeholder="College Name">
+                      <input type="text" class="form-control" placeholder="College Name" ng-model="schoolName">
                     </td>
                     <td>
-                      <input type="text" class="form-control" placeholder="Degree">
+                      <input type="text" class="form-control" placeholder="Degree" ng-model="degree">
                     </td>
                     <td>
-                      <input type="text" class="form-control" placeholder="Field of Study">
+                      <input type="text" class="form-control" placeholder="Field of Study" ng-model="fieldOfStudy">
                     </td>
                     <td>
-                      <input type="text" class="form-control" placeholder="Start Date">
+                      <select class="form-control input-sm" ng-model="educationStartDate.month" ng-options="month.name for month in months">
+                        <option value="">-- start month --</option>
+                      </select>
                     </td>
                     <td>
-                      <input type="text" class="form-control" placeholder="End Date">
+                      <select class="form-control input-sm" ng-options="year for year in years" ng-model="educationStartDate.year">
+                        <option value="">-- start year --</option>
+                      </select>
                     </td>
-                    <td><a><i class="fa fa-plus"></i></a></td>
+                    <td>
+                      <select class="form-control input-sm" ng-model="educationEndDate.month" ng-options="month.name for month in months">
+                        <option value="">-- end month --</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control input-sm" ng-options="year for year in years" ng-model="educationEndDate.year">
+                        <option value="">-- end year --</option>
+                      </select>
+                    </td>
+                    <td><a href="javascript:void(0)" ng-click="addEducation(schoolName, degree, fieldOfStudy, educationStartDate, educationEndDate)"><i class="fa fa-plus"></i></a></td>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,9 +194,9 @@
                     <td>{{education.schoolName}}</td>
                     <td>{{education.degree}}</td>
                     <td>{{education.fieldOfStudy}}</td>
-                    <td>{{education.startDate | filterTime}} </td>
-                    <td>{{education.endDate | filterTime}}</td>
-                    <td><a><i class="fa fa-trash-o"></i></a></td>
+                    <td colspan="2" class="text-center">{{education.startDate | filterTime}} </td>
+                    <td colspan="2" class="text-center">{{education.endDate | filterTime}}</td>
+                    <td><a href="javascript:void(0)" ng-click="removeEducation($index)"><i class="fa fa-trash-o"></i></a></td>
                   </tr>
                 </tbody>
               </table>
@@ -175,7 +206,7 @@
       <div class="panel-footer">
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
-            <button ng-click="updateProfile()" class="btn btn-primary">Update</button>&nbsp;
+            <button ng-click="updateProfile()" class="btn btn-success">Update</button>&nbsp;
           </div>
         </div>
       </div>

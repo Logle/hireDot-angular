@@ -31,12 +31,12 @@ angular.module('hireDotApp')
   })
   .filter('filterTime', function(MonthsYears) {
     return function(dateObj) {
-      if (!dateObj) return "";
+      if (!dateObj || (!dateObj.month && !dateObj.year)) return "--";
 
       var months = MonthsYears.months;
-
-      if (!dateObj.month) {
-        return dateObj.year;
+      if (!dateObj.month || !dateObj.year) {
+        if (!dateObj.month) return dateObj.year;
+        if (!dateObj.year) return months[dateObj.month - 1]["name"];
       } else {
         return months[dateObj.month - 1]["name"] + " " + dateObj.year;
       }
