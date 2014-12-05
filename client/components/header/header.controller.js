@@ -5,6 +5,8 @@ angular.module('hireDotApp')
     $rootScope.collapseLeftPanel = false;
     $rootScope.collapseRightPanel = false;
 
+    console.log($window);
+
     $scope.toggleLeftPanel = function() {
       $rootScope.collapseLeftPanel = !$rootScope.collapseLeftPanel;
       $rootScope.collapseRightPanel = false;
@@ -27,4 +29,18 @@ angular.module('hireDotApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.getCurrentUser = Auth.getCurrentUser;
+
+    // hide both panels for mobile views
+    if (window.innerWidth < 768) {
+      $rootScope.collapseLeftPanel = true;
+      $rootScope.collapseRightPanel = false; // false hides it?
+    }
+    $(window).resize(function() {
+      $scope.$apply(function() {
+        if (window.innerWidth < 768) {
+          $rootScope.collapseLeftPanel = true;
+          $rootScope.collapseRightPanel = false; // false hides it?
+        }
+      });
+    });
   });
