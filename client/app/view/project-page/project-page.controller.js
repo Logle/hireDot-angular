@@ -3,7 +3,7 @@
 angular.module('hireDotApp')
   .controller('ProjectPageCtrl', function ($scope, $stateParams, Project) {
     $scope.projectData = Project.get({ id: $stateParams.project_id});
-
+    console.log($scope.projectData);
     $scope.developerHasUrl = function(urlType, developerData) {
       switch(urlType) {
             case 'email':
@@ -22,7 +22,6 @@ angular.module('hireDotApp')
               if (developerData.twitterUrl && developerData.twitterUrl !== "") { return true; }
               break;
           }
-
       return false;
     };
 
