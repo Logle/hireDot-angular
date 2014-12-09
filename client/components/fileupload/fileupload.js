@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .directive('filepickerAviary', function($http) {
+  .directive('fileupload', function($http) {
     return {
       restrict: 'A',
       scope: {
