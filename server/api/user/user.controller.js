@@ -140,7 +140,11 @@ exports.update = function(req, res) {
 exports.editProfile = function(req, res) {
   var userId = req.params.id;
 
-  delete req.body._id;
+  // Without this deletes, error will happen
+  delete req.body.cohort;
+  delete req.body.projects;
+  delete req.body.followDevelopers;
+  delete req.body.followProjects;
 
   User.findByIdAndUpdate(userId, req.body, function(err, user) {
     if (err) return handleError(res, err);
