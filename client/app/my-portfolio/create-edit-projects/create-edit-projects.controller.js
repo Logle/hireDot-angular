@@ -70,14 +70,15 @@ angular.module('hireDotApp')
       }
     };
   })
-  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce) {
+  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce, Auth) {
   	$scope.project = {};
+    $scope.projects = Auth.getCurrentUser().projects || [];
     $scope.getEmbedURL = function() {
       var id = getId($scope.project.videoURL);
       $scope.project.videoEmbedUrl = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + id);
     }
 
-    this.submit = function() {
+    $scope.submit = function() {
       Project.save($scope.project,
         function() { console.log('project saved'); },
         function() { console.log('problem trying to save project'); }
@@ -133,19 +134,11 @@ angular.module('hireDotApp')
 
     // validations
     $scope.$watch("project.githubURL", function(newURL, oldURL) {
-      $scope.projectForm.githubURL.$setValidity("githubURL needs to be from github.com", isValidGithubUrl(newURL));
+      $scope.createEditProjectForm.githubURL.$setValidity("githubURL needs to be from github.com", isValidGithubUrl(newURL));
     });
     // $scope.$watch('project.videoURL', function(newURL, oldURL) {
     //   // ping YouTube API
     //   // $setValidity accordingly
-
-    //   // set height when valid
-    //   if ($scope.projectForm.videoURL.$valid) {
-    //     var width = $("#embed").width();
-    //     console.log('width: ', width);
-    //     $("iframe").height(width/1.777);
-    //   }
-    // });
   });
 
   function getId(url) {

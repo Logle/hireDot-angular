@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Project = require('./project.model');
+var User = require('../user/user.model');
 
 // Get list of projects
 exports.index = function(req, res) {
@@ -47,9 +48,21 @@ exports.show = function(req, res) {
 
 // Creates a new project in the DB.
 exports.create = function(req, res) {
+  // change project schema to have owners - done
+  // authenicate before creating in index.js and get logged in user via req.user?
   Project.create(req.body, function(err, project) {
     if(err) { return handleError(res, err); }
-    return res.json(201, project);
+    User.findByIdAndUpdate(
+      req.body.owner._id, 
+      {
+        $addToSet: {
+          projects: project._id
+        }
+      },
+      function() {
+        return res.json(201, project);
+      }
+    );
   });
 };
 
