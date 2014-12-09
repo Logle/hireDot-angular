@@ -202,8 +202,8 @@ angular.module('hireDotApp')
         }).$promise;
       },
 
-      updateProfile: function(developerData) {
-        return User.updateProfile({ id: currentUser._id }).$promise;
+      editProfile: function(developerData) {
+        return User.editProfile(developerData).$promise;
       }
     };
   });

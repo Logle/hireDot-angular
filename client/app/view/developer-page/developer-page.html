@@ -9,7 +9,7 @@
       <img
         class="thumbnail img-responsive"
         alt="{{developerData.name}}"
-        ng-src="{{ showFunny ? developerData.funnyProfilePicture.crops._200x200 : developerData.linkedin.pictureUrl || developerData.profilePicture.crops._200x200 }}"
+        ng-src="{{ showFunny ? developerData.funnyProfilePicture.crops._200x200 : developerData.profilePicture.crops._200x200 || developerData.linkedin.pictureUrl }}"
         ng-mouseover="showFunny = true;"
         ng-mouseleave="showFunny = false;"
       />

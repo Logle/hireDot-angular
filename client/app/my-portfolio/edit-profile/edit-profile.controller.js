@@ -6,8 +6,23 @@ angular.module('hireDotApp')
     $scope.months = MonthsYears.months;
     $scope.years = MonthsYears.years;
 
-    $scope.validateUrl = function(value) {
-      if (value.match('linkedin').length) return true;
+    $scope.validateLinkedinUrl = function(value) {
+      if (value && value.indexOf('linkedin.com') > -1) return true;
+      return false;
+    };
+
+    $scope.validateGithubUrl = function(value) {
+      if (value && value.indexOf('github.com') > -1) return true;
+      return false;
+    };
+
+    $scope.validateFacebookUrl = function(value) {
+      if (value && value.indexOf('facebook.com') > -1) return true;
+      return false;
+    };
+
+    $scope.validateTwitterUrl = function(value) {
+      if (value && value.indexOf('twitter.com') > -1) return true;
       return false;
     };
 
@@ -42,8 +57,10 @@ angular.module('hireDotApp')
       Auth.removeEducation(index);
     };
 
-    $scope.updateProfile = function() {
-      console.log($scope.currentUser);
+    $scope.editProfile = function() {
+      Auth.editProfile($scope.currentUser);
     };
+
+    console.log($scope.currentUser);
   });
 
