@@ -86,13 +86,13 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">Profile Picture</label>
           <div class="col-sm-6">
-            <img src="{{currentUser.profilePicture.crops._200x200 || currentUser.linkedin.pictureUrl}}" alt="Profile Picture" fileupload current-user="currentUser"picture-type="standard" file-type="image" class="profile-picture">
+            <img src="{{currentUser.profilePicture.crops._200x200 || currentUser.linkedin.pictureUrl}}" alt="Profile Picture" edit-profile-file-upload current-user="currentUser" picture-type="standard" file-type="image" class="profile-picture">
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label">Funny Profile Picture</label>
           <div class="col-sm-6">
-            <img src="{{currentUser.funnyProfilePicture.crops._200x200 || 'assets/images/user.jpg'}}" alt="Funny Profile Picture" fileupload current-user="currentUser" picture-type="funny" file-type="image" class="profile-picture">
+            <img src="{{currentUser.funnyProfilePicture.crops._200x200 || 'assets/images/user.jpg'}}" alt="Funny Profile Picture" edit-profile-file-upload current-user="currentUser" picture-type="funny" file-type="image" class="profile-picture">
           </div>
         </div>
         <div class="form-group">

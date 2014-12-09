@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .directive('fileupload', function($http) {
+  .directive('editProfileFileUpload', function($http) {
     return {
       restrict: 'A',
       scope: {
