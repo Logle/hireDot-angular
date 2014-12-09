@@ -137,6 +137,17 @@ exports.update = function(req, res) {
     });
 };
 
+exports.editProfile = function(req, res) {
+  var userId = req.params.id;
+
+  delete req.body._id;
+
+  User.findByIdAndUpdate(userId, req.body, function(err, user) {
+    if (err) return handleError(res, err);
+    res.send(200);
+  });
+};
+
 /**
  * Get a single user
  */

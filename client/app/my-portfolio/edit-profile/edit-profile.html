@@ -2,10 +2,8 @@
   <h2><i class="fa fa-edit"></i> Edit Profile <span>Edit your profile here</span></h2>
 </div>
 
-
-
 <div class="contentpanel edit-profile">
-  <form class="form-horizontal" name="editProfileForm" novalidate>
+  <form class="form-horizontal" name="editProfileForm" ng-submit="editProfile()" novalidate>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">Basic Informations</h4>
@@ -43,33 +41,32 @@
             </div>
           </div>
         </div>
-        <div class="form-group" ng-class="{'has-warning': editProfileForm.linkedinUrl.$dirty}">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.linkedinUrl.$dirty && editProfileForm.linkedinUrl.$error.validator}">
           <label class="col-sm-3 control-label">Linkedin Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://www.linkedin.com/in/hiredotfullstackerson" ng-model="currentUser.linkedinUrl" name="linkedinUrl" ui-validate="'validateUrl($value)'">
-            {{editProfileForm.linkedinUrl}}
-            <label class="warning" ng-show="editProfileForm.linkedinUrl.$dirty">Doesn't look like the right Linkedin URL.</label>
+            <input type="text" class="form-control" placeholder="e.g., https://www.linkedin.com/in/hiredotfullstackerson" ng-model="currentUser.linkedinUrl" name="linkedinUrl" ui-validate="'validateLinkedinUrl($value)'">
+            <label class="warning" ng-show="editProfileForm.linkedinUrl.$dirty && editProfileForm.linkedinUrl.$error.validator">Doesn't look like the right Linkedin URL.</label>
           </div>
         </div>
-        <div class="form-group" ng-class="{'has-warning': editProfileForm.githubUrl.$dirty}">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.githubUrl.$dirty && editProfileForm.githubUrl.$error.validator}">
           <label class="col-sm-3 control-label">Github Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://github.com/hiredotfullstackerson" ng-model="currentUser.githubUrl" name="githubUrl">
-            <label class="warning" ng-show="editProfileForm.githubUrl.$dirty">Doesn't look like the right Github URL.</label>
+            <input type="text" class="form-control" placeholder="e.g., https://github.com/hiredotfullstackerson" ng-model="currentUser.githubUrl" name="githubUrl" ui-validate="'validateGithubUrl($value)'">
+            <label class="warning" ng-show="editProfileForm.githubUrl.$dirty && editProfileForm.githubUrl.$error.validator">Doesn't look like the right Github URL.</label>
           </div>
         </div>
-        <div class="form-group" ng-class="{'has-warning': editProfileForm.facebookUrl.$dirty}">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.facebookUrl.$dirty && editProfileForm.facebookUrl.$error.validator}">
           <label class="col-sm-3 control-label">Facebook Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl" name="facebookUrl">
-            <label class="warning" ng-show="editProfileForm.facebookUrl.$dirty">Doesn't look like the right Facebook URL.</label>
+            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl" name="facebookUrl" ui-validate="'validateFacebookUrl($value)'">
+            <label class="warning" ng-show="editProfileForm.facebookUrl.$dirty && editProfileForm.facebookUrl.$error.validator">Doesn't look like the right Facebook URL.</label>
           </div>
         </div>
-        <div class="form-group" ng-class="{'has-warning': editProfileForm.twitterUrl.$dirty}">
+        <div class="form-group" ng-class="{'has-warning': editProfileForm.twitterUrl.$dirty && editProfileForm.twitterUrl.$error.validator}">
           <label class="col-sm-3 control-label">Twitter Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://twitter.com/hiredotfullstackerson" ng-model="currentUser.twitterUrl" name="twitterUrl">
-            <label class="warning" ng-show="editProfileForm.twitterUrl.$dirty">Doesn't look like the right Twitter URL.</label>
+            <input type="text" class="form-control" placeholder="e.g., https://twitter.com/hiredotfullstackerson" ng-model="currentUser.twitterUrl" name="twitterUrl" ui-validate="'validateTwitterUrl($value)'">
+            <label class="warning" ng-show="editProfileForm.twitterUrl.$dirty && editProfileForm.twitterUrl.$error.validator">Doesn't look like the right Twitter URL.</label>
           </div>
         </div>
         <div class="form-group">
@@ -87,19 +84,19 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">Profile Picture</label>
           <div class="col-sm-6">
-            <img src="{{currentUser.profilePicture.crops._200x200 || currentUser.linkedin.pictureUrl}}" alt="Profile Picture" filepicker-aviary current-user="currentUser"picture-type="standard" file-type="image" class="profile-picture">
+            <img src="{{currentUser.profilePicture.crops._200x200 || currentUser.linkedin.pictureUrl}}" alt="Profile Picture" edit-profile-file-upload current-user="currentUser" picture-type="standard" file-type="image" class="profile-picture">
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label">Funny Profile Picture</label>
           <div class="col-sm-6">
-            <img src="{{currentUser.funnyProfilePicture.crops._200x200 || 'assets/images/user.jpg'}}" alt="Funny Profile Picture" filepicker-aviary current-user="currentUser" picture-type="funny" file-type="image" class="profile-picture">
+            <img src="{{currentUser.funnyProfilePicture.crops._200x200 || 'assets/images/user.jpg'}}" alt="Funny Profile Picture" edit-profile-file-upload current-user="currentUser" picture-type="funny" file-type="image" class="profile-picture">
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label">Resume</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl">
+            <input type="text" class="form-control" placeholder="Your resume URL here" ng-model="currentUser.resumeUrl" edit-profile-file-upload current-user="currentUser" file-type="resume">
           </div>
         </div>
         <div class="form-group">
@@ -209,7 +206,7 @@
       <div class="panel-footer">
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
-            <button ng-click="updateProfile()" class="btn btn-success">Update</button>&nbsp;
+            <input type="submit" value="Update Profile" class="btn btn-success">
           </div>
         </div>
       </div>

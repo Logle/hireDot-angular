@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .directive('filepickerAviary', function($http) {
+  .directive('editProfileFileUpload', function($http) {
     return {
       restrict: 'A',
       scope: {
@@ -23,7 +23,11 @@ angular.module('hireDotApp')
           appendTo: ''
         });
 
-        var uploadProfilePicture = function() {
+        var uploadProfilePicture = function(type) {
+          var pictureType = function() {
+            if (type === "funny") return "funnyProfilePicture";
+            if (type === "standard") return "profilePicture";
+          }();
 
           // Upload original to Filepicker
           var uploadOriginal = function(doneUploadOriginal) {
@@ -74,17 +78,17 @@ angular.module('hireDotApp')
 
             // Update the currentUser data on the scope
             if (attrs.pictureType === "standard") {
-              scope.currentUser.profilePicture = {
+              scope.currentUser[pictureType]= {
                 original: originalImageUrl,
                 crops: {
-                  _200x00: editedImageUrl
+                  _200x200: editedImageUrl
                 }
               };
             } else if (attrs.pictureType === "funny") {
-              scope.currentUser.profilePicture = {
+              scope.currentUser[pictureType]= {
                 original: originalImageUrl,
                 crops: {
-                  _200x00: editedImageUrl
+                  _200x200: editedImageUrl
                 }
               };
             }
@@ -96,10 +100,29 @@ angular.module('hireDotApp')
           async.waterfall([uploadOriginal, editImage, uploadEdited], doneEverything);
         };
 
+        var uploadResume = function() {
+          // Upload resume to Filepicker
+          var pickerOptions = {
+            extension: '.pdf',
+            container: 'modal',
+            services: ['GOOGLE_DRIVE', 'COMPUTER', 'URL']
+          };
+
+          filepicker.pick(pickerOptions, function onSuccess(originalBlob) {
+            scope.currentUser.resumeUrl = originalBlob.url;
+
+            // Update the input text value for preview
+            element.val(originalBlob.url);
+          }, function onError(FPError) {
+            console.log(FPError);
+          });
+        };
+
+
         // Adding a click event for this function, because ng-click doesn't work here
         element.click(function() {
           if (attrs.fileType === "image") {
-            uploadProfilePicture();
+            uploadProfilePicture(scope.pictureType);
           } else if (attrs.fileType === "resume") {
             uploadResume();
           }
