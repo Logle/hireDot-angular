@@ -2,6 +2,12 @@
   .social-media {
     margin-top: 0;
   }
+  .follow-developer {
+    &:hover, &:focus {
+      background-color: #1CAF9A;
+      border-color: #17a08c;
+    }
+  }
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

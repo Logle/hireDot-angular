@@ -2,6 +2,8 @@
   <h2><i class="fa fa-edit"></i> Edit Profile <span>Edit your profile here</span></h2>
 </div>
 
+
+
 <div class="contentpanel edit-profile">
   <form class="form-horizontal" name="editProfileForm" novalidate>
     <div class="panel panel-default">
@@ -11,7 +13,7 @@
       </div>
       <div class="panel-body">
         <div class="form-group" ng-class="{'has-error': editProfileForm.name.$error.required, 'has-success': editProfileForm.name.$valid && editProfileForm.name.$dirty}">
-          <label class="col-sm-3 control-label">Full Name</label>
+          <label class="col-sm-3 control-label">Full Name <span class="asterisk">*</span></label>
           <div class="col-sm-6">
             <input type="text" class="form-control" placeholder="e.g., Hiredot Fullstackerson" ng-model="currentUser.name" name="name" required>
             <label class="error" ng-show="editProfileForm.name.$error.required">This field is required.</label>
@@ -24,27 +26,28 @@
           </div>
         </div>
         <div class="form-group" ng-class="{'has-error': editProfileForm.email.$error.required, 'has-success': editProfileForm.email.$valid && editProfileForm.email.$dirty}">
-          <label class="col-sm-3 control-label">Email</label>
+          <label class="col-sm-3 control-label">Email <span class="asterisk">*</span></label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., fullstackerson@fullstack.com" ng-model="currentUser.email" name="email" required>
+            <input type="email" class="form-control" placeholder="e.g., fullstackerson@fullstack.com" ng-model="currentUser.email" name="email" required>
             <label class="error" ng-show="editProfileForm.email.$error.required">This field is required.</label>
-            <label class="warning">Doesn't look like the right email.</label>
+            <label class="warning" ng-show="editProfileForm.email.$invalid && !editProfileForm.email.$error.required">Doesn't look like the right email.</label>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label">Location:</label>
+
           <div class="col-sm-6">
             <input type="text" placeholder="e.g. New York, NY" class="form-control" ng-model="currentUser.location">
-            <div class="ckbox ckbox-default">
-              <input type="checkbox">
-              <label for="checkboxDefault">Willing to relocate</label>
+            <div class="checkbox default">
+              <label><input type="checkbox" ng-model="currentUser.relocate">Willing to relocate</label>
             </div>
           </div>
         </div>
         <div class="form-group" ng-class="{'has-warning': editProfileForm.linkedinUrl.$dirty}">
           <label class="col-sm-3 control-label">Linkedin Url</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://www.linkedin.com/in/hiredotfullstackerson" ng-model="currentUser.linkedinUrl" name="linkedinUrl">
+            <input type="text" class="form-control" placeholder="e.g., https://www.linkedin.com/in/hiredotfullstackerson" ng-model="currentUser.linkedinUrl" name="linkedinUrl" ui-validate="'validateUrl($value)'">
+            {{editProfileForm.linkedinUrl}}
             <label class="warning" ng-show="editProfileForm.linkedinUrl.$dirty">Doesn't look like the right Linkedin URL.</label>
           </div>
         </div>

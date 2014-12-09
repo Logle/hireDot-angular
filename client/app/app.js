@@ -8,7 +8,8 @@ angular.module('hireDotApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'infinite-scroll'
+  'infinite-scroll',
+  'ui.validate'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -48,10 +49,10 @@ angular.module('hireDotApp', [
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) {
-          $location.path('/login'); 
+          $location.path('/login');
         }
 
       });
     $window.scrollTo(0,0);
     });
-  }); 
+  });
