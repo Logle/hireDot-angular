@@ -10,6 +10,10 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
+var handleError = function(res, err) {
+  return res.send(500, err);
+}
+
 /**
  * Get list of users
  * restriction: 'admin'
@@ -44,7 +48,7 @@ exports.index = function(req, res) {
       .skip(skip)
       .populate('projects')
       .exec(function(err, users) {
-    if(err) return res.send(500, err);
+    if(err) return handleError(res, err);
     res.json(200, users);
   });
 };
@@ -53,6 +57,7 @@ exports.getAll = function(req, res) {
   User.find({})
       .populate('cohort')
       .exec(function(err, users) {
+        if (err) return handleError(res, err);
         res.json(200, users);
       });
 };
@@ -65,8 +70,35 @@ exports.typeahead = function(req, res) {
   User.find(findCriteria)
       .select("name _id")
       .exec(function(err, users) {
-    if(err) return res.send(500, err);
+    if(err) return handleError(res, err);
     res.json(200, users);
+  });
+};
+
+// for current user to follow a developer
+exports.followDeveloper = function(req, res, next) {
+  var devPosition,
+      currentUserId = req.params.id,
+      developerToFollowId = req.body.developerToFollowId;
+
+  User.findById(currentUserId, function(err, user){
+    if (err) return handleError(res, err);
+
+    devPosition = user.followDevelopers.indexOf(developerToFollowId);
+
+    if (devPosition === -1) {
+      user.followDevelopers.push(developerToFollowId);
+      user.save(function(err, user) {
+        if (err) return handleError(res, err);
+        res.send(200);
+      });
+    } else {
+      user.followDevelopers.splice(devPosition, 1);
+      user.save(function(err, user) {
+        if (err) return handleError(res, err);
+        res.send(200);
+      });
+    }
   });
 };
 
@@ -173,22 +205,4 @@ exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
 
-// for current user to follow a developer
 
-exports.followDeveloper = function(req, res, next) {
-  var devPosition;
-  User.findOne({_id: new ObjectId(req.body.user)}, function(err, user){
-    if (err) return next(err);
-    if (!user) return res.json(401);
-    devPosition = user.followDevelopers.indexOf(new ObjectId(req.body.dev));
-    if (devPosition === -1) {
-      user.followDevelopers.push(new ObjectId(req.body.dev));
-      user.save();
-      res.send(200);
-    } else {
-      user.followDevelopers.splice(devPosition,1);
-      user.save();
-      res.send(200);
-    }
-  });
-};

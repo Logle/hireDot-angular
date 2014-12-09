@@ -194,6 +194,16 @@ angular.module('hireDotApp')
 
       removeEducation: function(index) {
         currentUser.educations.splice(index, 1);
+      },
+
+      followDeveloper: function(developerId) {
+        return User.followDeveloper({ id: currentUser._id }, {
+          developerToFollowId: developerId
+        }).$promise;
+      },
+
+      updateProfile: function(developerData) {
+        return User.updateProfile({ id: currentUser._id }).$promise;
       }
     };
   });

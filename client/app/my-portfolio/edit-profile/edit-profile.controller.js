@@ -6,6 +6,11 @@ angular.module('hireDotApp')
     $scope.months = MonthsYears.months;
     $scope.years = MonthsYears.years;
 
+    $scope.validateUrl = function(value) {
+      if (value.match('linkedin').length) return true;
+      return false;
+    };
+
     $scope.workStartDate = {};
     $scope.workEndDate = {};
 
