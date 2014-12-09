@@ -9,26 +9,32 @@ angular.module('hireDotApp')
       changePassword: {
         method: 'PUT',
         params: {
-          controller:'password'
+          controller: 'password'
         }
       },
       get: {
         method: 'GET',
         params: {
-          id:'me'
+          id: 'me'
         }
       },
       typeahead: {
         method: 'GET',
         isArray: true,
         params: {
-          controller:'typeahead'
+          controller: 'typeahead'
         }
       },
       followDeveloper: {
-        method: 'POST',
+        method: 'PUT',
         params: {
-          controller:'followDeveloper'
+          controller: 'followDeveloper'
+        }
+      },
+      editProfile: {
+        method: 'PUT',
+        params: {
+          controller: 'editProfile'
         }
       }
 	  });

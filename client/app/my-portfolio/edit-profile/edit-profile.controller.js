@@ -57,8 +57,10 @@ angular.module('hireDotApp')
       Auth.removeEducation(index);
     };
 
-    $scope.updateProfile = function() {
-      console.log($scope.currentUser);
+    $scope.editProfile = function() {
+      Auth.editProfile($scope.currentUser);
     };
+
+    console.log($scope.currentUser);
   });
 

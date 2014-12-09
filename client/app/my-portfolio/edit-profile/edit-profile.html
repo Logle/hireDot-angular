@@ -2,10 +2,8 @@
   <h2><i class="fa fa-edit"></i> Edit Profile <span>Edit your profile here</span></h2>
 </div>
 
-
-
 <div class="contentpanel edit-profile">
-  <form class="form-horizontal" name="editProfileForm" novalidate>
+  <form class="form-horizontal" name="editProfileForm" ng-submit="editProfile()" novalidate>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">Basic Informations</h4>
@@ -98,7 +96,7 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">Resume</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="e.g., https://www.facebook.com/hiredotfullstackerson" ng-model="currentUser.facebookUrl">
+            <input type="text" class="form-control" placeholder="Your resume URL here" ng-model="currentUser.resumeUrl" edit-profile-file-upload current-user="currentUser" file-type="resume">
           </div>
         </div>
         <div class="form-group">
@@ -208,7 +206,7 @@
       <div class="panel-footer">
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
-            <button ng-click="updateProfile()" class="btn btn-success">Update</button>&nbsp;
+            <input type="submit" value="Update Profile" class="btn btn-success">
           </div>
         </div>
       </div>
