@@ -28,4 +28,11 @@
   .warning {
     color: #8a6d3b;
   }
+
+  .submit {
+    &:focus {
+      background-color: #1CAF9A;
+      border-color: #17a08c;
+    }
+  }
 }
