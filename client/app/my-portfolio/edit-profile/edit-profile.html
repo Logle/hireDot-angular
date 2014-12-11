@@ -3,7 +3,7 @@
 </div>
 
 <div class="contentpanel edit-profile">
-  <form class="form-horizontal" name="editProfileForm" ng-submit="editProfile()" novalidate>
+  <form class="form-horizontal" name="editProfileForm" ng-submit="editProfileForm.$valid && editProfile()" novalidate>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">Basic Informations</h4>
@@ -206,7 +206,7 @@
       <div class="panel-footer">
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
-            <input type="submit" value="Update Profile" class="btn btn-success">
+            <input type="submit" value="Update Profile" class="btn btn-success submit">
           </div>
         </div>
       </div>

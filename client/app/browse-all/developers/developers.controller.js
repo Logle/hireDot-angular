@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('DevelopersCtrl', function ($scope, Developer) {
-    $scope.developers = Developer.allDevelopersForNgRepeat;
+  .controller('DevelopersCtrl', function ($scope, User) {
+    $scope.users = User.allUsersForNgRepeat;
 
-    $scope.nextDevelopers = function() {
-      Developer.sortBy();
+    $scope.nextUsers = function() {
+      User.sortBy();
     };
 
-    $scope.queryStatus = Developer.queryStatus;
+    $scope.queryStatus = User.queryStatus;
   });

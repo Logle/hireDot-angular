@@ -1,22 +1,24 @@
 <div class="pageheader">
-    <h2><i class="fa fa-picture-o"></i> {{projectData.name}} <span>View {{projectData.name}}'s details here</span></h2>
+  <h2><i class="fa fa-picture-o"></i> {{projectData.name}} <span>View {{projectData.name}}'s details here</span></h2>
 </div>
 
 <div class="contentpanel">
   <div class="row project-view">
     <div class="col-sm-8">
-
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="embed-responsive embed-responsive-16by9">
               <iframe class="embed-responsive-item" src="//www.youtube.com/embed/bUVOlBc1aus" allowfullscreen></iframe>
             </div>
-
           </div>
-
-
         <!-- <img src="assets/images/project.jpg" class="col-sm-6" alt=""> -->
-      </div>
+        </div>
+        <br>
+        <div masonry >
+            <span class="masonry-brick" ng-repeat="image in randomImages">
+                <img ng-src="{{ image }}" alt="A masonry brick" style="border:1px solid black; margin-right: 8px; margin-top: 10px">
+            </span>
+        </div>
     </div>
     <div class="col-sm-4">
       <h2 class="profile-name">{{projectData.name}}</h2>

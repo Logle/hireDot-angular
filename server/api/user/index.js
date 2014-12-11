@@ -9,16 +9,14 @@ var router = express.Router();
 
 // router.get('/', auth.hasRole('admin'), controller.index);
 router.get('/', controller.index);
-router.get('/getAll', controller.getAll); // new (temporary?) route to get all users
 router.get('/typeahead', controller.typeahead);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.put('/:id/followDeveloper', controller.followDeveloper);
-// router.get('/:id', auth.isAuthenticated(), controller.show);
-router.get('/:id', controller.show);
-router.post('/', controller.create);
-router.put('/update', controller.update);
+router.get('/:id', auth.isAuthenticated(), controller.show);
+router.post('/', auth.isAuthenticated(), controller.create);
+router.put('/update', auth.isAuthenticated(), controller.update);
 
 router.put('/:id/editProfile', controller.editProfile);
 

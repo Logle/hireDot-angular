@@ -1,8 +1,10 @@
 <div class="rightpanel" ng-controller="SidebarRightCtrl">
   <div class="tab-content">
     <project-filter></project-filter>
-    <div class="mb30"></div>
+    <div class="mb30">========================</div>
     <developer-filter ng-if="isLoggedIn()"></developer-filter>
+    <div class="mb30">========================</div>
+    <user-filter ng-if="isLoggedIn()"></user-filter>
   </div>
 </div>
 

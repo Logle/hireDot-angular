@@ -5,7 +5,7 @@ angular.module('hireDotApp')
     $stateProvider
       .state('admin_page', {
         url: '/admin_page',
-        templateUrl: 'app/admin-page/admin-page.html',
-        controller: 'AdminPageCtrl'
+        abstract: true,
+        template: '<div ui-view=""></div>'
       });
   });

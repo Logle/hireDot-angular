@@ -70,7 +70,7 @@ angular.module('hireDotApp')
       },
       subMenu: [{
         title: 'Assign Users',
-        link: '/admin_page',
+        link: '/admin_page/assign_users',
         show: function() {
           return Auth.isAdmin();
         }
@@ -81,7 +81,7 @@ angular.module('hireDotApp')
           return Auth.isAdmin();
         }
       }, {
-        title: 'Something Else',
+        title: 'Create Cohort',
         link: '/admin_page',
         show: function() {
           return Auth.isAdmin();

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('EditProfileCtrl', function ($scope, Auth, MonthsYears) {
+  .controller('EditProfileCtrl', function ($scope, Auth, MonthsYears, $state) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.months = MonthsYears.months;
     $scope.years = MonthsYears.years;
@@ -58,9 +58,13 @@ angular.module('hireDotApp')
     };
 
     $scope.editProfile = function() {
-      Auth.editProfile($scope.currentUser);
+      Auth.editProfile($scope.currentUser).then(function(result) {
+        if (result) {
+          $state.go('view.developer_page', {
+            developer_id: $scope.currentUser._id
+          });
+        }
+      });
     };
-
-    console.log($scope.currentUser);
   });
 

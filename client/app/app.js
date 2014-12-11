@@ -9,7 +9,8 @@ angular.module('hireDotApp', [
   'ui.router',
   'ui.bootstrap',
   'infinite-scroll',
-  'ui.validate'
+  'ui.validate',
+  'wu.masonry'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
