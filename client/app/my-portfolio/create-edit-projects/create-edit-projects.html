@@ -3,22 +3,24 @@
 </div>
 
 <div class="contentpanel create-edit-projects">
-  <form class="form-horizontal" name="createEditProjectForm" ng-submit="projectForm.$valid && submit()" novalidate>
+  <form class="form-horizontal" name="createEditProjectForm" ng-submit="createEditProjectForm.$valid && submit()" novalidate>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">Project Informations</h4>
       </div>
       <div class="panel-body">
 
-        <!-- PROJECT NAME -->
-        <div class="form-group">
+        <!-- SELECT PROJECT -->
+        <!-- <div class="form-group">
           <label class="col-sm-3 control-label">Select Project </label>
           <div class="col-sm-6">
-            <select name="" class="form-control input-sm">
-              <option value="">New Project</option>
+            <select
+              class="form-control input-sm"
+              ng-model="selectedProject"
+              ng-options="p.name for p in projects">
             </select>
           </div>
-        </div>
+        </div> -->
 
         <!-- PROJECT NAME -->
         <div class="form-group">
@@ -139,6 +141,43 @@
 
         <video-embed ng-show="projectForm.videoURL.$dirty && projectForm.videoURL.$valid"></video-embed>
 
+        <!-- TEAM MEMBERS -->
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Team Members <span class="asterisk">*</span></label>
+          <div class="col-sm-6">
+            <ul id="team">
+              <li ng-repeat="collaborator in project.team">
+                {{collaborator.name}}: {{collaborator.role}} 
+                <a 
+                  class="close"
+                  ng-click="removeCollaborator(collaborator)"
+                  >&times;
+                </a>
+              </li>
+            </ul>
+            <span>Name: </span>
+            <input
+              id="collaboratorInput"
+              type="text"
+              class="form-control"
+              ng-model="currDeveloper"
+              typeahead="d as d.name for d in developerTypeahead | limitTo: 5"
+              ng-change="searchDevelopersTypeAhead(currDeveloper)"><br />
+            <span>Role: </span>
+            <input
+              id="roleInput"
+              type="text" 
+              class="form-control"
+              ng-model="currDeveloper.role">
+            <button
+              id="addCollaborator"
+              class="btn btn-sm btn-white"
+              ng-click="addCollaborator()"
+              >Add Member
+            </button>
+          </div>
+        </div>
+
         <!-- PROJECT PICTURE -->
         <div class="form-group">
           <label class="col-sm-3 control-label">Project Picture <span class="asterisk">*</span></label>
@@ -178,7 +217,7 @@
             <div class="col-sm-6 col-sm-offset-3">
               <button class="btn btn-primary"
                       type="submit"
-                      ng-disabled="projectForm.$invalid">Submit</button>
+                      ng-disabled="createEditProjectForm.$invalid">Submit</button>
             </div>
           </div>
         </div>

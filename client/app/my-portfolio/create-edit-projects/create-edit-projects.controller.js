@@ -70,18 +70,44 @@ angular.module('hireDotApp')
       }
     };
   })
-  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce) {
+  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce, Auth, Developer) {
   	$scope.project = {};
+    $scope.project.team = [];
+    $scope.developerTypeahead = Developer.developersTypeahead;
+    // $scope.projects = Auth.getCurrentUser().projects || [];
     $scope.getEmbedURL = function() {
       var id = getId($scope.project.videoURL);
       $scope.project.videoEmbedUrl = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + id);
     }
-
-    this.submit = function() {
+    $scope.submit = function() {
       Project.save($scope.project,
-        function() { console.log('project saved'); },
+        function(project) { console.log('project saved: ', project); },
         function() { console.log('problem trying to save project'); }
       );
+    };
+    $scope.addCollaborator = function() {
+      var notARepeat = true;
+      for (var i = 0, len = $scope.project.team.length; i < len; i++) {
+        if ($scope.project.team[i]._id === $scope.currDeveloper._id)
+          notARepeat = false;
+      }
+      var anExistingCollaborator = false;
+      if ($scope.currDeveloper && $scope.currDeveloper._id)
+        anExistingCollaborator = true;
+
+      if (anExistingCollaborator && notARepeat && $scope.currDeveloper.role) {
+        $scope.project.team.push($scope.currDeveloper);
+        $scope.currDeveloper = { name: '' };
+      }
+    };
+
+    $scope.removeCollaborator = function(collaborator) {
+      var index = $scope.project.team.indexOf(collaborator);
+      $scope.project.team.splice(index, 1);
+    };
+
+   $scope.searchDevelopersTypeAhead = function(developerName) {
+      Developer.searchTypeAhead(developerName);
     };
 
     // filepicker
@@ -133,19 +159,11 @@ angular.module('hireDotApp')
 
     // validations
     $scope.$watch("project.githubURL", function(newURL, oldURL) {
-      $scope.projectForm.githubURL.$setValidity("githubURL needs to be from github.com", isValidGithubUrl(newURL));
+      $scope.createEditProjectForm.githubURL.$setValidity("githubURL needs to be from github.com", isValidGithubUrl(newURL));
     });
     // $scope.$watch('project.videoURL', function(newURL, oldURL) {
     //   // ping YouTube API
     //   // $setValidity accordingly
-
-    //   // set height when valid
-    //   if ($scope.projectForm.videoURL.$valid) {
-    //     var width = $("#embed").width();
-    //     console.log('width: ', width);
-    //     $("iframe").height(width/1.777);
-    //   }
-    // });
   });
 
   function getId(url) {

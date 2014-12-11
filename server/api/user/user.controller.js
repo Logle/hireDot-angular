@@ -144,6 +144,7 @@ exports.editProfile = function(req, res) {
   delete req.body.followProjects;
 
   User.findByIdAndUpdate(userId, req.body, function(err, user) {
+    console.log(err);
     if (err) return handleError(res, err);
     res.send(200);
   });
@@ -201,9 +202,9 @@ exports.changePassword = function(req, res, next) {
  */
 exports.me = function(req, res, next) {
   var userId = req.user._id;
-  User.findOne({
-    _id: userId
-  }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
+  User.findOne({ _id: userId }, '-salt -hashedPassword')
+      .populate('projects')
+      .exec(function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);
     res.json(user);

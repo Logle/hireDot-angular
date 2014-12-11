@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Project = require('./project.model');
+var User = require('../user/user.model');
 
 // Get list of projects
 exports.index = function(req, res) {
@@ -47,9 +48,23 @@ exports.show = function(req, res) {
 
 // Creates a new project in the DB.
 exports.create = function(req, res) {
+  // authenicate before creating in index.js?
+  console.log('req.body: ', req.body);
   Project.create(req.body, function(err, project) {
+    console.log('created project: ', project);
     if(err) { return handleError(res, err); }
-    return res.json(201, project);
+    var team = req.body.team;
+    for (var i = 0, len = team.length; i < len; i++) {
+      User.findByIdAndUpdate(
+        team[i]._id, 
+        {
+          $addToSet: {
+            projects: project._id
+          }
+        }
+      );
+    }
+    return res.json(project);
   });
 };
 
