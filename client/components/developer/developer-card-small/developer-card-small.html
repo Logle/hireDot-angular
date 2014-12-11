@@ -1,0 +1,15 @@
+<div class="media act-media">
+  <a class="pull-left" href="/view/{{developerData._id}}/developer_page">
+    <img class="media-object" ng-src="{{developerData.profilePicture.crops._200x200 || developerData.linkedin.pictureUrl}}" alt="">
+  </a>
+  <div class="media-body act-media-body">
+    <h4><strong><a href="/view/{{developerData._id}}/developer_page" title="Go to {{developerData.name}}'s Profile">{{developerData.name}}</a></strong></h4>
+    <h4>
+      <a href="mailto:{{developerData.email}}" target="_blank" title="{{developerData.name}}'s email" ng-if="developerHasUrl('email', developerData)"><span class="fa fa-envelope"></span></a>
+      <a href="{{developerData.linkedinUrl}}" target="_blank" title="{{developerData.name}}'s Linkedin" ng-if="developerHasUrl('linkedin', developerData)"><span class="fa fa-linkedin-square"></span></a>
+      <a href="{{developerData.githubUrl}}" target="_blank" title="{{developerData.name}}'s Github" ng-if="developerHasUrl('github', developerData)"><span class="fa fa-github-square"></span></a>
+      <a href="{{developerData.facebookUrl}}" target="_blank" title="{{developerData.name}}'s Facebook" ng-if="developerHasUrl('facebook', developerData)"><span class="fa fa-facebook-square"></span></a>
+      <a href="{{developerData.twitterUrl}}" target="_blank" title="{{developerData.name}}'s Twitter" ng-if="developerHasUrl('twitter', developerData)"><span class="fa fa-twitter-square"></span></a>
+    </h4>
+  </div>
+</div>

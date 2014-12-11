@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .directive('developerFilter', function () {
+  .directive('userFilter', function () {
     return {
-      templateUrl: 'components/sidebar-right/developer-filter/developer-filter.html',
+      templateUrl: 'components/sidebar-right/user-filter/user-filter.html',
       restrict: 'E',
       controller: function ($scope, $timeout, User, Cohort) {
         $scope.orderByOptions = [{
@@ -28,6 +28,23 @@ angular.module('hireDotApp')
           status: "Hired",
           hired: true
         }];
+
+         $scope.rolesFilter = [{
+            roleName: 'All',
+            roleType: ''
+          }, {
+            roleName: 'User',
+            roleType: 'user'
+          }, {
+            roleName: 'Developer',
+            roleType: 'developer'
+          }, {
+            roleName: 'Employer',
+            roleType: 'employer'
+          }, {
+            roleName: 'Admin',
+            roleType: 'admin'
+          }]
 
         $scope.sortUsers = function(sortCriteria, roleType, hiredOrLooking, selectedCohort) {
           var sortCriteria = {

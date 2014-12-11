@@ -215,7 +215,7 @@ a:hover {
 // Component styles are injected through grunt
 // injector
 @import 'admin-invitation/admin-invitation.scss';
-@import 'admin-page/admin-page.scss';
+@import 'admin-page/assign-users/assign-users.scss';
 @import 'admin/admin.scss';
 @import 'browse-all/developers/developers.scss';
 @import 'browse-all/projects/projects.scss';
@@ -233,4 +233,5 @@ a:hover {
 @import 'sidebar-left/navigation/navigation.scss';
 @import 'sidebar-right/developer-filter/developer-filter.scss';
 @import 'sidebar-right/sidebar-right.scss';
+@import 'sidebar-right/user-filter/user-filter.scss';
 // endinjector

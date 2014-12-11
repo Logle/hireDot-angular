@@ -1,0 +1,31 @@
+.assign-users {
+  tbody tr td {
+    vertical-align: middle;
+
+    img {
+      height: 70px;
+      width: 70px;
+    }
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  select.input-sm {
+    display: inline-block;
+    margin-top: 0;
+    text-transform: Capitalize;
+  }
+
+  .alert.alert-success, .alert.alert-danger {
+    position: relative;
+    top: 1px;
+    padding: 7px;
+  }
+
+  .media {
+    padding-bottom: 0;
+  }
+}

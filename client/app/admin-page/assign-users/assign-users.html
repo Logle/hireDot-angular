@@ -1,8 +1,8 @@
 <div class="pageheader">
-	<h2>Admin</h2>
+	<h2><i class="fa fa-mortar-board"></i> Assign Users <span>Assign user roles and approve users here</span></h2>
 </div>
 
-<div class="contentpanel">
+<div class="contentpanel assign-users">
 	<div class="panel panel-default">
 		<table class="table table-striped">
 			<thead>
@@ -10,29 +10,44 @@
 					<th>User</th><!-- picture and email -->
 					<th>Role</th>
 					<th>Cohort</th>
-					<th>Approved</th>
-					<th>Delete</th>
+					<th class="text-center">Delete</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr ng-repeat="user in users">
+			<tbody infinite-scroll='nextUsers()' infinite-scroll-disabled='queryStatus.isBusy || queryStatus.isFinished' infinite-scroll-distance='0'>
+        <tr ng-repeat="user in users">
+          <td>
+            <developer-card-small developer-data="user"></developer-card-small>
+          </td>
+          <td>
+            <select class="input-sm" ng-model="user.role" ng-options="userRole for userRole in userRoles" ng-change="assignRole(user)">
+            </select>
+            <span class="alert alert-success">Updated!</span>
+            <span class="alert alert-danger">Failed! Try again</span>
+          <td>
+            <select class="input-sm" ng-model="user.cohort" ng-options="cohort.name for cohort in cohorts track by cohort._id" ng-init="checkCohort(user, cohorts)"></select>
+            <span class="alert alert-success">Updated!</span>
+            <span class="alert alert-danger">Failed! Try again</span>
+          </td>
+          <td class="text-center"><a href="javascript:void(0)" ng-click="deleteUser()"><i class="fa fa-trash-o"></i></a></td>
+        </tr>
+				<!-- <tr ng-repeat="user in users">
 					<td>
 						<img ng-if="user.profilePicture.crops" width="80" src="{{user.profilePicture.crops._200x200}}" />
 						<div>
 							<p>{{user.name}}</p>
-							<a ng-show="user.email" 
+							<a ng-show="user.email"
 								href="mailto:{{user.email}}">
 								<span class="fa fa-envelope"></span>
 							</a>
-							<a ng-show="user.githubUrl" 
+							<a ng-show="user.githubUrl"
 								href="{{user.githubUrl}}">
 								<span class="fa fa-github"></span>
 							</a>
-							<a ng-show="user.linkedinUrl" 
+							<a ng-show="user.linkedinUrl"
 								href="{{user.linkedinUrl}}">
 								<span class="fa fa-linkedin"></span>
 							</a>
-							<a ng-show="user.twitterUrl" 
+							<a ng-show="user.twitterUrl"
 								href="{{user.twitterUrl}}">
 								<span class="fa fa-twitter"></span>
 							</a>
@@ -44,24 +59,24 @@
 					</td>
 					<td>
 						<div class="btn-group">
-							<button 
-								class="btn" 
+							<button
+								class="btn"
 								ng-class="{
-									'btn-primary': user.role === 'user', 
+									'btn-primary': user.role === 'user',
 									'btn-default': user.role !== 'user'
 								}"
 								ng-click="updateRole($event, user)">User</button>
-							<button 
-								class="btn" 
+							<button
+								class="btn"
 								ng-class="{
-									'btn-primary': user.role === 'developer', 
+									'btn-primary': user.role === 'developer',
 									'btn-default': user.role !== 'developer'
 								}"
 								ng-click="updateRole($event, user)">Developer</button>
-							<button 
+							<button
 								class="btn"
 								ng-class="{
-									'btn-primary': user.role === 'employer', 
+									'btn-primary': user.role === 'employer',
 									'btn-default': user.role !== 'employer'
 								}"
 								ng-click="updateRole($event, user)">Employer</button>
@@ -85,13 +100,13 @@
 							>{{ user.approvedAsDeveloper ? 'Un-approve' : 'Approve'}}</button>
 					</td>
 					<td>
-						<button 
+						<button
 							class="btn btn-danger"
 							ng-click="delete(user)">
 							Delete
 						</button>
 					</td>
-				</tr>
+				</tr> -->
 			</tbody>
 		</table>
 	</div>

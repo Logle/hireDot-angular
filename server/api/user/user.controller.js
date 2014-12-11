@@ -23,13 +23,11 @@ exports.index = function(req, res) {
       skip = req.query.skip;
 
   var findCriteria = function() {
-    if (req.query.name) {
-      return {
-        name: new RegExp('.*' + req.query.name + '.*', 'ig')
-      }
-    }
+    var findCriteria = req.query.name || req.query.name  === '' ? {
+            name: new RegExp('.*' + req.query.name + '.*', 'ig')
+          } : {};
 
-    var findCriteria = {};
+    if (req.query.role) findCriteria.role = req.query.role;
 
     if (req.query.hired && req.query.hired !== "all") {
       findCriteria.hired = JSON.parse(req.query.hired);
@@ -41,31 +39,30 @@ exports.index = function(req, res) {
 
     return findCriteria;
   }();
-
+  console.log(findCriteria);
   User.find(findCriteria)
       .sort(sortCriteria)
       .limit(10)
       .skip(skip)
-      .populate('projects')
+      .populate('projects cohort')
       .exec(function(err, users) {
     if(err) return handleError(res, err);
     res.json(200, users);
   });
 };
 
-exports.getAll = function(req, res) {
-  User.find({})
-      .populate('cohort')
-      .exec(function(err, users) {
-        if (err) return handleError(res, err);
-        res.json(200, users);
-      });
-};
-
 exports.typeahead = function(req, res) {
-  var findCriteria = req.query.name ? {
-        name: new RegExp('.*' + req.query.name + '.*', 'ig')
-      } : {};
+  var findCriteria = function() {
+    var findCriteria = req.query.name || req.query.name === '' ? {
+            name: new RegExp('.*' + req.query.name + '.*', 'ig')
+          } : {};
+
+    if (req.query.role) findCriteria.role = req.query.role;
+
+    return findCriteria;
+  }();
+
+  console.log("from typeahead", findCriteria);
 
   User.find(findCriteria)
       .select("name _id")

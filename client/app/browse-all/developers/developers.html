@@ -3,10 +3,10 @@
 </header>
 
 <div class="contentpanel">
-  <div class="people-list" infinite-scroll='nextDevelopers()' infinite-scroll-disabled='queryStatus.isBusy || queryStatus.isFinished' infinite-scroll-distance='0'>
-    <div class="row" ng-repeat="developer in developers">
-      <developer-card-profile developer-data='developer' class="col-md-6 col-sm-12"></developer-card-profile>
-      <developer-card-projects developer-data='developer' class="col-md-6 col-sm-12"></developer-card-projects>
+  <div class="people-list" infinite-scroll='nextUsers()' infinite-scroll-disabled='queryStatus.isBusy || queryStatus.isFinished' infinite-scroll-distance='0'>
+    <div class="row" ng-repeat="user in users">
+      <developer-card-profile developer-data='user' class="col-md-6 col-sm-12"></developer-card-profile>
+      <developer-card-projects developer-data='user' class="col-md-6 col-sm-12"></developer-card-projects>
     </div>
   </div>
 </div>

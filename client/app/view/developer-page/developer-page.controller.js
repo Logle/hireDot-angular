@@ -22,14 +22,6 @@ angular.module('hireDotApp')
       return $scope.developerData.hasUrl(urlType);
     };
 
-    $scope.hasProject = function() {
-      return $scope.developerData.hasProject();
-    };
-
-    $scope.profilePictureAvailable = function() {
-      return $scope.developerData.profilePictureAvailable();
-    };
-
     $scope.developerData.$promise.then(function(result) {
       if ( Auth.getCurrentUser().followDevelopers.indexOf(result._id) === -1 ){
         $scope.isFollowed = 0;
