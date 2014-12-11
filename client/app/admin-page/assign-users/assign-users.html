@@ -10,6 +10,7 @@
 					<th>User</th><!-- picture and email -->
 					<th>Role</th>
 					<th>Cohort</th>
+          <th>Hired</th>
 					<th class="text-center">Delete</th>
 				</tr>
 			</thead>
@@ -23,10 +24,14 @@
             </select>
             <span class="alert alert-success">Updated!</span>
             <span class="alert alert-danger">Failed! Try again</span>
+          </td>
           <td>
             <select class="input-sm" ng-model="user.cohort" ng-options="cohort.name for cohort in cohorts track by cohort._id" ng-init="checkCohort(user, cohorts)"></select>
             <span class="alert alert-success">Updated!</span>
             <span class="alert alert-danger">Failed! Try again</span>
+          </td>
+          <td>
+            <select class="input-sm" ng-model="user.hired" ng-options="hired for hired in hired"></select>
           </td>
           <td class="text-center"><a href="javascript:void(0)" ng-click="deleteUser()"><i class="fa fa-trash-o"></i></a></td>
         </tr>

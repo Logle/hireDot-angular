@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('DeveloperPageCtrl', function ($scope, Developer, $stateParams, User, Auth, $modal) {
-    $scope.developerData = Developer.get({ id: $stateParams.developer_id });
+  .controller('DeveloperPageCtrl', function ($scope, $stateParams, User, Auth, $modal) {
+    $scope.userData = User.get({ id: $stateParams.developer_id });
 
     $scope.showFunny = false;
     $scope.showTab = {
@@ -22,7 +22,7 @@ angular.module('hireDotApp')
       return $scope.developerData.hasUrl(urlType);
     };
 
-    $scope.developerData.$promise.then(function(result) {
+    $scope.userData.$promise.then(function(result) {
       if ( Auth.getCurrentUser().followDevelopers.indexOf(result._id) === -1 ){
         $scope.isFollowed = 0;
       } else {  $scope.isFollowed = 1;  }
@@ -40,8 +40,8 @@ angular.module('hireDotApp')
         controller: 'ResumeModalInstanceCtrl',
         size: 'lg',
         resolve: {
-          developerData: function() {
-            return $scope.developerData;
+          userData: function() {
+            return $scope.userData;
           }
         }
       });
