@@ -34,6 +34,8 @@ angular.module('hireDotApp')
       user.delete();
     };
 
+    $scope.hired = [true, false];
+
   	// refactor this using q and promises or something
    //  $http.get('/api/users/getAll')
   	// 	.success(function(users) {

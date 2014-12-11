@@ -1,12 +1,12 @@
 <div class="modal-header">
-    <h3 class="modal-title">{{developerData.name}}'s Resume</h3>
+    <h3 class="modal-title">{{userData.name}}'s Resume</h3>
 </div>
 <div class="modal-body" >
   <div ng-show="hasResume">
-    <object type="application/pdf" ng-hide="true" width='100%' height=700px data={{developerData.resumeUrl}}></object>
+    <object type="application/pdf" ng-hide="true" width='100%' height=700px data={{userData.resumeUrl}}></object>
   </div>
   <div ng-hide="hasResume">
-    <p class="text-center">{{developerData.name}} has no resume yet.</p>
+    <p class="text-center">{{userData.name}} has no resume yet.</p>
   </div>
 </div>
 <div class="modal-footer">

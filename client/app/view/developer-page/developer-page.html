@@ -1,5 +1,5 @@
 <header class="pageheader">
-  <h2><i class="fa fa-user"></i> {{developerData.name}}<span>View {{developerData.name}}'s profile here</span></h2>
+  <h2><i class="fa fa-user"></i> {{userData.name}}<span>View {{userData.name}}'s profile here</span></h2>
 </header>
 
 <div class="contentpanel">
@@ -8,31 +8,31 @@
 
       <img
         class="thumbnail img-responsive"
-        alt="{{developerData.name}}"
-        ng-src="{{ showFunny ? developerData.funnyProfilePicture.crops._200x200 : developerData.profilePicture.crops._200x200 || developerData.linkedin.pictureUrl }}"
+        alt="{{userData.name}}"
+        ng-src="{{ showFunny ? userData.funnyProfilePicture.crops._200x200 : userData.profilePicture.crops._200x200 || userData.linkedin.pictureUrl }}"
         ng-mouseover="showFunny = true;"
         ng-mouseleave="showFunny = false;"
       />
       <div class="mb30"></div>
       <h5 class="subtitle">About</h5>
-      <p class="mb30">{{developerData.summary}}</p>
+      <p class="mb30">{{userData.summary}}</p>
       <h5 class="subtitle">Connect</h5>
       <h3 class="social-media">
-        <a href="mailto:{{developerData.email}}" target="_blank" title="{{developerData.name}}'s email" ng-if="hasUrl('email')"><span class="fa fa-envelope"></span></a>
-        <a href="{{developerData.linkedinUrl}}" target="_blank" title="{{developerData.name}}'s Linkedin" ng-if="hasUrl('linkedin')"><span class="fa fa-linkedin-square"></span></a>
-        <a href="{{developerData.githubUrl}}" target="_blank" title="{{developerData.name}}'s Github" ng-if="hasUrl('github')"><span class="fa fa-github-square"></span></a>
-        <a href="{{developerData.facebookUrl}}" target="_blank" title="{{developerData.name}}'s Facebook" ng-if="hasUrl('facebook')"><span class="fa fa-facebook-square"></span></a>
-        <a href="{{developerData.twitterUrl}}" target="_blank" title="{{developerData.name}}'s Twitter" ng-if="hasUrl('twitter')"><span class="fa fa-twitter-square"></span></a>
+        <a href="mailto:{{userData.email}}" target="_blank" title="{{userData.name}}'s email" ng-if="hasUrl('email')"><span class="fa fa-envelope"></span></a>
+        <a href="{{userData.linkedinUrl}}" target="_blank" title="{{userData.name}}'s Linkedin" ng-if="hasUrl('linkedin')"><span class="fa fa-linkedin-square"></span></a>
+        <a href="{{userData.githubUrl}}" target="_blank" title="{{userData.name}}'s Github" ng-if="hasUrl('github')"><span class="fa fa-github-square"></span></a>
+        <a href="{{userData.facebookUrl}}" target="_blank" title="{{userData.name}}'s Facebook" ng-if="hasUrl('facebook')"><span class="fa fa-facebook-square"></span></a>
+        <a href="{{userData.twitterUrl}}" target="_blank" title="{{userData.name}}'s Twitter" ng-if="hasUrl('twitter')"><span class="fa fa-twitter-square"></span></a>
       </h3>
       <div class="mb30"></div>
       <h5 class="subtitle">Skills</h5>
-      <p class="mb30">{{developerData.skills}}</p>
+      <p class="mb30">{{userData.skills}}</p>
     </div>
     <div class="col-sm-9">
       <div class="profile-header">
-        <h2 class="profile-name">{{developerData.name}}</h2>
-        <div class="profile-location"><i class="fa fa-map-marker"></i> {{developerData.location}}</div>
-        <div class="profile-position"><i class="fa fa-briefcase"></i> {{developerData.title}}</a></div>
+        <h2 class="profile-name">{{userData.name}}</h2>
+        <div class="profile-location"><i class="fa fa-map-marker"></i> {{userData.location}}</div>
+        <div class="profile-position"><i class="fa fa-briefcase"></i> {{userData.title}}</a></div>
         <div class="mb20"></div>
         <button type='button' class="btn btn-success follow-developer" ng-model='isFollowed' btn-checkbox btn-checkbox-true='1' btn-checkbox-false="0" ng-click=followDeveloper()><i class="fa fa-star"></i> {{isFollowedString[isFollowed]}}</button>
         <button class="btn btn-white" ng-click=openResume()><i class="fa fa-envelope-o"></i> Resume</button>
@@ -45,7 +45,7 @@
       <div class="tab-content">
         <div ng-show="showTab.educations" class="tab-pane active" id="activities">
           <div class="activity-list">
-            <div class="media act-media" ng-repeat="education in developerData.educations">
+            <div class="media act-media" ng-repeat="education in userData.educations">
               <h4><strong>{{education.schoolName}}</strong></h4>
               <h5><i class="fa fa-graduation-cap"></i> {{education.degree | filterText}}</h5>
               <h5><i class="fa fa-institution"></i> {{education.fieldOfStudy | filterText}} <span class="pull-right text-muted">{{education | filterTimePeriod}}</span></h5>
@@ -54,7 +54,7 @@
         </div>
         <div ng-show="showTab.workExperiences" class="tab-pane active" id="activities">
           <div class="activity-list">
-            <div class="media act-media" ng-repeat="workExperience in developerData.workExperiences">
+            <div class="media act-media" ng-repeat="workExperience in userData.workExperiences">
               <div class="media-body act-media-body">
                 <div class="media-body act-media-body">
                   <h4><strong>{{workExperience.title}}</strong></h4>
@@ -66,7 +66,7 @@
         </div>
         <div ng-show="showTab.projects" class="tab-pane active">
         <div class="row">
-          <project-card class="col-md-4" project-data='project' ng-repeat="project in developerData.projects"></project-card>
+          <project-card class="col-md-4" project-data='project' ng-repeat="project in userData.projects"></project-card>
         </div>
         </div>
       </div>
