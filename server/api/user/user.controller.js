@@ -143,6 +143,7 @@ exports.editProfile = function(req, res) {
   delete req.body._id;
 
   User.findByIdAndUpdate(userId, req.body, function(err, user) {
+    console.log(err);
     if (err) return handleError(res, err);
     res.send(200);
   });

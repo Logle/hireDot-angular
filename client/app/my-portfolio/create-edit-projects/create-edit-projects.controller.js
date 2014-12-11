@@ -70,19 +70,44 @@ angular.module('hireDotApp')
       }
     };
   })
-  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce, Auth) {
+  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce, Auth, Developer) {
   	$scope.project = {};
-    $scope.projects = Auth.getCurrentUser().projects || [];
+    $scope.project.team = [];
+    $scope.developerTypeahead = Developer.developersTypeahead;
+    // $scope.projects = Auth.getCurrentUser().projects || [];
     $scope.getEmbedURL = function() {
       var id = getId($scope.project.videoURL);
       $scope.project.videoEmbedUrl = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + id);
     }
-
     $scope.submit = function() {
       Project.save($scope.project,
-        function() { console.log('project saved'); },
+        function(project) { console.log('project saved: ', project); },
         function() { console.log('problem trying to save project'); }
       );
+    };
+    $scope.addCollaborator = function() {
+      var notARepeat = true;
+      for (var i = 0, len = $scope.project.team.length; i < len; i++) {
+        if ($scope.project.team[i]._id === $scope.currDeveloper._id)
+          notARepeat = false;
+      }
+      var anExistingCollaborator = false;
+      if ($scope.currDeveloper && $scope.currDeveloper._id)
+        anExistingCollaborator = true;
+
+      if (anExistingCollaborator && notARepeat && $scope.currDeveloper.role) {
+        $scope.project.team.push($scope.currDeveloper);
+        $scope.currDeveloper = { name: '' };
+      }
+    };
+
+    $scope.removeCollaborator = function(collaborator) {
+      var index = $scope.project.team.indexOf(collaborator);
+      $scope.project.team.splice(index, 1);
+    };
+
+   $scope.searchDevelopersTypeAhead = function(developerName) {
+      Developer.searchTypeAhead(developerName);
     };
 
     // filepicker

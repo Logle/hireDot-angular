@@ -48,21 +48,23 @@ exports.show = function(req, res) {
 
 // Creates a new project in the DB.
 exports.create = function(req, res) {
-  // change project schema to have owners - done
-  // authenicate before creating in index.js and get logged in user via req.user?
+  // authenicate before creating in index.js?
+  console.log('req.body: ', req.body);
   Project.create(req.body, function(err, project) {
+    console.log('created project: ', project);
     if(err) { return handleError(res, err); }
-    User.findByIdAndUpdate(
-      req.body.owner._id, 
-      {
-        $addToSet: {
-          projects: project._id
+    var team = req.body.team;
+    for (var i = 0, len = team.length; i < len; i++) {
+      User.findByIdAndUpdate(
+        team[i]._id, 
+        {
+          $addToSet: {
+            projects: project._id
+          }
         }
-      },
-      function() {
-        return res.json(201, project);
-      }
-    );
+      );
+    }
+    return res.json(project);
   });
 };
 
