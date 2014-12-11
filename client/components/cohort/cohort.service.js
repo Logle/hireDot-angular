@@ -9,9 +9,15 @@ angular.module('hireDotApp')
       _id: "all"
     }];
 
+    Cohort.cohorts = [{
+      name: "Unassigned",
+      _id: "none"
+    }];
+
     Cohort.query({}, function(cohorts) {
       cohorts.forEach(function(cohort) {
         Cohort.cohortsTypeahead.push(cohort);
+        Cohort.cohorts.push(cohort);
       });
     });
 

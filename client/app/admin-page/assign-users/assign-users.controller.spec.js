@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: AdminPageCtrl', function () {
+describe('Controller: AssignUsersCtrl', function () {
 
   // load the controller's module
   beforeEach(module('hireDotApp'));
 
-  var AdminPageCtrl, scope;
+  var AssignUsersCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AdminPageCtrl = $controller('AdminPageCtrl', {
+    AssignUsersCtrl = $controller('AssignUsersCtrl', {
       $scope: scope
     });
   }));
