@@ -70,16 +70,30 @@ angular.module('hireDotApp')
       }
     };
   })
-  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce, Auth, Developer) {
+  .controller('CreateEditProjectsCtrl', function ($scope, Project, $sce, Auth, User) {
   	$scope.project = {};
     $scope.project.team = [];
-    $scope.developerTypeahead = Developer.developersTypeahead;
+    $scope.developerTypeahead = User.usersTypeahead;
     // $scope.projects = Auth.getCurrentUser().projects || [];
     $scope.getEmbedURL = function() {
       var id = getId($scope.project.videoURL);
       $scope.project.videoEmbedUrl = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + id);
     }
     $scope.submit = function() {
+      // makes project match the Schema
+      $scope.project.team = $scope.project.team.map(function(member) {
+        return {
+          role: member.role,
+          developer: member._id
+        };
+      });
+      $scope.project.images = $scope.project.images.map(function(image) {
+        return {
+          crops: image.crops || {},
+          original: image.url
+        };
+      });
+
       Project.save($scope.project,
         function(project) { console.log('project saved: ', project); },
         function() { console.log('problem trying to save project'); }
@@ -107,7 +121,7 @@ angular.module('hireDotApp')
     };
 
    $scope.searchDevelopersTypeAhead = function(developerName) {
-      Developer.searchTypeAhead(developerName);
+      User.searchTypeAhead(developerName, 'developer');
     };
 
     // filepicker
@@ -120,7 +134,7 @@ angular.module('hireDotApp')
           mimetype: 'image/*'
         },
         function(Blobs) {
-          $scope.project.pictures = Blobs;
+          $scope.project.images = Blobs;
           $scope.$digest();
         }
       );
@@ -141,7 +155,7 @@ angular.module('hireDotApp')
 
         var id = +imageID.slice(8);
         $scope.$apply(function() {
-          $scope.project.pictures[id].url = newURL;
+          $scope.project.images[id].url = newURL;
         });
       },
       onError: function(errorObj) {
@@ -160,6 +174,9 @@ angular.module('hireDotApp')
     // validations
     $scope.$watch("project.githubURL", function(newURL, oldURL) {
       $scope.createEditProjectForm.githubURL.$setValidity("githubURL needs to be from github.com", isValidGithubUrl(newURL));
+    });
+    $scope.$watchCollection("project.team", function(newTeam, oldTeam) {
+      $scope.createEditProjectForm.$setValidity("need at least one team member", newTeam.length > 0);
     });
     // $scope.$watch('project.videoURL', function(newURL, oldURL) {
     //   // ping YouTube API
