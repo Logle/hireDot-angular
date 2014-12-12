@@ -20,18 +20,20 @@
             <developer-card-small developer-data="user"></developer-card-small>
           </td>
           <td>
-            <select class="input-sm" ng-model="user.role" ng-options="userRole for userRole in userRoles" ng-change="assignRole(user)">
+            <select class="input-sm" ng-model="user.role" ng-options="userRole for userRole in userRoles" ng-change="updateUser(user, 'role')">
             </select>
-            <span class="alert alert-success">Updated!</span>
-            <span class="alert alert-danger">Failed! Try again</span>
+            <span ng-if="user.updateRoleSuccess" class="alert alert-success">update!</span>
+            <span ng-if="user.updateRoleError" class="alert alert-danger">Failed! Try again</span>
           </td>
           <td>
-            <select class="input-sm" ng-model="user.cohort" ng-options="cohort.name for cohort in cohorts track by cohort._id" ng-init="checkCohort(user, cohorts)"></select>
-            <span class="alert alert-success">Updated!</span>
-            <span class="alert alert-danger">Failed! Try again</span>
+            <select class="input-sm" ng-model="user.cohort" ng-options="cohort.name for cohort in cohorts track by cohort._id" ng-init="checkCohort(user, cohorts)" ng-change="updateUser(user, 'cohort')"></select>
+            <span ng-if="user.updateCohortSuccess" class="alert alert-success">update!</span>
+            <span ng-if="user.updateCohortError" class="alert alert-danger">Failed! Try again</span>
           </td>
           <td>
-            <select class="input-sm" ng-model="user.hired" ng-options="hired for hired in hired"></select>
+            <select class="input-sm" ng-model="user.hired" ng-options="hired for hired in hired" ng-change="updateUser(user, 'hired')"></select>
+            <span ng-if="user.updateHiredSuccess" class="alert alert-success">update!</span>
+            <span ng-if="user.updateHiredError" class="alert alert-danger">Failed! Try again</span>
           </td>
           <td class="text-center"><a href="javascript:void(0)" ng-click="deleteUser()"><i class="fa fa-trash-o"></i></a></td>
         </tr>

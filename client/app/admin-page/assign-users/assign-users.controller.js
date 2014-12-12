@@ -14,11 +14,6 @@ angular.module('hireDotApp')
 
     $scope.cohorts = Cohort.cohorts;
 
-    $scope.assignRole = function(userData, roleType) {
-      console.log(userData);
-      // console.log(roleType);
-    };
-
     $scope.checkCohort = function(user, cohorts) {
       var foundCohort = false;
 
@@ -36,68 +31,69 @@ angular.module('hireDotApp')
 
     $scope.hired = [true, false];
 
-  	// refactor this using q and promises or something
-   //  $http.get('/api/users/getAll')
-  	// 	.success(function(users) {
-  	// 		$scope.users = users;
-   //      $http.get('/api/cohorts')
-   //        .success(function(cohorts) {
-   //          $scope.cohorts = cohorts;
-   //          $scope.users.forEach(function(user) {
-   //            var index;
-   //            for (var i = 0, len = $scope.cohorts.length; i < len; i++) {
-   //              if (user.cohort && user.cohort._id === $scope.cohorts[i]._id) {
-   //                index = i;
-   //                break;
-   //              }
-   //            }
-   //            user.cohort = $scope.cohorts[index];
-   //          });
-   //        })
-   //        .error(function() {
-   //          console.error('unable to get cohorts');
-   //        });
-  	// 	})
-  	// 	.error(function() {
-  	// 		console.error('unable to get users');
-  	// 	});
+    $scope.updateUser = function(userData, updateType) {
+      var modifiedUserData = {
+        _id: userData._id
+      };
 
-  	// $scope.delete = function(user) {
-  	// 	$http.delete('/api/users/' + user._id)
-  	// 		.success(function() {
-  	// 			var index = $scope.users.indexOf(user);
-  	// 			$scope.users.splice(index, 1);
-  	// 		})
-  	// 		.error(function() {
-  	// 			console.log('unable to delete user');
-  	// 		});
-  	// };
+      var onSuccess, onError;
 
-   //  $scope.updateRole = function($event, user) {
-   //    var oldRole = user.role;
-   //    var newRole = $($event.target).text().toLowerCase();
-   //    user.role = newRole;
-   //    $http.put('/api/users/update', {user: user})
-   //      .error(function() {
-   //        console.error("unable to update user's role");
-   //        user.role = oldRole; // reverts back to the original role if it doesn't update the database
-   //      })
-   //  };
+      switch(updateType) {
+        case 'role':
+          modifiedUserData.role = userData.role;
+          onSuccess = function() {
+            userData.updateRoleSuccess = true;
+            setTimeout(function() {
+              userData.updateRoleSuccess = false;
+              $scope.$apply();
+            }, 2000);
+          };
+          onError = function() {
+            userData.updateRoleError = true;
+            setTimeout(function() {
+              userData.updateRoleError = false;
+              $scope.$apply();
+            }, 2000);
+          };
+          break;
+        case 'cohort':
+          modifiedUserData.cohort = userData.cohort._id;
+          onSuccess = function() {
+            userData.updateCohortSuccess = true;
+            setTimeout(function() {
+              userData.updateCohortSuccess = false;
+              $scope.$apply();
+            }, 2000);
+          };
+          onError = function() {
+            userData.updateCohortError = true;
+            setTimeout(function() {
+              userData.updateCohortError = false;
+              $scope.$apply();
+            }, 2000);
+          };
+          break;
+        case 'hired':
+          modifiedUserData.hired = userData.hired;
+          onSuccess = function() {
+            userData.updateHiredSuccess = true;
+            setTimeout(function() {
+              userData.updateHiredSuccess = false;
+              $scope.$apply();
+            }, 2000);
+          };
+          onError = function() {
+            userData.updateHiredError = true;
+            setTimeout(function() {
+              userData.updateHiredError = false;
+              $scope.$apply();
+            }, 2000);
+          };
+          break;
+      }
 
-   //  $scope.updateCohort = function(user) {
-   //    $http.put('/api/users/update', {user: user})
-   //      .error(function() {
-   //        console.error("unable to update user's cohort");
-   //        // revert back
-   //      });
-   //  };
-
-   //  $scope.toggleApprove = function(user) {
-   //    user.approvedAsDeveloper = !user.approvedAsDeveloper;
-   //    $http.put('/api/users/update', {user: user})
-   //      .error(function() {
-   //        console.error("unable to update user's approval");
-   //        // revert back
-   //      });
-   //  };
+      User.update(modifiedUserData)
+          .$promise
+          .then(onSuccess, onError);
+    };
   });

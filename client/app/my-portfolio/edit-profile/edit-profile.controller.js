@@ -58,11 +58,18 @@ angular.module('hireDotApp')
     };
 
     $scope.editProfile = function() {
-      Auth.editProfile($scope.currentUser).then(function(result) {
+      delete $scope.currentUser.cohort;
+      delete $scope.currentUser.followDevelopers;
+      delete $scope.currentUser.followProjects;
+      delete $scope.currentUser.projects;
+
+      Auth.update($scope.currentUser).then(function(result) {
         if (result) {
-          $state.go('view.developer_page', {
-            developer_id: $scope.currentUser._id
-          });
+          $scope.updateSuccess = true;
+          setTimeout(function() {
+            $scope.updateSuccess = false;
+            $scope.$apply();
+          }, 2000);
         }
       });
     };

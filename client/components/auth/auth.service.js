@@ -202,8 +202,8 @@ angular.module('hireDotApp')
         }).$promise;
       },
 
-      editProfile: function(developerData) {
-        return User.editProfile(developerData).$promise;
+      update: function(developerData) {
+        return User.update(developerData).$promise;
       }
     };
   });

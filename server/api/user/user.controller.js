@@ -62,8 +62,6 @@ exports.typeahead = function(req, res) {
     return findCriteria;
   }();
 
-  console.log("from typeahead", findCriteria);
-
   User.find(findCriteria)
       .select("name _id")
       .exec(function(err, users) {
@@ -114,37 +112,8 @@ exports.create = function (req, res, next) {
 };
 
 exports.update = function(req, res) {
-  var id = req.body.user._id;
-  User.findById(id)
-    // .populate('cohort')
-    .exec(function(err, user) {
-      if (err) return res.send(500, err);
-      else if (!user) return res.send(401);
-
-      req.body.user.cohort = req.body.user.cohort._id;
-      user.set(req.body.user);
-
-      user.save(function(err, user) {
-        if (err) {
-          return validationError(res, err);
-        }
-        console.log(user.approvedAsDeveloper);
-        res.json(user);
-      });
-    });
-};
-
-exports.editProfile = function(req, res) {
   var userId = req.params.id;
-
-  // Without this deletes, error will happen
-  delete req.body.cohort;
-  delete req.body.projects;
-  delete req.body.followDevelopers;
-  delete req.body.followProjects;
-
   User.findByIdAndUpdate(userId, req.body, function(err, user) {
-    console.log(err);
     if (err) return handleError(res, err);
     res.send(200);
   });
