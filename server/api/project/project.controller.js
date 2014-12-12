@@ -49,9 +49,9 @@ exports.show = function(req, res) {
 // Creates a new project in the DB.
 exports.create = function(req, res) {
   // authenicate before creating in index.js?
-  console.log('req.body: ', req.body);
+  console.log('req.body.images: ', req.body.images);
   Project.create(req.body, function(err, project) {
-    console.log('created project: ', project);
+    console.log('created project images: ', project.images);
     if(err) { return handleError(res, err); }
     var team = req.body.team;
     for (var i = 0, len = team.length; i < len; i++) {

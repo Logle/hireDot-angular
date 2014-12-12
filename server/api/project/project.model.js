@@ -15,12 +15,12 @@ var ImageSchema = new Schema({
 
 var ProjectSchema = new Schema({
   name: String,
-  githubUrl: String,
-  pitch: String,
+  githubURL: String,
+  shortPitch: String,
   description: String,
-  techTags: String,
+  techStackTags: String,
   images: [ImageSchema],
-  videoUrl: String,
+  videoURL: String,
   url: String,
   views: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   team: [MemberSchema],

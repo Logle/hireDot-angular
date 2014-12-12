@@ -186,13 +186,13 @@
               ng-click="initializeFilePicker();"
               class="btn btn-default"
               name="picture"
-              ng-model="project.pictures"
+              ng-model="project.images"
               required
               >
               Upload Picture
             </button>
             <div id="pictures">
-              <div class="pictureDiv" ng-repeat="picture in project.pictures">
+              <div class="pictureDiv" ng-repeat="picture in project.images">
                 <img
                   id="picture-{{$index}}"
                   src="{{picture.url}}"
@@ -200,6 +200,7 @@
                 /><br />
                 <button
                   class="btn btn-link"
+                  type="button"
                   ng-click='launchEditor(
                     "picture-" + $index,
                     picture.url
