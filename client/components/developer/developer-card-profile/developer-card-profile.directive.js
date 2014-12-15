@@ -10,18 +10,33 @@ angular.module('hireDotApp')
       },
       link: function(scope) {
         scope.hasUrl = function(developerData, urlType) {
-          return developerData.hasUrl(urlType);
+          switch(urlType) {
+            case 'email':
+              if (developerData.email && developerData.email !== "") { return true; }
+              break;
+            case 'linkedin':
+              if (developerData.linkedinUrl && developerData.linkedinUrl !== "") { return true; }
+              break;
+            case 'github':
+              if (developerData.githubUrl && developerData.githubUrl !== "") { return true; }
+              break;
+            case 'facebook':
+              if (developerData.facebookUrl && developerData.facebookUrl !== "") { return true; }
+              break;
+            case 'twitter':
+              if (developerData.twitterUrl && developerData.twitterUrl !== "") { return true; }
+              break;
+          }
+
+          return false;
         };
+
         scope.profilePictureAvailable = function(developerData) {
-          if (developerData.hasOwnProperty('profilePictureAvailable')) {
-            return developerData.profilePictureAvailable();
+          if (developerData.linkedin.pictureUrl || (developerData.profilePicture &&
+              developerData.profilePicture.crops)) {
+            return true;
           } else {
-            if (developerData.linkedin.pictureUrl || (developerData.profilePicture &&
-                developerData.profilePicture.crops)) {
-              return true;
-            } else {
-              return false;
-            }
+            return false;
           }
         };
       }

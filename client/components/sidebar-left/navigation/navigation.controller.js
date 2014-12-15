@@ -26,11 +26,13 @@ angular.module('hireDotApp')
       },
       subMenu: [{
         title: 'Projects',
+        link: '/favorites/follow_projects',
         show: function() {
           return Auth.isLoggedIn();
         }
       }, {
         title: 'Developers',
+        link: '/favorites/follow_developers',
         show: function() {
           return Auth.isLoggedIn();
         }

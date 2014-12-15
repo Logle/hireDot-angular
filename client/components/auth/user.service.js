@@ -31,6 +31,12 @@ angular.module('hireDotApp')
           controller: 'followDeveloper'
         }
       },
+      followProject: {
+        method: 'PUT',
+        params: {
+          controller: 'followProject'
+        }
+      },
       update: {
         method: 'PUT',
         params: {
@@ -111,43 +117,6 @@ angular.module('hireDotApp')
       this.queryStatus.skip = 0;
       this.queryStatus.isBusy = false;
       this.queryStatus.isFinished = false;
-    };
-
-     // For object instances
-    User.prototype.hasUrl = function(urlType) {
-      switch(urlType) {
-            case 'email':
-              if (this.email && this.email !== "") { return true; }
-              break;
-            case 'linkedin':
-              if (this.linkedinUrl && this.linkedinUrl !== "") { return true; }
-              break;
-            case 'github':
-              if (this.githubUrl && this.githubUrl !== "") { return true; }
-              break;
-            case 'facebook':
-              if (this.facebookUrl && this.facebookUrl !== "") { return true; }
-              break;
-            case 'twitter':
-              if (this.twitterUrl && this.twitterUrl !== "") { return true; }
-              break;
-          }
-
-      return false;
-    };
-
-    User.prototype.hasProject = function() {
-      if (this.projects !== null && this.projects.length !== 0) return true;
-      return false;
-    };
-
-    User.prototype.profilePictureAvailable = function() {
-      if (this.linkedin.pictureUrl || (this.profilePicture &&
-          this.profilePicture.crops)) {
-        return true;
-      } else {
-        return false;
-      }
     };
 
     return User;

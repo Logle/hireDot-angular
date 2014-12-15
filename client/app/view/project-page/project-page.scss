@@ -19,6 +19,14 @@
       }
     }
   }
+
+  .follow-project {
+    margin-bottom: 15px;
+    &:hover, &:focus {
+      background-color: #1CAF9A;
+      border-color: #17a08c;
+    }
+  }
 }
 
 .masonry-brick {

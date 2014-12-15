@@ -2,9 +2,9 @@
 
 angular.module('hireDotApp')
   .controller('DevelopersCtrl', function ($scope, User) {
-    $scope.users = User.allUsersForNgRepeat;
+    $scope.developers = User.allUsersForNgRepeat;
 
-    $scope.nextUsers = function() {
+    $scope.nextDevelopers = function() {
       User.sortBy();
     };
 

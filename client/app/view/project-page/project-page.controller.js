@@ -1,9 +1,21 @@
 'use strict';
 
 angular.module('hireDotApp')
-  .controller('ProjectPageCtrl', function ($scope, $stateParams, Project) {
+  .controller('ProjectPageCtrl', function ($scope, $stateParams, Project, Auth) {
     $scope.projectData = Project.get({ id: $stateParams.project_id});
-    console.log($scope.projectData);
+
+    $scope.projectData.$promise.then(function(result) {
+      if ( Auth.getCurrentUser().followProjects.indexOf(result._id) === -1 ){
+        $scope.isFollowed = 0;
+      } else {  $scope.isFollowed = 1;  }
+    });
+
+    $scope.isFollowedString = ['Follow', 'UnFollow'];
+
+    $scope.followProject = function() {
+      Auth.followProject($stateParams.project_id);
+    };
+
     $scope.developerHasUrl = function(urlType, developerData) {
       switch(urlType) {
             case 'email':
