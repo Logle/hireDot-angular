@@ -3,6 +3,13 @@
 </header>
 
 <div class="contentpanel">
+  <div class="row" ng-if="followDevelopers.length === 0">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-warning text-center">
+        You have <strong>no favorite developers</strong>, why don't you look for one?
+      </div>
+    </div>
+  </div>
   <div class="people-list">
     <developer-card-profile developer-data='developer' ng-repeat="developer in followDevelopers" class="col-md-6 col-sm-12"></developer-card-profile>
   </div>

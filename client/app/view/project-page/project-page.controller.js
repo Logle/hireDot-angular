@@ -22,15 +22,16 @@ angular.module('hireDotApp')
     };
 
     $scope.followProject = function() {
-      Auth.followProject($stateParams.project_id);
+      Auth.followProject($stateParams.project_id)
+          .then(function onSuccess() {
+            var currentUser = Auth.getCurrentUser();
 
-      var currentUser = Auth.getCurrentUser();
-
-      if ($scope.isFollowed === 1) {
-        currentUser.followProjects.splice(projectPosition, 1);
-      } else {
-        currentUser.followProjects.push($scope.projectData);
-      }
+            if ($scope.isFollowed === 1) {
+              currentUser.followProjects.push($scope.projectData);
+            } else {
+              currentUser.followProjects.splice(projectPosition, 1);
+            }
+          });
     };
 
     $scope.developerHasUrl = function(urlType, developerData) {

@@ -78,13 +78,19 @@ angular.module('hireDotApp')
         }
       }, {
         title: 'Invite Users',
-        link: '/admin_page',
+        link: '/admin_page/invite_users',
         show: function() {
           return Auth.isAdmin();
         }
       }, {
         title: 'Create Cohort',
-        link: '/admin_page',
+        link: '/admin_page/create_cohort',
+        show: function() {
+          return Auth.isAdmin();
+        }
+      }, {
+        title: 'Assign Projects',
+        link: '/admin_page/assign_projects',
         show: function() {
           return Auth.isAdmin();
         }

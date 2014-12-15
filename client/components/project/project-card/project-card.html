@@ -1,14 +1,11 @@
 <div>
   <div class="panel panel-default widget-photoday project-card">
-    <a class="photoday" href="/view/{{projectData._id}}/project_page" title="{{projectData.name}}" ng-show="imageAvailable(projectData)">
-      <img src="{{projectData.images[0].crops._150x150}}" title="{{projectData.name}}" class="img-responsive">
-    </a>
-    <a class="photoday" href="javascript:void(0)" title="Project Page" ng-hide="imageAvailable(projectData)">
-      <img src="assets/images/project.jpg" alt="Project Name" class="img-responsive">
+    <a class="photoday" href="/view/{{projectData._id}}/project_page" title="{{projectData.name}}">
+      <img src="{{projectData.images[0].crops._150x150 || 'assets/images/project.jpg'}}" title="{{projectData.name}}" class="img-responsive">
     </a>
     <div class="photo-details">
       <h4 class="photo-title overflow-text-ellipsis">
-        {{projectData.name | filterText}}   
+        <a href="/view/{{projectData._id}}/project_page" title="{{projectData.name}}">{{projectData.name | filterText}}</a>
       </h4>
       <small class="text-muted overflow-text-ellipsis">{{projectData.techTags | filterText}}</small>
     </div>

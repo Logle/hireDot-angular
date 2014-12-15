@@ -57,16 +57,17 @@ angular.module('hireDotApp')
 
     $scope.isFollowedString = ['Follow', 'UnFollow'];
 
-    $scope.followDeveloper = function(init) {
-      Auth.followDeveloper($stateParams.developer_id);
+    $scope.followDeveloper = function() {
+      Auth.followDeveloper($stateParams.developer_id)
+          .then(function onSuccess() {
+            var currentUser = Auth.getCurrentUser();
 
-      var currentUser = Auth.getCurrentUser();
-
-      if ($scope.isFollowed === 1) {
-        currentUser.followDevelopers.splice(devPosition, 1);
-      } else {
-        currentUser.followDevelopers.push($scope.userData);
-      }
+            if ($scope.isFollowed === 1) {
+              currentUser.followDevelopers.push($scope.userData);
+            } else {
+              currentUser.followDevelopers.splice(devPosition, 1);
+            }
+          });
     };
 
     $scope.openResume = function() {

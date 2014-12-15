@@ -26,7 +26,19 @@ angular.module('hireDotApp')
     };
 
     $scope.deleteUser = function(user) {
-      user.delete();
+      var userIdToDelete = user._id,
+          devPosition;
+
+      user.$delete(function onSuccess() {
+            $scope.users.some(function(user, index) {
+              if (user._id === userIdToDelete) {
+                devPosition = index;
+                return true;
+              }
+            });
+
+            $scope.users.splice(devPosition, 1);
+          });
     };
 
     $scope.hired = [true, false];

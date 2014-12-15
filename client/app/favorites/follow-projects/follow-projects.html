@@ -3,6 +3,13 @@
 </header>
 
 <div class="contentpanel">
+  <div class="row" ng-if="followProjects.length === 0">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-warning text-center">
+        You have <strong>no favorite projects</strong>, why don't you look for one?
+      </div>
+    </div>
+  </div>
   <div class="people-list">
     <div class="row">
       <project-card class="col-md-3" project-data='project' ng-repeat="project in followProjects"></project-card>
