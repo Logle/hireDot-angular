@@ -4,38 +4,56 @@ angular.module('hireDotApp')
   .controller('ProjectPageCtrl', function ($scope, $stateParams, Project, Auth) {
     $scope.projectData = Project.get({ id: $stateParams.project_id});
 
-    $scope.projectData.$promise.then(function(result) {
-      if ( Auth.getCurrentUser().followProjects.indexOf(result._id) === -1 ){
-        $scope.isFollowed = 0;
-      } else {  $scope.isFollowed = 1;  }
-    });
-
     $scope.isFollowedString = ['Follow', 'UnFollow'];
+
+    var projectPosition;
+
+    $scope.checkFollow = function() {
+      var currentUser = Auth.getCurrentUser();
+
+      currentUser.followProjects.some(function(project, index) {
+        if (project._id === $stateParams.project_id) {
+          projectPosition = index;
+          return true;
+        }
+      });
+
+      $scope.isFollowed = (projectPosition >= 0) ? 1 : 0;
+    };
 
     $scope.followProject = function() {
       Auth.followProject($stateParams.project_id);
+
+      var currentUser = Auth.getCurrentUser();
+
+      if ($scope.isFollowed === 1) {
+        currentUser.followProjects.splice(projectPosition, 1);
+      } else {
+        currentUser.followProjects.push($scope.projectData);
+      }
     };
 
     $scope.developerHasUrl = function(urlType, developerData) {
       switch(urlType) {
-            case 'email':
-              if (developerData.email && developerData.email !== "") { return true; }
-              break;
-            case 'linkedin':
-              if (developerData.linkedinUrl && developerData.linkedinUrl !== "") { return true; }
-              break;
-            case 'github':
-              if (developerData.githubUrl && developerData.githubUrl !== "") { return true; }
-              break;
-            case 'facebook':
-              if (developerData.facebookUrl && developerData.facebookUrl !== "") { return true; }
-              break;
-            case 'twitter':
-              if (developerData.twitterUrl && developerData.twitterUrl !== "") { return true; }
-              break;
-          }
+        case 'email':
+          if (developerData.email && developerData.email !== "") { return true; }
+          break;
+        case 'linkedin':
+          if (developerData.linkedinUrl && developerData.linkedinUrl !== "") { return true; }
+          break;
+        case 'github':
+          if (developerData.githubUrl && developerData.githubUrl !== "") { return true; }
+          break;
+        case 'facebook':
+          if (developerData.facebookUrl && developerData.facebookUrl !== "") { return true; }
+          break;
+        case 'twitter':
+          if (developerData.twitterUrl && developerData.twitterUrl !== "") { return true; }
+          break;
+      }
       return false;
     };
+
     $scope.randomImages = [
       'http://static.ddmcdn.com/gif/5-small-dog-exercises0.jpg',
       'http://www.notinthedoghouse.com/wp-content/uploads/2013/10/small-dog-breeds-that-stay-small-300x240.jpg',

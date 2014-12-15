@@ -5,7 +5,7 @@ angular.module('hireDotApp')
     $stateProvider
       .state('favorites.follow_developers', {
         url: '/follow_developers',
-        templateUrl: 'app/view/follow-developers/follow-developers.html',
+        templateUrl: 'app/favorites/follow-developers/follow-developers.html',
         controller: 'FollowDevelopersCtrl'
     });
   });

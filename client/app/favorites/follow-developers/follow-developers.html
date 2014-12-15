@@ -4,8 +4,6 @@
 
 <div class="contentpanel">
   <div class="people-list">
-    <div class="row" ng-repeat="developer in followDevelopers">
-      <developer-card-profile developer-data='developer' class="col-md-6 col-sm-12"></developer-card-profile>
-    </div>
+    <developer-card-profile developer-data='developer' ng-repeat="developer in followDevelopers" class="col-md-6 col-sm-12"></developer-card-profile>
   </div>
 </div>
