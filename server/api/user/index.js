@@ -14,6 +14,7 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.put('/:id/followDeveloper', auth.isAuthenticated(), controller.followDeveloper);
+router.put('/:id/followProject', auth.isAuthenticated(), controller.followProject);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id/update', auth.isAuthenticated(), controller.update);

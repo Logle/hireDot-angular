@@ -202,6 +202,12 @@ angular.module('hireDotApp')
         }).$promise;
       },
 
+      followProject: function(projectId) {
+        return User.followProject({ id: currentUser._id }, {
+          projectToFollowId: projectId
+        }).$promise;
+      },
+
       update: function(developerData) {
         return User.update(developerData).$promise;
       }

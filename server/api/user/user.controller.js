@@ -71,7 +71,7 @@ exports.typeahead = function(req, res) {
 };
 
 // for current user to follow a developer
-exports.followDeveloper = function(req, res, next) {
+exports.followDeveloper = function(req, res) {
   var devPosition,
       currentUserId = req.params.id,
       developerToFollowId = req.body.developerToFollowId;
@@ -89,6 +89,32 @@ exports.followDeveloper = function(req, res, next) {
       });
     } else {
       user.followDevelopers.splice(devPosition, 1);
+      user.save(function(err, user) {
+        if (err) return handleError(res, err);
+        res.send(200);
+      });
+    }
+  });
+};
+
+exports.followProject = function(req, res, next) {
+  var projectPosition,
+      currentUserId = req.params.id,
+      projectToFollowId = req.body.projectToFollowId;
+
+  User.findById(currentUserId, function(err, user){
+    if (err) return handleError(res, err);
+
+    projectPosition = user.followProjects.indexOf(projectToFollowId);
+
+    if (projectPosition === -1) {
+      user.followProjects.push(projectToFollowId);
+      user.save(function(err, user) {
+        if (err) return handleError(res, err);
+        res.send(200);
+      });
+    } else {
+      user.followProjects.splice(projectPosition, 1);
       user.save(function(err, user) {
         if (err) return handleError(res, err);
         res.send(200);
@@ -172,7 +198,7 @@ exports.changePassword = function(req, res, next) {
 exports.me = function(req, res, next) {
   var userId = req.user._id;
   User.findOne({ _id: userId }, '-salt -hashedPassword')
-      .populate('projects')
+      .populate('projects followDevelopers followProjects')
       .exec(function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);

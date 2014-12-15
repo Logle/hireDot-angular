@@ -34,8 +34,8 @@
         <div class="profile-location"><i class="fa fa-map-marker"></i> {{userData.location}}</div>
         <div class="profile-position"><i class="fa fa-briefcase"></i> {{userData.title}}</a></div>
         <div class="mb20"></div>
-        <button type='button' class="btn btn-success follow-developer" ng-model='isFollowed' btn-checkbox btn-checkbox-true='1' btn-checkbox-false="0" ng-click=followDeveloper()><i class="fa fa-star"></i> {{isFollowedString[isFollowed]}}</button>
-        <button class="btn btn-white" ng-click=openResume()><i class="fa fa-envelope-o"></i> Resume</button>
+        <button type='button' class="btn btn-success follow-developer" ng-model='isFollowed' btn-checkbox btn-checkbox-true='1' btn-checkbox-false="0" ng-click='followDeveloper()' ng-init="checkFollow()"><i class="fa fa-star"></i> {{isFollowedString[isFollowed]}}</button>
+        <button class="btn btn-white" ng-click='openResume()'><i class="fa fa-envelope-o"></i> Resume</button>
       </div>
       <ul class="nav nav-tabs nav-justified nav-profile">
         <li ng-class="showTab.projects ? 'active' : 'none'" ng-click="show('projects')"><a href="javascript:void(0)"><strong>Projects</strong></a></li>

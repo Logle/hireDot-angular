@@ -1,0 +1,11 @@
+<header class="pageheader">
+  <h2><i class="fa fa-users"></i> Developers <span>These are your favorite developers</span></h2>
+</header>
+
+<div class="contentpanel">
+  <div class="people-list">
+    <div class="row" ng-repeat="developer in followDevelopers">
+      <developer-card-profile developer-data='developer' class="col-md-6 col-sm-12"></developer-card-profile>
+    </div>
+  </div>
+</div>
