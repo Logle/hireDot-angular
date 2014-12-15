@@ -18,7 +18,7 @@
     <div class="col-sm-4">
       <h2 class="profile-name">{{projectData.name}}</h2>
       <p class="mb10">{{projectData.pitch}}</p>
-      <button type="button" class="btn btn-success follow-project" ng-model="isFollowed", btn-checkbox btn-checkbox-true='1' btn-checkbox-false='0' ng-click='followProject()'><i class="fa fa-star"></i> {{isFollowedString[isFollowed]}}</button>
+      <button type="button" class="btn btn-success follow-project" ng-model="isFollowed", btn-checkbox btn-checkbox-true='1' btn-checkbox-false='0' ng-click='followProject()' ng-init="checkFollow()"><i class="fa fa-star"></i> {{isFollowedString[isFollowed]}}</button>
       <h3 class="subtitle">Description</h3>
       <p class="mb30">{{projectData.description}}</p>
       <h5 class="subtitle">Technologies</h5>
