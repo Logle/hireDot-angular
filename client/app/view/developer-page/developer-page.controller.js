@@ -19,7 +19,7 @@ angular.module('hireDotApp')
     };
 
     $scope.hasUrl = function(urlType) {
-      return $scope.developerData.hasUrl(urlType);
+      return $scope.userData.hasUrl(urlType);
     };
 
     $scope.userData.$promise.then(function(result) {

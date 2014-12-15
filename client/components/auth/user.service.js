@@ -31,10 +31,10 @@ angular.module('hireDotApp')
           controller: 'followDeveloper'
         }
       },
-      editProfile: {
+      update: {
         method: 'PUT',
         params: {
-          controller: 'editProfile'
+          controller: 'update'
         }
       }
 	  });
