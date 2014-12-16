@@ -1,4 +1,4 @@
-d'use strict';
+'use strict';
 
 angular.module('hireDotApp')
   .config(function ($stateProvider) {
