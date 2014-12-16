@@ -46,6 +46,11 @@ exports.show = function(req, res) {
   });
 };
 
+POST /projects
+
+POST /projects 
+PUT /projects/:id/newMember
+
 // Creates a new project in the DB.
 exports.create = function(req, res) {
   // authenicate before creating in index.js?
@@ -55,6 +60,7 @@ exports.create = function(req, res) {
     if(err) { return handleError(res, err); }
     var team = req.body.team;
     for (var i = 0, len = team.length; i < len; i++) {
+      // consider adding this to post save hook in project.model.js
       User.findByIdAndUpdate(
         team[i]._id, 
         {

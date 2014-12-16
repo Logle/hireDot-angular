@@ -3,7 +3,6 @@ JavaScript Style
 
 MongoDB Schema Design
 - User model demonstrates good use of embedding choices, virtual fields and pre/post hooks
-- Same with project model - you may want to consider indexing the developer field inside MemberSchema if you're searching for projects based on a user
 
 Node/Express
 - Routes are good, standard REST compliance
@@ -15,6 +14,38 @@ https://github.com/johnpapa/angularjs-styleguide
 - Excellent Controller size and breakdown, controllers are compact and handle one job well
 - Good use of directives in editing forms, might consider creating a directive that can be reused for all the form types for just the bootstrap template
 - Good use of routing
+- Use of $scope everywhere, at least know about var vm = this; plenty ofplaces where $scope is not necessary
+- Project Page and Developer Page are bundled under view/ - a more RESTful structure would be: 
+
+developers/
+    INDEX - browse-all
+    READ /:id -> view
+    EDIT /:id/edit -> developer-edit-page
+    UPDATE /:id -> 
+
+developers/
+    developers.js -> frontend routing
+    services.js -> 
+    view/
+        html/controller
+    index/
+        htl/controller
+
+http://hireDot/#/developers/:id
+                /developers
+                /developers/:id/edit
+                
+
+- developers/
+    + REST
+        * Create/Update - Form
+        * Read: Portfolio
+        * Index: Developer Page
+    + favorites/
+        * C/U: Add/Minus Favorites
+- projects/
+- admin/
+    + invites/
 
 Testing
 - Did not see testing
@@ -25,3 +56,6 @@ Deployment
 Workflow
 - Good use for feature branching and git merging for workflow
 - Saw some use of Github Issues
+
+General Comments:
+- Very impressive, this is like the work of a professional team learning Angular and the fullstack generator
