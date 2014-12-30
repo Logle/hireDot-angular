@@ -1,3 +1,3 @@
 #HireDot
-This is the Github repository for hire.fullstackacademy.com.
+This is a fork of the Github repository for hire.fullstackacademy.com.
 
